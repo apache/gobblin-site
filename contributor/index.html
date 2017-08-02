@@ -29,14 +29,14 @@
     <!--===============================================
       CSS files
     =================================================-->
-    <link rel="stylesheet" href="assets/css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="../assets/css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/custom.min.css">
-    <link rel="stylesheet" href="assets/css/gobblin.css">
+    <link rel="stylesheet" href="../assets/css/custom.min.css">
+    <link rel="stylesheet" href="../assets/css/gobblin.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.js"></script>
-      <script src="assets/js/respond.min.js"></script>
+      <script src="../assets/js/html5shiv.js"></script>
+      <script src="../assets/js/respond.min.js"></script>
     <![endif]-->
   </head>
   <body>
@@ -138,168 +138,58 @@
       Gobblin Center Space <start>
     =================================================-->
     <div class="container">
-
+        
       <div class="page-header" id="primary-content">
-        <!--===============================================
-          ROW 0 <start>
-        =================================================-->
+          
         <div class="row">
-          <div class="col-sm-12">
-            <div id="apache-gobblin-gobbling-container">
-              <div class="apache-gobblin-gobbling">
-                <div class="apache-gobblin-gobbling-upper"><b>. &nbsp;<br/> </b></div>
-                <div class="apache-gobblin-gobbling-lower"></div>
+          <div class="col-md-12">
+
+            <div id="content">
+                <h1 class="title" style="margin-top:-5px; font-size: 3em; margin-top: -5px;">Contributor Guide</h1>
+
+                <p>This page contains resources and documentation for Gobblin contributors. Any documentation that is helpful to Gobblin users should go in the <a href="http://gobblin.readthedocs.io/en/latest/developer-guide/Documentation-Architecture/" target="_blank">Gobblin ReadTheDocs</a>.</p>
+
+                <h2 id="external-project-resources">External project resources<a class="header-link" href="#external-project-resources"><i class="fa fa-link"></i></a></h2>
+
+                <ul>
+                  <li><a href="https://issues.apache.org/jira/browse/GOBBLIN">JIRA</a> for tracking issues</li>
+                  <li><a href="https://github.com/apache/incubator-gobblin/pulls">GitHub</a> for code reviews (via pull requests)</li>
+                  <li><a href="https://builds.apache.org/view/A/view/Gobblin">Jenkins</a> &amp; <a href="https://travis-ci.org/apache/incubator-gobblin">TravisCI</a> for automated builds</li>
+                </ul>
+
+                <h2 id="development-docs">Development docs<a class="header-link" href="#development-docs"><i class="fa fa-link"></i></a></h2>
+
+                <ul>
+                  <li><a href="#">Source Guide</a></li>
+                  <li><a href="#">Git Workflow</a></li>
+                  <li><a href="#">Versioning</a></li>
+                  <li><a href="#">Contrib Projects</a></li>
+                  <li><a href="#">Review Board</a></li>
+                </ul>
+
+                <h2 id="release-guides">Release guides<a class="header-link" href="#release-guides"><i class="fa fa-link"></i></a></h2>
+
+                <ul>
+                  <li><a href="#">Making a release</a></li>
+                  <li><a href="#">Verifying a release</a></li>
+                </ul>
+
+                <h2 id="project-governance">Project governance<a class="header-link" href="#project-governance"><i class="fa fa-link"></i></a></h2>
+
+                <ul>
+                  <li><a href="#">Bylaws</a></li>
+                  <li><a href="#">Consensus Building</a></li>
+                  <li><a href="#">Lazy Consensus</a></li>
+                  <li><a href="#">Voting</a></li>
+                </ul>
               </div>
-            </div>
           </div>
         </div>
-        <!--===============================================
-          ROW 0 <end>
-        =================================================-->
-        <!--===============================================
-          ROW 1 <start>
-        =================================================-->
-        <div class="row">
-          <!--===============================================
-             Gobblin Primary Content <start>
-          =================================================-->
-          <div class="col-lg-8 col-md-7 col-sm-6 text-center" class="primary-container-header">
-            <h1 style="margin-top: 0px">Apache Gobblin</h1>
-            <p class="lead">A distributed data integration framework that simplifies common aspects of big data integration such as data ingestion, replication, organization and lifecycle management for both <b>streaming</b> and <b>batch</b> data ecosystems.</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-animated btn-outline" href="/download">Download</a> 
-                <a class="btn btn-primary btn-animated btn-outline" href="http://www.gobblin.io" target="_blank">Try Gobblin</a>
-            </p>
-          </div>
-          <!--===============================================
-             Gobblin Primary Content <end>
-          =================================================-->
-          <!--===============================================
-             Gobblin News Content <start>
-          =================================================-->
-          <div class="col-lg-4 col-md-5 col-sm-6">
-            <div class="row">
-              <div class="col-sm-12 panel panel-default latest-news-panel">
-                <p class="latest-news-header">Latest News</p>
-
-                <div class="row latest-news-item">
-                  <div class="col-sm-12" style="margin-bottom: 5px">
-                   <span style="font-size: 12px; margin-right: 5px;">Jul 2017</span>
-                   <a href="http://gobblin.apache.org">Apache Gobblin's website is up!</a>
-                  </div>
-                </div>
-
-                <div class="row latest-news-item">
-                  <div class="col-sm-12" style="margin-bottom: 5px">
-                   <span style="font-size: 12px; margin-right: 5px;">Jul 2017</span>
-                   <a href="issues.apache.org/jira/browse/GOBBLIN" target="_blank">Apache Gobblin's JIRA is setup</a>
-                  </div>
-                </div>
-
-                <div class="row latest-news-item">
-                  <div class="col-sm-12" style="margin-bottom: 5px">
-                   <span style="font-size: 12px; margin-right: 5px;">Jul 2017</span>
-                   <a href="https://cwiki.apache.org/confluence/display/GOBBLIN/Gobblin+Home" target="_blank">Apache Gobblin's Confluence Wiki is setup</a>
-                  </div>
-                </div>
-
-                <div class="row latest-news-item">
-                  <div class="col-sm-12" style="margin-bottom: 5px">
-                   <span style="font-size: 12px; margin-right: 5px;">Jul 2017</span>
-                   <a href="https://github.com/apache/incubator-gobblin" target="_blank">Gobblin's Code donated to Apache</a>
-                  </div>
-                </div>
-
-                <div class="row latest-news-item">
-                  <div class="col-sm-12" style="margin-bottom: 5px">
-                   <span style="font-size: 12px; margin-right: 5px;">Jul 2017</span>
-                   <a href="https://www.meetup.com/Big-Data-Meetup-LinkedIn/events/239739875/" target="_blank">Gobblin's 4th Monthly Video Conference</a>
-                  </div>
-                </div>
-
-                <div id="news-archive-link">
-                 <p>View more posts in the <a href="https://cwiki.apache.org/confluence/display/GOBBLIN/Announcements" target="_blank">Annoucements</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--===============================================
-             Gobblin News Content <end>
-          =================================================-->
-        </div>
-        <!--===============================================
-          ROW 1 <end>
-        =================================================-->
-        <hr>
-        <!--===============================================
-          ROW 2 <start>
-        =================================================-->
-        <div class="row" style="margin-top: -20px">
-          <h2 class="sectiontile" style="text-align: center">Execution Modes</h2>
-          <div class="col-lg-3 col-md-3">
-            <div class="bs-component">
-              <h3>Standalone</h3>
-              <p>Runs as standalone application on a single box / JVM. Also supports embedded mode. </p>
-              <p><img src="assets/images/java.png" style="height: 100px; "></p>
-              <p><img src="assets/images/threads.gif" style="height: 100px; "></p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3">
-            <div class="bs-component">
-              <h3>Mapreduce Mode</h3>
-              <p>Runs as an MapReduce application on multiple Hadoop versions. Also supports Azkaban for launcing MR jobs. </p>
-              <p><img src="assets/images/hadoop.png" style="height: 100px; "></p>
-              <p><img src="assets/images/mapreduce.png"  style="height: 100px; "></p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3">
-            <div class="bs-component">
-              <h3>Yarn / Mesos</h3>
-              <p>Runs as a Standalone Cluster with Master and Workers. This mode supports HA, and can run on bare metals as well.</p>
-              <p><img src="assets/images/mesos.png" style="height: 80px; "></p>
-              <p><img src="assets/images/mesos-cluster.png" style="height: 100px; "></p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3">
-            <div class="bs-component">
-              <h3>Cloud</h3>
-              <p>Runs as Elastic Cluster on AWS cloud (Azure and GCP support coming soon). This mode supports HA.</p>
-              <p><img src="assets/images/aws.png" style="height: 100px; "></p>
-              <p><img src="assets/images/mesos-cluster.png" style="height: 100px; "></p>
-            </div>
-          </div>
-        </div>
-        <!--===============================================
-          ROW 2 <end>
-        =================================================-->
-        <!--===============================================
-          ROW 3 <start>
-        =================================================-->
-        <div class="row" style="background-color: #f0eeee; padding-bottom: 10px; margin-top: 15px;">
-          <div class="col-sm-12">   
-            <h2 class="sectiontile" style="text-align: center">Powered By Gobblin</h2>
-            <div class="row">
-              <a href="http://www.linkedin.com/" style="margin-left: 30px;" target="_blank"><img style="width: 120px" src="assets/images/linkedin.png"></a>
-              <a href="http://www.intel.com/" style="margin-left: 30px;" target="_blank"><img style="width: 85px" src="assets/images/intel.png"></a>
-              <a href="http://www.paypal.com/" style="margin-left: 30px;" target="_blank"><img style="width: 95px" src="assets/images/paypal.png" ></a>
-              <a href="http://www.microsoft.com/" style="margin-left: 30px;" target="_blank"><img style="width: 155px" src="assets/images/microsoft.png" class=""></a>
-              <a href="http://www.ibm.com/" style="margin-left: 30px;" target="_blank"><img style="width: 85px" src="assets/images/ibm.png" ></a>
-              <a href="http://www.home.cern/" style="margin-left: 30px;" target="_blank"><img style="width: 90px" src="assets/images/cern.png" ></a>
-              <a href="http://www.stunlockstudios.com/" style="margin-left: 30px;" target="_blank"><img style="width: 85px" src="assets/images/stunlock-studios.png" ></a>
-              <a href="http://www.swisscom.com/" style="margin-left: 30px;" target="_blank"><img style="width: 170px" src="assets/images/swisscom.png" ></a>
-              <a href="http://www.prezi.com/" style="margin-left: 30px;" target="_blank"><img style="width: 125px" src="assets/images/prezi.png" class=""></a>
-              <a href="http://www.cleverdata.ru/" style="margin-left: 30px;" target="_blank"><img style="width: 145px" src="assets/images/cleverdata.png" ></a>
-              <a href="http://www.applift.com/" style="margin-left: 30px;" target="_blank"><img style="width: 95px" src="assets/images/applift.png" ></a>
-            </div>
-          </div>
-        </div>          
-        <!--===============================================
-          ROW 3 <end>
-        =================================================-->
+          
         <hr>
         <footer style="margin-bottom: 0em; margin-top: 0em;">
           <div id="footer">
-            <img src="assets/images/incubator_feather_egg_logo.png" height="60">
+            <img src="../assets/images/incubator_feather_egg_logo.png" height="60">
             <br>
             <br>
             <p style="font-size: 12px; line-height: 1.5em;">
@@ -312,7 +202,6 @@
             </p>
           </div>
         </footer>
-
       </div>
     <!--===============================================
       Gobblin Center Space <end>
@@ -323,10 +212,10 @@
       Javascript files
     =================================================-->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.particleground.min.js"></script>
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/gobblin.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/jquery.particleground.min.js"></script>
+    <script src="../assets/js/custom.js"></script>
+    <script src="../assets/js/gobblin.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
