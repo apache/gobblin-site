@@ -47,7 +47,7 @@
 	background-image: url('../images/stripe_work.png');
 	background-position: 0px 0px;
 	background-repeat: repeat-x;
-	animation: animatedBackground 12s linear infinite;
+	animation: animatedBackground 30s linear infinite;
 }
 
 .apache-gobblin-gobbling {
