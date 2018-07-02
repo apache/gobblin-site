@@ -43,93 +43,7 @@
     <!--===============================================
       Gobblin Navigation Space <start>
     =================================================-->
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <!--===============================================
-          Gobblin Navigation Bar Header <start>
-        =================================================-->
-        <div class="navbar-header">
-          <a href="/" class="navbar-brand">Apache Gobblin</a>
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <!--===============================================
-          Gobblin Navigation Bar Header <end>
-        =================================================-->
-        <!--===============================================
-          Gobblin Navigation Bar Options <start>
-        =================================================-->
-        <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
-            <li>
-              <a href="/download">Download</a>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" >Releases <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">0.12.0 (Upcoming)</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Pre Apache</li>
-                <li><a href="https://github.com/apache/incubator-gobblin/releases/tag/gobblin_0.11.0" target="_blank">0.11.0 (Latest) <i class="fa fa-external-link"></i></a></li>
-                <li><a href="https://github.com/apache/incubator-gobblin/releases" target="_blank">Archive <i class="fa fa-external-link"></i></a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" >Documentation <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="https://cwiki.apache.org/confluence/display/GOBBLIN/Home" target="_blank">Apache Wiki <i class="fa fa-external-link"></i></a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">ReadTheDocs</li>
-                <li><a href="http://gobblin.readthedocs.io/en/latest/" target="_blank">Latest (0.11.0) <i class="fa fa-external-link"></i></a></li>
-                <li><a href="http://gobblin.readthedocs.io/en/latest/Getting-Started/" target="_blank">Getting Started (0.11.0) <i class="fa fa-external-link"></i></a></li>
-                <li><a href="http://gobblin.readthedocs.io/en/latest/Gobblin-Architecture/" target="_blank">Architecture (0.11.0) <i class="fa fa-external-link"></i></a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Wiki</li>
-                <li><a href="https://cwiki.apache.org/confluence/display/GOBBLIN/Design+Docs" target="_blank">Design Documents <i class="fa fa-external-link"></i></a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Community <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="/get-involved">Get Involved</a></li>
-                <li><a href="/contributor">Contributor Guide</a></li>
-                <li><a href="/people">People</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Engagement</li>
-                <li><a href="/mailing-lists">Mailing Lists</a></li>
-                <li><a href="https://gitter.im/gobblin/Lobby" target="_blank">Gitter <i class="fa fa-external-link"></i></a></li>
-                <li><a href="https://cwiki.apache.org/confluence/display/GOBBLIN/Meetups" target="_blank">Meetups <i class="fa fa-external-link"></i></a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Issue / Feature Tracking</li>
-                <li><a href="https://issues.apache.org/jira/projects/GOBBLIN" target="_blank">Apache JIRA <i class="fa fa-external-link"></i></a></li>  
-                <li><a href="https://cwiki.apache.org/confluence/display/GOBBLIN/Roadmap" target="_blank">Roadmap <i class="fa fa-external-link"></i></a></li>  
-              </ul>
-            </li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Apache Software Foundation<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="https://www.apache.org" target="_blank">Apache Homepage <i class="fa fa-external-link"></i></a></li>
-                <li><a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">License <i class="fa fa-external-link"></i></a></li>
-                <li><a href="https://www.apache.org/foundation/sponsorship" target="_blank">Sponsorship <i class="fa fa-external-link"></i></a></li>
-                <li><a href="https://www.apache.org/security" target="_blank">Security <i class="fa fa-external-link"></i></a></li>
-                <li><a href="https://www.apache.org/foundation/thanks" target="_blank">Thanks <i class="fa fa-external-link"></i></a></li>
-                <li><a href="https://www.apache.org/foundation/policies/conduct" target="_blank">Code of Conduct <i class="fa fa-external-link"></i></a></li>
-              </ul>
-            </li>
-          </ul>
-
-        </div>
-        <!--===============================================
-          Gobblin Navigation Bar Options <end>
-        =================================================-->
-      </div>
-    </div>
+    <div id="navigation"></div>
 
     <!--===============================================
       Gobblin Navigation Space <end>
@@ -150,35 +64,63 @@
                     Latest Release
                     ==============================================-->
                     <h2 id="current-releases">Current Releases<a class="header-link" href="#current-releases"><i class="fa fa-link"></i></a></h2>
-
-                    <h3 id="latest-label-label-primary-">Pre-Apache 0.11.0 <strong class="label label-primary">latest</strong><a class="header-link" href="#latest-label-label-primary-"><i class="fa fa-link"></i></a></h3>
-
-                    <p>The last release prior to Apache incubation is version 0.11.0. See the <a href="https://github.com/apache/incubator-gobblin/blob/gobblin_0.11.0/CHANGELOG.md" title="0.11.0 Release Notes" target="_blank">release notes</a> and <a href="https://github.com/apache/incubator-gobblin/blob/gobblin_0.11.0/CHANGELOG.md" title="0.11.1 CHANGES" target="_blank">CHANGES</a>.</p>
-
-                    <p>The <a href="#" title="0.11.0 MD5 file hashes">MD5</a> and <a href="#" title="0.11.0 SHA1 file hashes">SHA1</a> hashes are NOT available for pre-Apache release.</p>
-
-                    <table class="table">
-                      <tbody>
-                        <tr>
-                          <td><strong>Generic Binaries</strong></td>
-                          <td><a class="download_external" href="https://github.com/apache/incubator-gobblin/archive/gobblin_0.11.0.tar.gz" target="_blank">gobblin_0.11.0.tar.gz</a></td>
-                          <td>ASC (not available)</td>
-                        </tr>
-                        <tr>
-                          <td><strong>Source</strong></td>
-                          <td><a class="download_external" href="https://github.com/apache/incubator-gobblin/archive/gobblin_0.11.0.zip" target="_blank">gobblin_0.11.0.zip</a></td>
-                          <td>ASC (not available)</td>
-                        </tr>
-                      </tbody>
-                    </table>
-
-                    <h4 id="documentation">0.11.0 Documentation<a class="header-link" href="#documentation"><i class="fa fa-link"></i></a></h4>
-                    <ul>
-                      <li><a class="download_external" href="https://github.com/apache/incubator-gobblin/blob/gobblin_0.11.0/README.md" target="_blank">README</a></li>
-                      <li><a href="http://readthedocs.org/projects/gobblin/downloads/htmlzip/latest/" title="0.11.0 user manual" target="_blank">HTML User Manual</a></li>
-                      <li><a href="http://gobblin.readthedocs.io/en/latest/Getting-Started/" title="0.11.0 examples" target="_blank">Examples</a></li>
-                      <li><a class="download_external" href="#">Javadoc</a></li>
-                    </ul>
+                    
+                    <!-- Release Step 2: Create a new section by copying the provided template for new release -->
+                    <!-- 
+                    <info text="Template start"></info>
+                    <h3 id="latest-label-label-primary-">x.y.z</h3>
+                    
+                    <p>
+                        Official <a href="https://dist.apache.org/repos/dist/release/incubator/gobblin/apache-gobblin-incubating-x.y.z/apache-gobblin-incubating-sources-x.y.z.tgz" target="_blank">source release</a> 
+                        [ <a href="https://dist.apache.org/repos/dist/release/incubator/gobblin/apache-gobblin-incubating-x.y.z/apache-gobblin-incubating-sources-x.y.z.tgz.sha512" target="_blank">SHA512</a> ] 
+                        [ <a href="https://dist.apache.org/repos/dist/release/incubator/gobblin/apache-gobblin-incubating-x.y.z/apache-gobblin-incubating-sources-x.y.z.tgz.asc" target="_blank">ASC</a> ]
+                    </p>
+                    <p>
+                        <a href="https://dist.apache.org/repos/dist/release/incubator/gobblin/apache-gobblin-incubating-x.y.z/apache-gobblin-incubating-bin-x.y.z.tar.gz" target="_blank">Binary distribution</a>
+                        [ <a href="https://dist.apache.org/repos/dist/release/incubator/gobblin/apache-gobblin-incubating-x.y.z/apache-gobblin-incubating-bin-x.y.z.tar.gz.sha512" target="_blank">SHA512</a> ] 
+                        [ <a href="https://dist.apache.org/repos/dist/release/incubator/gobblin/apache-gobblin-incubating-x.y.z/apache-gobblin-incubating-bin-x.y.z.tar.gz.asc" target="_blank">ASC</a> ]
+                    </p>
+                    <p>
+                        <a href="https://github.com/apache/incubator-gobblin/blob/release-x.y.z/CHANGELOG.md" target="_blank">CHANGELOG</a>
+                    </p>
+                    <info text="Template end"></info>
+                    -->
+                    
+                    
+                    <!-- 0.12.0 Release start -->
+                    <h3 id="latest-label-label-primary-">0.12.0</h3>
+                    
+                    <p>
+                        Official <a href="https://dist.apache.org/repos/dist/release/incubator/gobblin/apache-gobblin-incubating-0.12.0/apache-gobblin-incubating-sources-0.12.0.tgz" target="_blank">source release</a> 
+                        [ <a href="https://dist.apache.org/repos/dist/release/incubator/gobblin/apache-gobblin-incubating-0.12.0/apache-gobblin-incubating-sources-0.12.0.tgz.sha512" target="_blank">SHA512</a> ] 
+                        [ <a href="https://dist.apache.org/repos/dist/release/incubator/gobblin/apache-gobblin-incubating-0.12.0/apache-gobblin-incubating-sources-0.12.0.tgz.asc" target="_blank">ASC</a> ]
+                    </p>
+                    <p>
+                        <a href="https://dist.apache.org/repos/dist/release/incubator/gobblin/apache-gobblin-incubating-0.12.0/apache-gobblin-incubating-bin-0.12.0.tar.gz" target="_blank">Binary distribution</a>
+                        [ <a href="https://dist.apache.org/repos/dist/release/incubator/gobblin/apache-gobblin-incubating-0.12.0/apache-gobblin-incubating-bin-0.12.0.tar.gz.sha512" target="_blank">SHA512</a> ] 
+                        [ <a href="https://dist.apache.org/repos/dist/release/incubator/gobblin/apache-gobblin-incubating-0.12.0/apache-gobblin-incubating-bin-0.12.0.tar.gz.asc" target="_blank">ASC</a> ]
+                    </p>
+                    <p>
+                        <a href="https://github.com/apache/incubator-gobblin/blob/release-0.12.0/CHANGELOG.md" target="_blank">CHANGELOG</a>
+                    </p>
+                    <!-- 0.12.0 Release end -->
+                    
+                    
+                    <!-- 0.11.0 Release start -->
+                    <h3 id="latest-label-label-primary-">Pre-Apache 0.11.0</h3>
+                    <p>The last release prior to Apache incubation is version 0.11.0.</p>
+                    <p>
+                        Official <a href="https://github.com/apache/incubator-gobblin/archive/gobblin_0.11.0.zip" target="_blank">source release</a> 
+                        [ <a href="#">SHA512</a> ]
+                    </p>
+                    <p>
+                        <a href="https://github.com/apache/incubator-gobblin/archive/gobblin_0.11.0.tar.gz" target="_blank">Binary distribution</a>
+                        [ <a href="#">SHA512</a> ]
+                    </p>
+                    <p>
+                        <a href="https://github.com/apache/incubator-gobblin/blob/gobblin_0.11.0/CHANGELOG.md" target="_blank">CHANGELOG</a>
+                    </p>
+                    <!-- 0.11.0 Release end -->
 
                     <!--=============================================
                       Older Releases (Archived)
