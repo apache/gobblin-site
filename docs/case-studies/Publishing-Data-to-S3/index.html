@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Publishing Data to S3 - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Publishing Data to S3";
+    var mkdocs_page_input_path = "case-studies/Publishing-Data-to-S3.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sinks/AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Publishing Data to S3</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#introduction">Introduction</a></li>
+    
+
+    <li class="toctree-l3"><a href="#hadoop-and-s3">Hadoop and S3</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#the-s3a-file-system">The s3a File System</a></li>
+        
+            <li><a class="toctree-l4" href="#the-s3-file-system">The s3 File System</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#getting-gobblin-to-publish-to-s3">Getting Gobblin to Publish to S3</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#signing-up-for-aws">Signing Up For AWS</a></li>
+        
+            <li><a class="toctree-l4" href="#setting-up-ec2">Setting Up EC2</a></li>
+        
+            <li><a class="toctree-l4" href="#setting-up-s3">Setting Up S3</a></li>
+        
+            <li><a class="toctree-l4" href="#setting-up-gobblin-on-ec2">Setting Up Gobblin on EC2</a></li>
+        
+            <li><a class="toctree-l4" href="#configuring-gobblin-on-ec2">Configuring Gobblin on EC2</a></li>
+        
+            <li><a class="toctree-l4" href="#launching-gobblin-on-ec2">Launching Gobblin on EC2</a></li>
+        
+            <li><a class="toctree-l4" href="#configuration-properties-for-s3a">Configuration Properties for s3a</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#faqs">FAQs</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#how-do-i-control-the-directory-the-s3a-uses-when-writing-to-local-disk">How do I control the directory the s3a uses when writing to local disk</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Case Studies &raquo;</li>
+        
+      
+    
+    <li>Publishing Data to S3</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/case-studies/Publishing-Data-to-S3.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#hadoop-and-s3">Hadoop and S3</a><ul>
+<li><a href="#the-s3a-file-system">The s3a File System</a></li>
+<li><a href="#the-s3-file-system">The s3 File System</a></li>
+</ul>
+</li>
+<li><a href="#getting-gobblin-to-publish-to-s3">Getting Gobblin to Publish to S3</a><ul>
+<li><a href="#signing-up-for-aws">Signing Up For AWS</a></li>
+<li><a href="#setting-up-ec2">Setting Up EC2</a><ul>
+<li><a href="#launching-an-ec2-instance">Launching an EC2 Instance</a></li>
+<li><a href="#ec2-package-installations">EC2 Package Installations</a><ul>
+<li><a href="#installing-java">Installing Java</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#setting-up-s3">Setting Up S3</a></li>
+<li><a href="#setting-up-gobblin-on-ec2">Setting Up Gobblin on EC2</a></li>
+<li><a href="#configuring-gobblin-on-ec2">Configuring Gobblin on EC2</a></li>
+<li><a href="#launching-gobblin-on-ec2">Launching Gobblin on EC2</a><ul>
+<li><a href="#writing-to-s3-outside-ec2">Writing to S3 Outside EC2</a></li>
+</ul>
+</li>
+<li><a href="#configuration-properties-for-s3a">Configuration Properties for s3a</a></li>
+</ul>
+</li>
+<li><a href="#faqs">FAQs</a><ul>
+<li><a href="#how-do-i-control-the-directory-the-s3a-uses-when-writing-to-local-disk">How do I control the directory the s3a uses when writing to local disk</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="introduction">Introduction</h1>
+<p>While Gobblin is not tied to any specific cloud provider, <a href="https://aws.amazon.com/">Amazon Web Services</a> is a popular choice. This document will outline how Gobblin can publish data to <a href="https://aws.amazon.com/s3/">S3</a>. Specifically, it will provide a step by step guide to help setup Gobblin on Amazon <a href="https://aws.amazon.com/ec2/">EC2</a>, run Gobblin on EC2, and publish data from EC2 to S3.</p>
+<p>It is recommended to configure Gobblin to first write data to <a href="https://aws.amazon.com/ebs/">EBS</a>, and then publish the data to S3. This is the recommended approach because there are a few caveats when working with with S3. See the <a href="#hadoop-and-s3">Hadoop and S3</a> section for more details.</p>
+<p>This document will also provide a step by step guide for launching and configuring an EC2 instance and creating a S3 bucket. However, it is by no means a source of truth guide to working with AWS, it will only provide high level steps. The best place to learn about how to use AWS is through the <a href="https://aws.amazon.com/documentation/">Amazon documentation</a>.</p>
+<h1 id="hadoop-and-s3">Hadoop and S3</h1>
+<p>A majority of Gobblin's code base uses Hadoop's <a href="https://hadoop.apache.org/docs/r2.4.1/api/org/apache/hadoop/fs/FileSystem.html">FileSystem</a> object to read and write data. The <code>FileSystem</code> object is an abstract class, and typical implementations either write to the local file system, or write to HDFS. There has been significant work to create an implementation of the <code>FileSystem</code> object that reads and writes to S3. The best guide to read about the different S3 <code>FileSystem</code> implementations is <a href="https://wiki.apache.org/hadoop/AmazonS3">here</a>.</p>
+<p>There are a few different S3 <code>FileSystem</code> implementations, the two of note are the <code>s3a</code> and the <code>s3</code> file systems. The <code>s3a</code> file system is relatively new and is only available in Hadoop 2.6.0 (see the original <a href="https://issues.apache.org/jira/browse/HADOOP-10400">JIRA</a> for more information). The <code>s3</code> filesystem has been around for a while.</p>
+<h2 id="the-s3a-file-system">The <code>s3a</code> File System</h2>
+<p>The <code>s3a</code> file system uploads files to a specified bucket. The data uploaded to S3 via this file system is interoperable with other S3 tools. However, there are a few caveats when working with this file system:</p>
+<ul>
+<li>Since S3 does not support renaming of files in a bucket, the <code>S3AFileSystem.rename(Path, Path)</code> operation will actually copy data from the source <code>Path</code> to the destination <code>Path</code>, and then delete the source <code>Path</code> (see the <a href="http://grepcode.com/file/repo1.maven.org/maven2/org.apache.hadoop/hadoop-aws/2.6.0/org/apache/hadoop/fs/s3a/S3AFileSystem.java">source code</a> for more information)</li>
+<li>When creating a file using <code>S3AFileSystem.create(...)</code> data will be first written to a staging file on the local file system, and when the file is closed, the staging file will be uploaded to S3 (see the <a href="http://grepcode.com/file/repo1.maven.org/maven2/org.apache.hadoop/hadoop-aws/2.6.0/org/apache/hadoop/fs/s3a/S3AOutputStream.java">source code</a> for more information)</li>
+</ul>
+<p>Thus, when using the <code>s3a</code> file system with Gobblin it is recommended that one configures Gobblin to first write its staging data to the local filesystem, and then to publish the data to S3. The reason this is the recommended approach is that each Gobblin <code>Task</code> will write data to a staging file, and once the file has been completely written it publishes the file to a output directory (it does this by using a rename function). Finally, the <code>DataPublisher</code> moves the files from the staging directory to its final directory (again done using a rename function). This requires two renames operations and would be very inefficient if a <code>Task</code> wrote directly to S3.</p>
+<p>Furthermore, writing directly to S3 requires creating a staging file on the local file system, and then creating a <code>PutObjectRequest</code> to upload the data to S3. This is logically equivalent to just configuring Gobblin to write to a local file and then publishing it to S3.</p>
+<h2 id="the-s3-file-system">The <code>s3</code> File System</h2>
+<p>The <code>s3</code> file system stores file as blocks, similar to how HDFS stores blocks. This makes renaming of files more efficient, but data written using this file system is not interoperable with other S3 tools. This limitation may make using this file system less desirable, so the majority of this document focuses on the <code>s3a</code> file system. Although the majority of the walkthrough should apply for the <code>s3</code> file system also.</p>
+<h1 id="getting-gobblin-to-publish-to-s3">Getting Gobblin to Publish to S3</h1>
+<p>This section will provide a step by step guide to setting up an EC2 instance, a S3 bucket, installing Gobblin on EC2, and configuring Gobblin to publish data to S3.</p>
+<p>This guide will use the free-tier provided by AWS to setup EC2 and S3.</p>
+<h2 id="signing-up-for-aws">Signing Up For AWS</h2>
+<p>In order to use EC2 and S3, one first needs to sign up for an AWS account. The easiest way to get started with AWS is to use their <a href="https://aws.amazon.com/free/">free tier</a>.</p>
+<h2 id="setting-up-ec2">Setting Up EC2</h2>
+<h3 id="launching-an-ec2-instance">Launching an EC2 Instance</h3>
+<p>Once you have an AWS account, login to the AWS <a href="https://console.aws.amazon.com/console/home">console</a>. Select the EC2 link, which will bring you to the <a href="https://console.aws.amazon.com/ec2/">EC2 dashboard</a>.</p>
+<p>Click on <code>Launch Instance</code> to create a new EC2 instance. Before the instance actually starts to run, there area a few more configuration steps necessary:</p>
+<ul>
+<li>Choose an Amazon Machine Image (<a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html">AMI</a>)<ul>
+<li>For this walkthrough we will pick Red Hat Enterprise Linux (<a href="https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux">RHEL</a>) AMI</li>
+</ul>
+</li>
+<li>Choose an Instance Type<ul>
+<li>Since this walkthrough uses the Amazon Free Tier, we will pick the General Purpose <code>t2.micro</code> instance<ul>
+<li>This instance provides us with 1 vCPU and 1 GiB of RAM</li>
+</ul>
+</li>
+<li>For more information on other instance types, check out the AWS <a href="https://aws.amazon.com/ec2/instance-types/">docs</a></li>
+</ul>
+</li>
+<li>Click Review and Launch<ul>
+<li>We will use the defaults for all other setting options</li>
+<li>When reviewing your instance, you will most likely get a warning saying access to your EC2 instance is open to the world</li>
+<li>If you want to fix this you have to edit the <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Security Groups</a>; how to do that is out of the scope of this document</li>
+</ul>
+</li>
+<li>Set Up SSH Keys<ul>
+<li>After reviewing your instance, click <code>Launch</code></li>
+<li>You should be prompted to setup <a href="https://en.wikipedia.org/wiki/Secure_Shell">SSH</a> keys</li>
+<li>Use an existing key pair if you have one, otherwise create a new one and download it</li>
+</ul>
+</li>
+<li>SSH to Launched Instance<ul>
+<li>SSH using the following command: <code>ssh -i my-private-key-file.pem ec2-user@instance-name</code><ul>
+<li>The <code>instance-name</code> can be taken from the <code>Public DNS</code> field from the instance information</li>
+<li>SSH may complain that the private key file has insufficient permissions<ul>
+<li>Execute <code>chmod 600 my-private-key-file.pem</code> to fix this</li>
+</ul>
+</li>
+<li>Alternatively, one can modify the <code>~/.ssh/config</code> file instead of specifying the <code>-i</code> option</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>After following the above steps, you should be able to freely SSH into the launched EC2 instance, and monitor / control the instance from the <a href="https://console.aws.amazon.com/ec2/">EC2 dashboard</a>.</p>
+<h3 id="ec2-package-installations">EC2 Package Installations</h3>
+<p>Before setting up Gobblin, you need to install <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a> first. Depending on the AMI instance you are running Java may or may not already be installed (you can check if Java is already installed by executing <code>java -version</code>).</p>
+<h4 id="installing-java">Installing Java</h4>
+<ul>
+<li>Execute <code>sudo yum install java-1.8.0-openjdk*</code> to install Open JDK 8</li>
+<li>Confirm the installation was successful by executing <code>java -version</code></li>
+<li>Set the <code>JAVA_HOME</code> environment variable in the <code>~/.bashrc/</code> file<ul>
+<li>The value for <code>JAVA_HOME</code> can be found by executing <code>readlink `which java`</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="setting-up-s3">Setting Up S3</h2>
+<p>Go to the <a href="https://console.aws.amazon.com/s3">S3 dashboard</a></p>
+<ul>
+<li>Click on <code>Create Bucket</code><ul>
+<li>Enter a name for the bucket (e.g. <code>gobblin-demo-bucket</code>)</li>
+<li>Enter a <a href="http://docs.aws.amazon.com/general/latest/gr/rande.html">Region</a> for the bucket (e.g. <code>US Standard</code>)</li>
+</ul>
+</li>
+</ul>
+<h2 id="setting-up-gobblin-on-ec2">Setting Up Gobblin on EC2</h2>
+<ul>
+<li>Download and Build Gobblin Locally<ul>
+<li>On your local machine, clone the <a href="https://github.com/apache/incubator-gobblin">Gobblin repository</a>: <code>git clone git@github.com:apache/incubator-gobblin.git</code> (this assumes you have <a href="https://en.wikipedia.org/wiki/Git_(software)">Git</a> installed locally)</li>
+<li>Build Gobblin using the following commands (it is important to use Hadoop version 2.6.0 as it includes the <code>s3a</code> file system implementation):</li>
+</ul>
+</li>
+</ul>
+<pre><code>cd gobblin
+./gradlew clean build -PhadoopVersion=2.6.0 -x test
+</code></pre>
+
+<ul>
+<li>Upload the Gobblin Tar to EC2<ul>
+<li>Execute the command: </li>
+</ul>
+</li>
+</ul>
+<pre><code>scp -i my-private-key-file.pem gobblin-dist-[project-version].tar.gz ec2-user@instance-name:
+</code></pre>
+
+<ul>
+<li>Un-tar the Gobblin Distribution<ul>
+<li>SSH to the EC2 Instance</li>
+<li>Un-tar the Gobblin distribution: <code>tar -xvf gobblin-dist-[project-version].tar.gz</code></li>
+</ul>
+</li>
+<li>Download AWS Libraries<ul>
+<li>A few JARs need to be downloaded using some cURL commands:</li>
+</ul>
+</li>
+</ul>
+<pre><code>curl http://central.maven.org/maven2/com/amazonaws/aws-java-sdk/1.7.4/aws-java-sdk-1.7.4.jar &gt; gobblin-dist/lib/aws-java-sdk-1.7.4.jar
+curl http://central.maven.org/maven2/org/apache/hadoop/hadoop-aws/2.6.0/hadoop-aws-2.6.0.jar &gt; gobblin-dist/lib/hadoop-aws-2.6.0.jar
+</code></pre>
+
+<h2 id="configuring-gobblin-on-ec2">Configuring Gobblin on EC2</h2>
+<p>Assuming we are running Gobblin in <a href="../user-guide/Gobblin-Deployment#Standalone-Deployment">standalone mode</a>, the following configuration options need to be modified in the file <code>gobblin-dist/conf/gobblin-standalone.properties</code>.</p>
+<ul>
+<li>Add the key <code>data.publisher.fs.uri</code> and set it to <code>s3a://gobblin-demo-bucket/</code><ul>
+<li>This configures the job to publish data to the S3 bucket named <code>gobblin-demo-bucket</code></li>
+</ul>
+</li>
+<li>Add the AWS Access Key Id and Secret Access Key<ul>
+<li>Set the keys <code>fs.s3a.access.key</code> and <code>fs.s3a.secret.key</code> to the appropriate values</li>
+<li>These keys correspond to <a href="http://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html">AWS security credentials</a></li>
+<li>For information on how to get these credentials, check out the AWS documentation <a href="http://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html">here</a></li>
+<li>The AWS documentation recommends using <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">IAM roles</a>; how to set this up is out of the scope of this document; for this walkthrough we will use root access credentials</li>
+</ul>
+</li>
+</ul>
+<h2 id="launching-gobblin-on-ec2">Launching Gobblin on EC2</h2>
+<p>Assuming we want Gobblin to run in standalone mode, follow the usual steps for <a href="../user-guide/Gobblin-Deployment#Standalone-Deployment">standalone deployment</a>.</p>
+<p>For the sake of this walkthrough, we will launch the Gobblin <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/wikipedia.pull">wikipedia example</a>. Directions on how to run this example can be found <a href="../Getting-Started">here</a>. The command to launch Gobblin should look similar to:</p>
+<pre><code>sh bin/gobblin standalone start --conf-dir /home/ec2-user/gobblin-dist/config
+</code></pre>
+
+<p>If you are running on the Amazon free tier, you will probably get an error in the <code>nohup.out</code> file saying there is insufficient memory for the JVM. To fix this add <code>--jvmflags "-Xms256m -Xmx512m"</code> to the <code>start</code> command.</p>
+<p>Data should be written to S3 during the publishing phase of Gobblin. One can confirm data was successfully written to S3 by looking at the <a href="https://console.aws.amazon.com/s3">S3 dashboard</a>.</p>
+<h3 id="writing-to-s3-outside-ec2">Writing to S3 Outside EC2</h3>
+<p>It is possible to write to an S3 bucket outside of an EC2 instance. The setup steps are similar to walkthrough outlined above. For more information on writing to S3 outside of AWS, check out <a href="https://aws.amazon.com/articles/5050">this article</a>.</p>
+<h2 id="configuration-properties-for-s3a">Configuration Properties for <code>s3a</code></h2>
+<p>The <code>s3a</code> FileSystem has a number of configuration properties that can be set to tune the behavior and performance of the <code>s3a</code> FileSystem. A complete list of the properties can be found here: https://hadoop.apache.org/docs/stable/hadoop-aws/tools/hadoop-aws/index.html</p>
+<h1 id="faqs">FAQs</h1>
+<h3 id="how-do-i-control-the-directory-the-s3a-uses-when-writing-to-local-disk">How do I control the directory the <code>s3a</code> uses when writing to local disk</h3>
+<p>The configuration property <code>fs.s3a.buffer.dir</code> controls the location where the <code>s3a</code> FileSystem will write data locally before uplodaing it to S3. By default, this property is set to <code>${hadoop.tmp.dir}/s3a</code>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Writing-ORC-Data/" class="btn btn-neutral float-right" title="Writing ORC Data">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Kafka-HDFS-Ingestion/" class="btn btn-neutral" title="Kafka-HDFS Ingestion"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Kafka-HDFS-Ingestion/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Writing-ORC-Data/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

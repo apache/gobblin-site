@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Couchbase - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Couchbase";
+    var mkdocs_page_input_path = "sinks/CouchbaseWriter.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ConsoleWriter/">Console</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Couchbase</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#introduction">Introduction</a></li>
+    
+
+    <li class="toctree-l3"><a href="#record-format">Record format</a></li>
+    
+
+    <li class="toctree-l3"><a href="#configuration">Configuration</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#general-configuration-values">General configuration values</a></li>
+        
+            <li><a class="toctree-l4" href="#authentication">Authentication</a></li>
+        
+            <li><a class="toctree-l4" href="#document-level-expiration">Document level expiration</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Sinks (Writers) &raquo;</li>
+        
+      
+    
+    <li>Couchbase</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/CouchbaseWriter.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#record-format">Record format</a></li>
+<li><a href="#configuration">Configuration</a><ul>
+<li><a href="#general-configuration-values">General configuration values</a></li>
+<li><a href="#authentication">Authentication</a><ul>
+<li><a href="#no-credentials">No credentials</a></li>
+<li><a href="#using-certificates">Using certificates</a></li>
+<li><a href="#using-bucket-password">Using bucket password</a></li>
+</ul>
+</li>
+<li><a href="#document-level-expiration">Document level expiration</a><ul>
+<li><a href="#1-expiration-from-write-time">1 - Expiration from write time</a></li>
+<li><a href="#2-expiration-from-an-origin-timestamp">2 - Expiration from an origin timestamp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="introduction">Introduction</h1>
+<p>The <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-couchbase/src/main/java/org/apache/gobblin/couchbase/writer/CouchbaseWriter.java">CouchbaseWriter</a> supports writing documents to a Couchbase bucket though the <a href="https://docs.couchbase.com/java-sdk/current/start-using-sdk.html">Couchbase Java SDK</a>. Note that CouchbaseWriter only supports writing to a single bucket as there should be only 1 CouchbaseEnvironment per JVM.</p>
+<h1 id="record-format">Record format</h1>
+<p>Couchbase writer currently support <code>AVRO</code> and <code>JSON</code> as data inputs. On both of them it requires the following structured schema:</p>
+<table>
+<thead>
+<tr>
+<th>Document field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>key</code></td>
+<td>Unique key used to store the document on the bucket. For more info view <a href="https://developer.couchbase.com/documentation/server/3.x/developer/dev-guide-3.0/keys-values.html">Couchbase docs</a></td>
+</tr>
+<tr>
+<td><code>data.data</code></td>
+<td>Object or value containing the information associated with the <code>key</code> for this document</td>
+</tr>
+<tr>
+<td><code>data.flags</code></td>
+<td><a href="https://docs.couchbase.com/server/4.1/developer-guide/transcoders.html">Couchbase flags</a> To store JSON on <code>data.data</code> use <code>0x02 &lt;&lt; 24</code> for UTF-8 <code>0x04 &lt;&lt; 24</code> .</td>
+</tr>
+</tbody>
+</table>
+<p>The following is a sample input record with JSON data</p>
+<pre><code class="json">{
+ &quot;key&quot;: &quot;myKey123&quot;,
+ &quot;data&quot;: {
+    &quot;data&quot;: {
+        &quot;field1&quot;: &quot;field1Value&quot;,
+        &quot;field2&quot;: 123
+    },
+    &quot;flags&quot;: 33554432
+  }
+}
+</code></pre>
+
+<p>or to store plain text:</p>
+<pre><code class="json">{
+ &quot;key&quot;: &quot;myKey123&quot;,
+ &quot;data&quot;: {
+    &quot;data&quot;: &quot;singleValueData&quot;,
+    &quot;flags&quot;: 67108864
+  }
+}
+</code></pre>
+
+<p>If using AVRO, use the following schema:</p>
+<pre><code class="json">{
+  &quot;type&quot; : &quot;record&quot;,
+  &quot;name&quot; : &quot;topLevelRecord&quot;,
+  &quot;fields&quot; : [ {
+    &quot;name&quot; : &quot;key&quot;,
+    &quot;type&quot; : &quot;string&quot;
+  }, {
+    &quot;name&quot; : &quot;data&quot;,
+    &quot;type&quot; : {
+      &quot;type&quot; : &quot;record&quot;,
+      &quot;name&quot; : &quot;data&quot;,
+      &quot;namespace&quot; : &quot;topLevelRecord&quot;,
+      &quot;fields&quot; : [ {
+        &quot;name&quot; : &quot;data&quot;,
+        &quot;type&quot; : [ &quot;bytes&quot;, &quot;null&quot; ]
+      }, {
+        &quot;name&quot; : &quot;flags&quot;,
+        &quot;type&quot; : &quot;int&quot;
+      } ]
+    }
+  } ]
+}
+</code></pre>
+
+<p>Note that the key can be other than string if needed.</p>
+<h1 id="configuration">Configuration</h1>
+<h2 id="general-configuration-values">General configuration values</h2>
+<table>
+<thead>
+<tr>
+<th>Configuration Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>writer.couchbase.bucket</code></td>
+<td>Optional</td>
+<td>Name of the couchbase bucket. Change if using other than default bucket</td>
+</tr>
+<tr>
+<td><code>writer.couchbase.default</code></td>
+<td><code>"default"</code></td>
+<td>Name of the default bucket if <code>writer.couchbase.bucket</code> is not provided</td>
+</tr>
+<tr>
+<td><code>writer.couchbase.dnsSrvEnabled</code></td>
+<td><code>"false"</code></td>
+<td>Enable DNS SRV bootstrapping <a href="https://docs.couchbase.com/java-sdk/current/managing-connections.html">docs</a></td>
+</tr>
+<tr>
+<td><code>writer.couchbase.bootstrapServers |</code>localhost<code>| URL to bootstrap servers. If using DNS SRV set</code>writer.couchbase.dnsSrvEnabled` to true</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>writer.couchbase.sslEnabled</code></td>
+<td><code>false</code></td>
+<td>Use SSL to connect to couchbase</td>
+</tr>
+<tr>
+<td><code>writer.couchbase.password</code></td>
+<td>Optional</td>
+<td>Bucket password. Will be ignored if <code>writer.couchbase.certAuthEnabled</code> is true</td>
+</tr>
+<tr>
+<td><code>writer.couchbase.certAuthEnabled</code></td>
+<td><code>false</code></td>
+<td>Set to true if using certificate authentication. Must also specify <code>writer.couchbase.sslKeystoreFile</code>, <code>writer.couchbase.sslKeystorePassword</code>, <code>writer.couchbase.sslTruststoreFile</code>, and <code>writer.couchbase.sslTruststorePassword</code></td>
+</tr>
+<tr>
+<td><code>writer.couchbase.sslKeystoreFile</code></td>
+<td>Optional</td>
+<td>Path to the keystore file location</td>
+</tr>
+<tr>
+<td><code>writer.couchbase.sslKeystorePassword</code></td>
+<td>Optional</td>
+<td>Keystore password</td>
+</tr>
+<tr>
+<td><code>writer.couchbase.sslTruststoreFile</code></td>
+<td>Optional</td>
+<td>Path to the trustStore file location</td>
+</tr>
+<tr>
+<td><code>writer.couchbase.sslTruststorePassword</code></td>
+<td>Optional</td>
+<td>TrustStore password</td>
+</tr>
+<tr>
+<td><code>writer.couchbase.documentTTL</code></td>
+<td><code>0</code></td>
+<td>Time To Live of each document. Units are specified in <code>writer.couchbase.documentTTLOriginField</code></td>
+</tr>
+<tr>
+<td><code>writer.couchbase.documentTTLUnits</code></td>
+<td><code>SECONDS</code></td>
+<td>Unit for <code>writer.couchbase.documentTTL</code>. Must be one of <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html">java.util.concurrent.TimeUnit</a>. Case insensitive</td>
+</tr>
+<tr>
+<td><code>writer.couchbase.documentTTLOriginField</code></td>
+<td>Optional</td>
+<td>Time To Live of each document. Units are specified in <code>writer.couchbase.documentTTLOriginField</code></td>
+</tr>
+<tr>
+<td><code>writer.couchbase.documentTTLOriginUnits</code></td>
+<td><code>MILLISECONDS</code></td>
+<td>Unit for <code>writer.couchbase.documentTTL</code>. Must be one of <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html">java.util.concurrent.TimeUnit</a>. Case insensitive. As an example a <code>writer.couchbase.documentTTLOriginField</code> value of <code>1568240399000</code> and <code>writer.couchbase.documentTTLOriginUnits</code> value of <code>MILLISECONDS</code> timeunit would be <code>Wed Sep 11 15:19:59 PDT 2019</code></td>
+</tr>
+<tr>
+<td><code>writer.couchbase.retriesEnabled</code></td>
+<td><code>false</code></td>
+<td>Enable write retries on failures</td>
+</tr>
+<tr>
+<td><code>writer.couchbase.maxRetries</code></td>
+<td><code>5</code></td>
+<td>Maximum number of retries</td>
+</tr>
+<tr>
+<td><code>writer.couchbase.failureAllowancePercentage</code></td>
+<td><code>0.0</code></td>
+<td>The percentage of failures that you are willing to tolerate while writing to Couchbase. Gobblin will mark the workunit successful and move on if there are failures but not enough to trip the failure threshold. Only successfully acknowledged writes are counted as successful, all others are considered as failures. The default for the failureAllowancePercentage is set to 0.0. For example, if the value is set to 0.2 This means that as long as 80% of the data is acknowledged by Couchbase, Gobblin will move on. If you want higher guarantees, set this config value to a lower value. e.g. If you want 99% delivery guarantees, set this value to 0.01</td>
+</tr>
+<tr>
+<td><code>operationTimeoutMillis</code></td>
+<td><code>10000</code></td>
+<td>Global timeout for couchbase communication operations</td>
+</tr>
+</tbody>
+</table>
+<h2 id="authentication">Authentication</h2>
+<h3 id="no-credentials">No credentials</h3>
+<p>NOT RECOMMENDED FOR PRODUCTION.</p>
+<p>Do not set <code>writer.couchbase.certAuthEnabled</code> nor <code>writer.couchbase.password</code></p>
+<h3 id="using-certificates">Using certificates</h3>
+<p>Set <code>writer.couchbase.certAuthEnabled</code> to <code>true</code> and values for <code>writer.couchbase.sslKeystoreFile</code>, <code>writer.couchbase.sslKeystorePassword</code>, <code>writer.couchbase.sslTruststoreFile</code>, and <code>writer.couchbase.sslTruststorePassword</code>.</p>
+<p><code>writer.couchbase.password</code> setting will be ignored if <code>writer.couchbase.certAuthEnabled</code> is set</p>
+<h3 id="using-bucket-password">Using bucket password</h3>
+<p>Set <code>writer.couchbase.password</code></p>
+<h2 id="document-level-expiration">Document level expiration</h2>
+<p>Couchbase writer allows to set expiration at the document level using the <a href="https://docs.couchbase.com/java-sdk/current/document-operations.html">expiry</a> property of the couchbase document. PLease note that current couchbase implementation using timestamps limits it to January 19, 2038 03:14:07 GM given the type of expiry is set to int. CouchbaseWriter only works with global timestamps and does not use relative expiration in seconds (&lt;30 days) for simplicity.
+Currently three modes are supported:</p>
+<h3 id="1-expiration-from-write-time">1 - Expiration from write time</h3>
+<p>Define only <code>writer.couchbase.documentTTL</code> and <code>writer.couchbase.documentTTLUnits</code>. For example for a 2 days expiration configs would look like:</p>
+<table>
+<thead>
+<tr>
+<th>Configuration Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>writer.couchbase.documentTTL</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>writer.couchbase.documentTTLUnits</code></td>
+<td><code>DAYS</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-expiration-from-an-origin-timestamp">2 - Expiration from an origin timestamp</h3>
+<p>Define only <code>writer.couchbase.documentTTL</code> and <code>writer.couchbase.documentTTLUnits</code>.</p>
+<p>For example for a 2 days expiration configs using the <code>header.time</code> field that has timestamp in MILLISECONDS would look like:</p>
+<table>
+<thead>
+<tr>
+<th>Configuration Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>writer.couchbase.documentTTL</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>writer.couchbase.documentTTLUnits</code></td>
+<td><code>"DAYS"</code></td>
+</tr>
+<tr>
+<td><code>writer.couchbase.documentTTLOriginField</code></td>
+<td><code>"header.time"</code></td>
+</tr>
+<tr>
+<td><code>writer.couchbase.documentTTLOriginUnits</code></td>
+<td><code>1568240399000</code></td>
+</tr>
+</tbody>
+</table>
+<p>So a sample document with origin on 1568240399 (Wed Sep 11 15:19:59 PDT 2019) would expire on 1568413199 (Fri Sep 13 15:19:59 PDT 2019). The following is a sample record format.</p>
+<pre><code class="json">{
+ &quot;key&quot;: &quot;sampleKey&quot;,
+ &quot;data&quot;: {
+    &quot;data&quot;: {
+        &quot;field1&quot;: &quot;field1Value&quot;,
+        &quot;header&quot;: {
+            &quot;time&quot;: 1568240399000
+        }
+    },
+    &quot;flags&quot;: 33554432
+  }
+}
+</code></pre>
+
+<p>}</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Http/" class="btn btn-neutral float-right" title="HTTP">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ConsoleWriter/" class="btn btn-neutral" title="Console"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../ConsoleWriter/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Http/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

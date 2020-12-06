@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Hive Registration - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Hive Registration";
+    var mkdocs_page_input_path = "user-guide/Hive-Registration.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Hive Registration</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#how-hive-registration-works-in-gobblin">How Hive Registration Works in Gobblin</a></li>
+        
+            <li><a class="toctree-l4" href="#how-to-use-hive-registration-in-your-gobblin-job">How to Use Hive Registration in Your Gobblin Job</a></li>
+        
+            <li><a class="toctree-l4" href="#hive-registration-config-properties">Hive Registration Config Properties</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sinks/AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>User Guide &raquo;</li>
+        
+      
+    
+    <li>Hive Registration</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Hive-Registration.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="table-of-contents">Table of Contents</h1>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a><ul>
+<li><a href="#how-hive-registration-works-in-gobblin">How Hive Registration Works in Gobblin</a><ul>
+<li><a href="#hivespec">HiveSpec</a></li>
+<li><a href="#hiveregistrationpolicy">HiveRegistrationPolicy</a></li>
+<li><a href="#hiveserdemanager">HiveSerDeManager</a></li>
+<li><a href="#predicate-and-activity">Predicate and Activity</a></li>
+</ul>
+</li>
+<li><a href="#how-to-use-hive-registration-in-your-gobblin-job">How to Use Hive Registration in Your Gobblin Job</a></li>
+<li><a href="#hive-registration-config-properties">Hive Registration Config Properties</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Gobblin has the ability to register the ingested/compacted data in Hive. This allows registering data in Hive immediately after data is published at the destination, offering much lower latency compared to doing data ingestion and Hive registration separately.</p>
+<h2 id="how-hive-registration-works-in-gobblin">How Hive Registration Works in Gobblin</h2>
+<p>Hive registration is done in <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/HiveRegister.java"><code>HiveRegister</code></a>. After the data is published, the publisher or compaction runner will create an instance of <code>HiveRegister</code>, and for each path that should be registered in Hive, the publisher or compaction runner will use a specific <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/policy/HiveRegistrationPolicy.java"><code>HiveRegistrationPolicy</code></a> to create a list of <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/spec/HiveSpec.java"><code>HiveSpec</code></a>s for the path. It creates a list of <code>HiveSpec</code>s rather than a single <code>HiveSpec</code> for each path, so that the same path can be registered in multiple tables or databases.</p>
+<h3 id="hivespec"><code>HiveSpec</code></h3>
+<p>A <code>HiveSpec</code> specifies how a path should be registered in Hive, i.e., which database, which table, which partition should the path be registered. An example is <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/spec/SimpleHiveSpec.java"><code>SimpleHiveSpec</code></a>.</p>
+<h3 id="hiveregistrationpolicy"><code>HiveRegistrationPolicy</code></h3>
+<p><code>HiveRegistrationPolicy</code> is responsible for generating <code>HiveSpec</code>s given a path. For example, if you want paths ending with a date (e.g., <code>/(something)/2016/05/22</code>) to be registered in the corresponding daily partition (e.g., <code>daily-2016-05-22</code>), you can create an implementation of <code>HiveRegistrationPolicy</code> that contains the logic of converting such a path into a Hive partition. </p>
+<p>An example is <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/policy/HiveRegistrationPolicyBase.java"><code>HiveRegistrationPolicyBase</code></a>, which provides base implementation for getting database names and table names for a path:</p>
+<ul>
+<li>A database/table name can be specified explicitly in <code>hive.database.name</code> or <code>hive.table.name</code>.</li>
+<li>Alternatively, a database/table regex can be provided in <code>hive.database.regex</code> or <code>hive.table.regex</code>. The regex will be matched against the path to be registered, and if they match, the first group is considered the database/table name.</li>
+<li>It is possible to register a path to multiple databases or tables by specifying <code>additional.hive.database.names</code> and <code>additional.hive.table.names</code>. If multiple databases and tables are specified, the path will be registered to the cross product.</li>
+<li>If the provided/derived Hive database/table names are invalid, they are sanitized into a valid name. A database/table name is valid if it starts with an alphanumeric character, contains only alphanumeric characters and <code>_</code>, and is not composed of numbers only.</li>
+</ul>
+<p>One should in general extend <code>HiveRegistrationPolicyBase</code> when implementing a new <code>HiveRegistrationPolicy</code>.</p>
+<h3 id="hiveserdemanager"><code>HiveSerDeManager</code></h3>
+<p>If the data to be registered is in a format other than plain text (CSV, TSV, etc.), you often need to use a SerDe and specify some SerDe properties including the type of SerDe, input format, output format, schema, etc. This is done in <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/HiveSerDeManager.java"><code>HiveSerDeManager</code></a>, which is part of a <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/HiveRegistrationUnit.java"><code>HiveRegistrationUnit</code></a> (i.e., <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-compaction/src/main/java/org/apache/gobblin/compaction/hive/HiveTable.java"><code>HiveTable</code></a> or <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/HivePartition.java"><code>HivePartition</code></a>). An example is <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/avro/HiveAvroSerDeManager.java"><code>HiveAvroSerDeManager</code></a>.</p>
+<h3 id="predicate-and-activity">Predicate and Activity</h3>
+<p>One or more <code>Predicate</code>s can be attached to a <code>HiveSpec</code>. If a <code>HiveSpec</code> contains <code>Predicate</code>s, unless <code>Predicate</code>s return <code>true</code>, the <code>HiveSpec</code> will not be registered. This is useful in cases where, for example, one only wants to register a path in Hive if a particular Hive table or partition doesn't already exist. An example is <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/spec/predicate/TableNotExistPredicate.java"><code>TableNotExistPredicate</code></a>.</p>
+<p>One or more <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/spec/activity/Activity.java"><code>Activity</code></a>s can be attached to a <code>HiveSpec</code>. There are two types of activities: pre-activities and post-activities, which will be executed before and after a <code>HiveSpec</code> is registered, respectively. This is useful, for example, when you need to drop/alter a table/partition before or after a path is registered. An example is <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/spec/activity/DropTableActivity.java"><code>DropTableActivity</code></a>.</p>
+<h2 id="how-to-use-hive-registration-in-your-gobblin-job">How to Use Hive Registration in Your Gobblin Job</h2>
+<p>First, is to implement a <code>HiveRegistrationPolicy</code> (or reuse an existing one), then specify its class name in config property <code>hive.registration.policy</code>.</p>
+<p>Then, specify the appropriate table/partition properties in <code>hive.table.partition.props</code>, storage descriptor properties in 
+<code>hive.storage.props</code>, and SerDe properties in <code>hive.serde.props</code>. Some SerDe properties are usually dynamic (e.g., schema), which are added in the <code>HiveSerDeManager</code>.</p>
+<p>Example table/partition properties are "owner" and "retention", example storage descriptor properties are "location", "compressed", "numBuckets", example SerDe properties are "serializationLib", "avro.schema.url".</p>
+<p>If you are running a Gobblin ingestion job:</p>
+<ul>
+<li>If data is published in the job (which is the default case), use a job-level data publisher that can perform Hive registration, such as <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/publisher/BaseDataPublisherWithHiveRegistration.java"><code>BaseDataPublisherWithHiveRegistration</code></a>. If you need to do Hive registration with a different publisher than <code>BaseDataPublisher</code>, you will need to extend that publisher to do Hive registration, which will be similar as how <code>BaseDataPublisher</code> is extended into <code>BaseDataPublisherWithHiveRegistration</code>.</li>
+<li>If data is published in the tasks, use <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/publisher/HiveRegistrationPublisher.java"><code>HiveRegistrationPublisher</code></a> as the job-level data publisher. This publisher does not publish any data; it only does Hive registration.</li>
+</ul>
+<p>If you are running a Gobblin compaction job: add <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-compaction/src/main/java/org/apache/gobblin/compaction/hive/registration/HiveRegistrationCompactorListener.java"><code>HiveRegistrationCompactorListener</code></a> to the list of compaction listeners by adding the class name to property <code>compaction.listeners</code>.</p>
+<h2 id="hive-registration-config-properties">Hive Registration Config Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hive.registration.policy</code></td>
+<td>Class name which implements <code>HiveRegistrationPolicy</code></td>
+</tr>
+<tr>
+<td><code>hive.row.format</code></td>
+<td>Either <code>AVRO</code>, or the class name which implements <code>HiveSerDeManager</code></td>
+</tr>
+<tr>
+<td><code>hive.database.name</code></td>
+<td>Hive database name</td>
+</tr>
+<tr>
+<td><code>hive.database.regex</code></td>
+<td>Hive database regex</td>
+</tr>
+<tr>
+<td><code>hive.database.name.prefix</code></td>
+<td>Hive database name prefix</td>
+</tr>
+<tr>
+<td><code>hive.database.name.suffix</code></td>
+<td>Hive database name suffix</td>
+</tr>
+<tr>
+<td><code>additional.hive.database.names</code></td>
+<td>Additional Hive database names</td>
+</tr>
+<tr>
+<td><code>hive.table.name</code></td>
+<td>Hive table name</td>
+</tr>
+<tr>
+<td><code>hive.table.regex</code></td>
+<td>Hive table regex</td>
+</tr>
+<tr>
+<td><code>hive.table.name.prefix</code></td>
+<td>Hive table name prefix</td>
+</tr>
+<tr>
+<td><code>hive.table.name.suffix</code></td>
+<td>Hive table name suffix</td>
+</tr>
+<tr>
+<td><code>additional.hive.table.names</code></td>
+<td>Additional Hive table names</td>
+</tr>
+<tr>
+<td><code>hive.register.threads</code></td>
+<td>Thread pool size used for Hive registration</td>
+</tr>
+<tr>
+<td><code>hive.db.root.dir</code></td>
+<td>The root dir of Hive db</td>
+</tr>
+<tr>
+<td><code>hive.table.partition.props</code></td>
+<td>Table/partition properties</td>
+</tr>
+<tr>
+<td><code>hive.storage.props</code></td>
+<td>Storage descriptor properties</td>
+</tr>
+<tr>
+<td><code>hive.serde.props</code></td>
+<td>SerDe properties</td>
+</tr>
+<tr>
+<td><code>hive.registration.fs.uri</code></td>
+<td>File system URI for Hive registration</td>
+</tr>
+<tr>
+<td><code>hive.upstream.data.attr.names</code></td>
+<td>Attributes to describe upstream data source as Hive Metadata</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Config-Management/" class="btn btn-neutral float-right" title="Config Management">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Gobblin-genericLoad/" class="btn btn-neutral" title="Generic Configuration Loading"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Gobblin-genericLoad/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Config-Management/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

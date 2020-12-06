@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Metrics for Gobblin ETL - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Metrics for Gobblin ETL";
+    var mkdocs_page_input_path = "metrics/Metrics-for-Gobblin-ETL.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sinks/AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Metrics for Gobblin ETL</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#configuring-metrics-and-event-emission">Configuring Metrics and Event emission</a></li>
+    
+
+    <li class="toctree-l3"><a href="#operational-metrics">Operational Metrics</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#extractor-metrics">Extractor Metrics</a></li>
+        
+            <li><a class="toctree-l4" href="#converter-metrics">Converter Metrics</a></li>
+        
+            <li><a class="toctree-l4" href="#fork-operator-metrics">Fork Operator Metrics</a></li>
+        
+            <li><a class="toctree-l4" href="#row-level-policy-metrics">Row Level Policy Metrics</a></li>
+        
+            <li><a class="toctree-l4" href="#data-writer-metrics">Data Writer Metrics</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#runtime-events">Runtime Events</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#job-progression-events">Job Progression Events</a></li>
+        
+            <li><a class="toctree-l4" href="#job-timing-events">Job Timing Events</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#customizing-instrumentation">Customizing Instrumentation</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#custom-constructs">Custom constructs</a></li>
+        
+            <li><a class="toctree-l4" href="#custom-reporters">Custom Reporters</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Gobblin Metrics &raquo;</li>
+        
+      
+    
+    <li>Metrics for Gobblin ETL</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/metrics/Metrics-for-Gobblin-ETL.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#configuring-metrics-and-event-emission">Configuring Metrics and Event emission</a></li>
+<li><a href="#operational-metrics">Operational Metrics</a><ul>
+<li><a href="#extractor-metrics">Extractor Metrics</a></li>
+<li><a href="#converter-metrics">Converter Metrics</a></li>
+<li><a href="#fork-operator-metrics">Fork Operator Metrics</a></li>
+<li><a href="#row-level-policy-metrics">Row Level Policy Metrics</a></li>
+<li><a href="#data-writer-metrics">Data Writer Metrics</a></li>
+</ul>
+</li>
+<li><a href="#runtime-events">Runtime Events</a><ul>
+<li><a href="#job-progression-events">Job Progression Events</a></li>
+<li><a href="#job-timing-events">Job Timing Events</a></li>
+</ul>
+</li>
+<li><a href="#customizing-instrumentation">Customizing Instrumentation</a><ul>
+<li><a href="#custom-constructs">Custom constructs</a><ul>
+<li><a href="#instrumentable-interface">Instrumentable Interface</a></li>
+<li><a href="#callback-methods">Callback Methods</a></li>
+</ul>
+</li>
+<li><a href="#custom-reporters">Custom Reporters</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Gobblin ETL comes equipped with instrumentation using <a href="Gobblin Metrics">Gobblin Metrics</a>, as well as end points to easily extend this instrumentation.</p>
+<h1 id="configuring-metrics-and-event-emission">Configuring Metrics and Event emission</h1>
+<p>The following configurations are used for metrics and event emission:</p>
+<table>
+<thead>
+<tr>
+<th>Configuration Key</th>
+<th>Definition</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>metrics.enabled</td>
+<td>Whether metrics are enabled. If false, will not report metrics.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>metrics.report.interval</td>
+<td>Metrics report interval in milliseconds.</td>
+<td>30000</td>
+</tr>
+<tr>
+<td>metrics.reporting.file.enabled</td>
+<td>Whether metrics will be reported to a file.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>metrics.log.dir</td>
+<td>If file enabled, the directory where metrics will be written. If missing, will not report to file.</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>metrics.reporting.kafka.enabled</td>
+<td>Whether metrics will be reported to Kafka.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>metrics.reporting.kafka.brokers</td>
+<td>Kafka brokers for Kafka metrics emission.</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>metrics.reporting.kafka.topic.metrics</td>
+<td>Kafka topic where metrics (but not events) will be reported.</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>metrics.reporting.kafka.topic.events</td>
+<td>Kafka topic where events (but not metrics) will be reported.</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>metrics.reporting.kafka.format</td>
+<td>Format of metrics / events emitted to Kafka. (Options: json, avro)</td>
+<td>json</td>
+</tr>
+<tr>
+<td>metrics.reporting.kafka.avro.use.schema.registry</td>
+<td>Whether to use a schema registry for Kafka emitting.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>kafka.schema.registry.url</td>
+<td>If using schema registry, the url of the schema registry.</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>metrics.reporting.jmx.enabled</td>
+<td>Whether to report metrics to JMX.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>metrics.reporting.custom.builders</td>
+<td>Comma-separated list of classes for custom metrics reporters. (See <a href="Metrics-for-Gobblin-ETL#custom-reporters">Custom Reporters</a>)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="operational-metrics">Operational Metrics</h1>
+<p>Each construct in a Gobblin ETL run computes metrics regarding it's performance / progress. Each metric is tagged by default with the following tags:</p>
+<ul>
+<li>jobName: Gobblin generated name for the job.</li>
+<li>jobId: Gobblin generated id for the job.</li>
+<li>clusterIdentifier: string identifier the cluster / host where the job was run. Obtained from resource manager, job tracker, or the name of the host.</li>
+<li>taskId: Gobblin generated id for the task that generated the metric.</li>
+<li>construct: construct type that generated the metric (e.g. extractor, converter, etc.)</li>
+<li>class: specific class of the construct that generated the metric.</li>
+<li>finalMetricReport: metrics are emitted regularly. Sometimes it is useful to select only the last report from each context. To aid with this, some reporters will add this tag with value "true" only to the final report from a metric context.</li>
+</ul>
+<p>This is the list of operational metrics implemented by default, grouped by construct.</p>
+<h2 id="extractor-metrics">Extractor Metrics</h2>
+<ul>
+<li>gobblin.extractor.records.read: meter for records read.</li>
+<li>gobblin.extractor.records.failed: meter for records failed to read.</li>
+<li>gobblin.extractor.extract.time: timer for reading of records.</li>
+</ul>
+<h2 id="converter-metrics">Converter Metrics</h2>
+<ul>
+<li>gobblin.converter.records.in: meter for records going into the converter.</li>
+<li>gobblin.converter.records.out: meter for records outputted by the converter.</li>
+<li>gobblin.converter.records.failed: meter for records that failed to be converted.</li>
+<li>gobblin.converter.convert.time: timer for conversion time of each record.</li>
+</ul>
+<h2 id="fork-operator-metrics">Fork Operator Metrics</h2>
+<ul>
+<li>gobblin.fork.operator.records.in: meter for records going into the fork operator.</li>
+<li>gobblin.fork.operator.forks.out: meter for records going out of the fork operator (each record is counted once for each fork it is emitted to).</li>
+<li>gobblin.fork.operator.fork.time: timer for forking of each record.</li>
+</ul>
+<h2 id="row-level-policy-metrics">Row Level Policy Metrics</h2>
+<ul>
+<li>gobblin.qualitychecker.records.in: meter for records going into the row level policy.</li>
+<li>gobblin.qualitychecker.records.passed: meter for records passing the row level policy check.</li>
+<li>gobblin.qualitychecker.records.failed: meter for records failing the row level policy check.</li>
+<li>gobblin.qualitychecker.check.time: timer for row level policy checking of each record.</li>
+</ul>
+<h2 id="data-writer-metrics">Data Writer Metrics</h2>
+<ul>
+<li>gobblin.writer.records.in: meter for records requested to be written.</li>
+<li>gobblin.writer.records.written: meter for records actually written.</li>
+<li>gobblin.writer.records.failed: meter for records failed to be written.</li>
+<li>gobblin.writer.write.time: timer for writing each record.</li>
+</ul>
+<h1 id="runtime-events">Runtime Events</h1>
+<p>The Gobblin ETL runtime emits events marking its progress. All events have the following metadata:</p>
+<ul>
+<li>jobName: Gobblin generated name for the job.</li>
+<li>jobId: Gobblin generated id for the job.</li>
+<li>clusterIdentifier: string identifier the cluster / host where the job was run. Obtained from resource manager, job tracker, or the name of the host.</li>
+<li>taskId: Gobblin generated id for the task that generated the metric (if applicable).</li>
+</ul>
+<p>This is the list of events that are emitted by the Gobblin runtime:</p>
+<h2 id="job-progression-events">Job Progression Events</h2>
+<ul>
+<li>LockInUse: emitted if a job fails because it fails to get a lock.</li>
+<li>WorkUnitsMissing: emitted if a job exits because source failed to get work units.</li>
+<li>WorkUnitsEmpty: emitted if a job exits because there were no work units to process.</li>
+<li>WorkUnitsCreated: emitted when workunits are created for a task. Metadata: workUnitsCreated(Number of bin-packed workunits created).</li>
+<li>TasksSubmitted: emitted when tasks are submitted for execution. Metadata: tasksCount(number of tasks submitted).</li>
+<li>TaskFailed: emitted when a task fails. Metadata: taskId(id of the failed task).</li>
+<li>Job_Successful: emitted at the end of a successful job.</li>
+<li>Job_Failed: emitted at the end of a failed job.</li>
+</ul>
+<h2 id="job-timing-events">Job Timing Events</h2>
+<p>These events give information on timing on certain parts of the execution. Each timing event contains the following metadata:</p>
+<ul>
+<li>startTime: timestamp when the timed processing started.</li>
+<li>endTime: timestamp when the timed processing finished.</li>
+<li>durationMillis: duration in milliseconds of the timed processing.</li>
+<li>eventType: always "timingEvent" for timing events.</li>
+</ul>
+<p>The following timing events are emitted:</p>
+<ul>
+<li>FullJobExecutionTimer: times the entire job execution.</li>
+<li>WorkUnitsCreationTimer: times the creation of work units.</li>
+<li>WorkUnitsPreparationTime: times the preparation of work units.</li>
+<li>JobRunTimer: times the actual running of job (i.e. processing of all work units).</li>
+<li>JobCommitTimer: times the committing of work units.</li>
+<li>JobCleanupTimer: times the job cleanup.</li>
+<li>JobLocalSetupTimer: times the setup of a local job.</li>
+<li>JobMrStagingDataCleanTimer: times the deletion of staging directories from previous work units (MR mode).</li>
+<li>JobMrDistributedCacheSetupTimer: times the setting up of distributed cache (MR mode).</li>
+<li>JobMrSetupTimer: times the setup of the MR job (MR mode).</li>
+<li>JobMrRunTimer: times the execution of the MR job (MR mode).</li>
+</ul>
+<h1 id="customizing-instrumentation">Customizing Instrumentation</h1>
+<h2 id="custom-constructs">Custom constructs</h2>
+<p>When using a custom construct (for example a custom extractor for your data source), you will get the above mentioned instrumentation for free. However, you may want to implement additional metrics. To aid with this, instead of extending the usual class Extractor, you can extend the class <code>gobblin.instrumented.extractor.InstrumentedExtractor</code>. Similarly, for each construct there is an instrumented version that allows extension of the default metrics (<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/extractor/InstrumentedExtractor.java">InstrumentedExtractor</a>, <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/converter/InstrumentedConverter.java">InstrumentedConverter</a>, <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/fork/InstrumentedForkOperator.java">InstrumentedForkOperator</a>, <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/qualitychecker/InstrumentedRowLevelPolicy.java">InstrumentedRowLevelPolicy</a>, and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/writer/InstrumentedDataWriter.java">InstrumentedDataWriter</a>).</p>
+<p>All of the instrumented constructs have Javadoc providing with additional information. In general, when extending an instrumented construct, you will have to implement a different method. For example, when extending an InstrumentedExtractor, instead of implementing <code>readRecord</code>, you will implement <code>readRecordImpl</code>. To make this clearer for the user, implementing <code>readRecord</code> will throw a compilation error, and the javadoc of each method specifies the method that should be implemented.</p>
+<h3 id="instrumentable-interface">Instrumentable Interface</h3>
+<p>Instrumented constructs extend the interface <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/Instrumentable.java">Instrumentable</a>. It contains the following methods:</p>
+<ul>
+<li><code>getMetricContext()</code>: get the default metric context generated for that instance of the construct, with all the appropriate tags. Use this metric context to create any additional metrics.</li>
+<li><code>isInstrumentationEnabled()</code>: returns true if instrumentation is enabled.</li>
+<li><code>switchMetricsContext(List&lt;Tag&lt;?&gt;&gt;)</code>: switches the default metric context returned by <code>getMetricContext()</code> to a metric context containing the supplied tags. All default metrics will be reported to the new metric context. This method is useful when the state of a construct changes during the execution, and the user desires to reflect that in the emitted tags (for example, Kafka extractor can handle multiple topics in the same extractor, and we want to reflect this in the metrics).</li>
+<li><code>switchMetricContext(MetricContext)</code>: similar to the above method, but uses the supplied metric context instead of generating a new metric context. It is the responsibility of the caller to ensure the new metric context has the correct tags and parent.</li>
+</ul>
+<p>The following method can be re-implemented by the user:
+* <code>generateTags(State)</code>: this method should return a list of tags to use for metric contexts created for this construct. If overriding this method, it is always a good idea to call <code>super()</code> and only append tags to this list.</p>
+<h3 id="callback-methods">Callback Methods</h3>
+<p>Instrumented constructs have a set of callback methods that are called at different points in the processing of each record, and which can be used to update metrics. For example, the <code>InstrumentedExtractor</code> has the callbacks <code>beforeRead()</code>, <code>afterRead(D, long)</code>, and <code>onException(Exception)</code>. The javadoc for the instrumented constructs has further descriptions for each callback. Users should always call <code>super()</code> when overriding this callbacks, as default metrics depend on that.</p>
+<h2 id="custom-reporters">Custom Reporters</h2>
+<p>Besides the reporters implemented by default (file, Kafka, and JMX), users can add custom reporters to the classpath and instruct Gobblin to use these reporters. To do this, users should extend the interface <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-metrics-libs/gobblin-metrics-base/src/main/java/org/apache/gobblin/metrics/CustomReporterFactory.java">CustomReporterFactory</a>, and specify a comma-separated list of CustomReporterFactory classes in the configuration key <code>metrics.reporting.custom.builders</code>.</p>
+<p>Gobblin will automatically search for these CustomReporterFactory implementations, instantiate each one with a parameter-less constructor, and then call the method <code>newScheduledReporter(MetricContext, Properties)</code>, where the properties contain all of the input configurations supplied to Gobblin. Gobblin will then manage this <code>ScheduledReporter</code>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Gobblin-Metrics-Architecture/" class="btn btn-neutral float-right" title="Gobblin Metrics Architecture">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Existing-Reporters/" class="btn btn-neutral" title="Existing Reporters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Existing-Reporters/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Gobblin-Metrics-Architecture/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Gobblin Modules - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Gobblin Modules";
+    var mkdocs_page_input_path = "developer-guide/GobblinModules.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sinks/AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Contributing/">Contributing</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Gobblin Modules</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#introduction">Introduction</a></li>
+    
+
+    <li class="toctree-l3"><a href="#how-it-works">How it works</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#gobblin-modules">gobblin-modules/</a></li>
+        
+            <li><a class="toctree-l4" href="#gobblin-flavor">Gobblin flavor</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#current-flavors-and-modules">Current flavors and modules</a></li>
+    
+
+    <li class="toctree-l3"><a href="#whats-next">What's next</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Developer Guide &raquo;</li>
+        
+      
+    
+    <li>Gobblin Modules</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/developer-guide/GobblinModules.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#how-it-works">How it works</a><ul>
+<li><a href="#gobblin-modules">gobblin-modules/</a></li>
+<li><a href="#gobblin-flavor">Gobblin flavor</a></li>
+</ul>
+</li>
+<li><a href="#current-flavors-and-modules">Current flavors and modules</a></li>
+<li><a href="#whats-next">What's next</a></li>
+</ul>
+</div>
+<h1 id="introduction">Introduction</h1>
+<p><em>Gobblin-modules</em> is a way to support customization of the gobblin-distribution build.</p>
+<p>One of the core features of Gobblin is ability to integrate for a number of systems for data management (sources, targets, monitoring, etc.) Often this leads to inclusion of libraries specific to those systems. Sometimes, such systems also introduce incompatible changes in their APIs (e.g. Kafka 0.8 vs Kafka 0.9).</p>
+<p>As the adoption of Gobblin grows and we see an increased number of such dependencies, it is no longer easy (or possible) to maintain a single monolithic gobblin-distribution build. This is where gobblin-modules.</p>
+<h1 id="how-it-works">How it works</h1>
+<h2 id="gobblin-modules">gobblin-modules/</h2>
+<p>We are moving non-core functionality which may bring conflicting or large external dependencies to a new location: <code>gobblin-modules/</code>. This contains the collection of libraries (modules) which bring external depenencies.</p>
+<p>For example, currently we have:</p>
+<ul>
+<li><code>gobblin-kafka-08</code> - source, writer, metrics reporter using Kafka 0.8 API</li>
+<li><code>gobblin-metrics-graphite</code> - metrics reporter to Graphite</li>
+</ul>
+<p>Other libraries can refer to those modules using standard Gradle dependencies.</p>
+<h2 id="gobblin-flavor">Gobblin flavor</h2>
+<p>We have added a build property <code>gobblinFlavor</code> which controls what modules to be build and included in the gobblin-distribution tarball. The property can be used as follows</p>
+<pre><code>    ./gradlew -PgobblinFlavor=minimal build
+</code></pre>
+
+<p>Gobblin libraries that support customization can add build files like <code>gobblin-flavor-&lt;FLAVOR&gt;.gradle</code> which declare the dependencies. For example, let's look at the current <code>gobblin-core/gobblin-flavor-standard.gradle</code> :</p>
+<pre><code>dependencies {
+  compile project(':gobblin-modules:gobblin-kafka-08')
+}
+</code></pre>
+
+<p>That specifies that the "standard" flavor of Gobblin will include the Kafka 0.8 source, writer and metric reporter.</p>
+<p>When one specifies the <code>-PgobblinFlavor=&lt;FLAVOR&gt;</code> during build time, the build script will automatically include the dependencies specified in the corresponding <code>gobblin-flavor-&lt;FLAVOR&gt;.gradle</code> files in any library that contains such file.</p>
+<p>Currently, Gobblin defines 4 flavors out of the box:</p>
+<ul>
+<li>minimal - no modules</li>
+<li>standard - standard modules for frequently used components. This is the flavor used if none is explicitly specified</li>
+<li>cluster - modules for running Gobblin clusters (YARN, AWS, stand-alone)</li>
+<li>full - all non-conflicting modules</li>
+<li>custom - by default, like minimal but lets users/developers modify and customize the dependencies to be included.</li>
+</ul>
+<p>Users/developers can define their own flavor files.</p>
+<h1 id="current-flavors-and-modules">Current flavors and modules</h1>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Flavors</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gobblin-azkaban</td>
+<td>standard, full</td>
+<td>Classes to run gobblin jobs in Azkaban</td>
+</tr>
+<tr>
+<td>gobblin-aws</td>
+<td>cluster, full</td>
+<td>Classes to run gobblin clusters on AWS</td>
+</tr>
+<tr>
+<td>gobblin-cluster</td>
+<td>cluster, full</td>
+<td>Generic classes for running Gobblin clusters</td>
+</tr>
+<tr>
+<td>gobblin-compliance</td>
+<td>full</td>
+<td>Source,converters, writer for cleaning existing datasets for compliance purposes</td>
+</tr>
+<tr>
+<td>gobblin-helix</td>
+<td>full</td>
+<td>State store implementation using Helix/ZK</td>
+</tr>
+<tr>
+<td>gobblin-kafka-08</td>
+<td>standard, full</td>
+<td>Source, writer and metrics reporter using Kafka 0.8 APIs</td>
+</tr>
+<tr>
+<td>gobblin-kafka-09</td>
+<td></td>
+<td>Source, writer and metrics reporter using Kafka 0.9 APIs</td>
+</tr>
+<tr>
+<td>gobblin-metrics-graphite</td>
+<td>standard, full</td>
+<td>metrics reporter to Graphite</td>
+</tr>
+<tr>
+<td>gobblin-metrics-influxdb</td>
+<td>standard, full</td>
+<td>metrics reporter to InfluxDB</td>
+</tr>
+<tr>
+<td>gobblin-metrics-hadoop</td>
+<td>standard, full</td>
+<td>metrics reporter to Hadoop counters</td>
+</tr>
+<tr>
+<td>gobblin-yarn</td>
+<td>cluster, full</td>
+<td>Classes to run gobblin clusters on YARN as a native app</td>
+</tr>
+<tr>
+<td>google-ingestion</td>
+<td>standard, full</td>
+<td>Source/extractors for GoogleWebMaster, GoogleAnalytics, GoogleDrive</td>
+</tr>
+<tr>
+<td>gobblin-azure-datalake</td>
+<td>full</td>
+<td>FileSystem for Azure Data lake</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Some grandfathered modules may not be in the gobblin-modules/ directory yet. Typically, those are in the root directory.</p>
+<h1 id="whats-next">What's next</h1>
+<p>We are in the process of moving existing external dependencies out of <code>gobblin-core</code> into separate modules. To preserve backwards compatibility, we will preserve package and class names and make the "standard" flavor of <code>gobblin-core</code> depend on these modules.</p>
+<p>In the future, new external source, writer and other dependencies are expected to be added directly to gobblin-modules/. Further, we may decide to switch modules between flavors to conrol the number of external dependencies. This will always be done with advanced notice.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../HighLevelConsumer/" class="btn btn-neutral float-right" title="High Level Consumer">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Contributing/" class="btn btn-neutral" title="Contributing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Contributing/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../HighLevelConsumer/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

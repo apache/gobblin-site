@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>HTTP - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "HTTP";
+    var mkdocs_page_input_path = "sinks/Http.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">HTTP</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#introduction">Introduction</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#note">Note</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#constructs">Constructs</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#httpoperation">HttpOperation</a></li>
+        
+            <li><a class="toctree-l4" href="#asyncrequestbuilder">AsyncRequestBuilder</a></li>
+        
+            <li><a class="toctree-l4" href="#httpclient">HttpClient</a></li>
+        
+            <li><a class="toctree-l4" href="#responsehandler">ResponseHandler</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#build-an-asynchronous-writer">Build an asynchronous writer</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#avrohttpwriterbuilder">AvroHttpWriterBuilder</a></li>
+        
+            <li><a class="toctree-l4" href="#r2restwriterbuilder">R2RestWriterBuilder</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#build-a-synchronous-writer">Build a synchronous writer</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Sinks (Writers) &raquo;</li>
+        
+      
+    
+    <li>HTTP</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/Http.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#note">Note</a></li>
+</ul>
+</li>
+<li><a href="#constructs">Constructs</a><ul>
+<li><a href="#httpoperation">HttpOperation</a></li>
+<li><a href="#asyncrequestbuilder">AsyncRequestBuilder</a></li>
+<li><a href="#httpclient">HttpClient</a></li>
+<li><a href="#responsehandler">ResponseHandler</a></li>
+</ul>
+</li>
+<li><a href="#build-an-asynchronous-writer">Build an asynchronous writer</a><ul>
+<li><a href="#avrohttpwriterbuilder">AvroHttpWriterBuilder</a></li>
+<li><a href="#r2restwriterbuilder">R2RestWriterBuilder</a></li>
+</ul>
+</li>
+<li><a href="#build-a-synchronous-writer">Build a synchronous writer</a></li>
+</ul>
+</div>
+<h1 id="introduction">Introduction</h1>
+<p>Writing to a http based sink is done by sending a http or restful request and handling the response. Given
+the endpoint uri, query parameters, and body, it is straightforward to construct a http request. The idea
+is to build a writer that writes a http record, which contains those elements of a request. The writer
+builds a http or rest request from multiple http records, sends the request with a client that knows the server,
+and handles the response.</p>
+<h2 id="note">Note</h2>
+<p>The old http write framework under <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/writer/http/AbstractHttpWriter.java"><code>AbstractHttpWriter</code></a>
+and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/writer/http/AbstractHttpWriterBuilder.java"><code>AbstractHttpWriterBuilder</code></a>
+is deprecated (Deprecation date: 05/15/2018)! Use <code>AsyncHttpWriter</code> and <code>AsyncHttpWriterBuilder</code> instead</p>
+<h1 id="constructs">Constructs</h1>
+<p><p align="center">
+    <img src=../../img/Http-Write.png>
+</p>
+<p style="text-align: center;"> Figure 1. Http write flow </p></p>
+<h2 id="httpoperation"><code>HttpOperation</code></h2>
+<p>A http record is represented as a <code>HttpOperation</code> object. It has 4 fields.</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>keys</code></td>
+<td>Optional, a key/value map to interpolate the url template</td>
+<td><code>{"memberId": "123"}</code></td>
+</tr>
+<tr>
+<td><code>queryParams</code></td>
+<td>Optional, a map from query parameter to its value</td>
+<td><code>{"action": "update"}</code></td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td>Optional, a map from header key to ts value</td>
+<td><code>{"version": "2.0"}</code></td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>Optional, the request body in string or json string format</td>
+<td><code>"{\"email\": \"httpwrite@test.com\"}"</code></td>
+</tr>
+</tbody>
+</table>
+<p>Given an url template, <code>http://www.test.com/profiles/${memberId}</code>, from job configuration, the resolved 
+example request url with <code>keys</code> and <code>queryParams</code> information will be <code>http://www.test.com/profiles/123?action=update</code>.</p>
+<h2 id="asyncrequestbuilder"><code>AsyncRequestBuilder</code></h2>
+<p>An <code>AsyncRequestBuilder</code> builds an <code>AsyncRequest</code> from a collection of <code>HttpOperation</code> records. It could build one
+request per record or batch multiple records into a single request. A builder is also responsible for
+putting the <code>headers</code> and setting the <code>body</code> to the request.</p>
+<h2 id="httpclient"><code>HttpClient</code></h2>
+<p>A <code>HttpClient</code> sends a request and returns a response. If necessary, it should setup the connection to the server, for
+example, sending an authorization request to get access token. How authorization is done is per use case. Gobblin does
+not provide general support for authorization yet.</p>
+<h2 id="responsehandler"><code>ResponseHandler</code></h2>
+<p>A <code>ResponseHandler</code> handles a response of a request. It returns a <code>ResponseStatus</code> object to the framework, which
+would resend the request if it's a <code>SERVER_ERROR</code>.</p>
+<h1 id="build-an-asynchronous-writer">Build an asynchronous writer</h1>
+<p><code>AsyncHttpWriterBuilder</code> is the base builder to build an asynchronous http writer. A specific writer can be created by 
+providing the 3 major components: a <code>HttpClient</code>, a <code>AsyncRequestBuilder</code>, and a <code>ResponseHandler</code>.</p>
+<p>Gobblin offers 2 implementations of async
+http writers. As long as your write requirement can be expressed as a <code>HttpOperation</code> through a <code>Converter</code>, the
+2 implementations should work with configurations.</p>
+<h2 id="avrohttpwriterbuilder"><code>AvroHttpWriterBuilder</code></h2>
+<p>An <code>AvroHttpWriterBuilder</code> builds an <code>AsyncHttpWriter</code> on top of the <a href="https://hc.apache.org/">apache httpcomponents framework</a>, sending vanilla http request.
+The 3 major components are:</p>
+<ul>
+<li><code>ApacheHttpClient</code>. It uses <a href="https://github.com/apache/httpcomponents-client/blob/master/httpclient5/src/main/java/org/apache/hc/client5/http/impl/classic/CloseableHttpClient.java"><code>CloseableHttpClient</code></a> to 
+  send <a href="https://github.com/apache/httpcomponents-client/blob/master/httpclient5/src/main/java/org/apache/hc/client5/http/classic/methods/HttpUriRequest.java"><code>HttpUriRequest</code></a>
+  and receive <a href="https://github.com/apache/httpcomponents-client/blob/master/httpclient5/src/main/java/org/apache/hc/client5/http/impl/classic/CloseableHttpResponse.java"><code>CloseableHttpResponse</code></a></li>
+<li><code>ApacheHttpRequestBuilder</code>. It builds a <code>ApacheHttpRequest</code>, which is an <code>AsyncRequest</code> that wraps the <code>HttpUriRequest</code>, from one <code>HttpOperation</code></li>
+<li><code>ApacheHttpResponseHandler</code>. It handles a <code>HttpResponse</code></li>
+</ul>
+<p>Configurations for the builder are:</p>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gobblin.writer.http.urlTemplate</code></td>
+<td>Required, the url template(schema and port included), together with <code>keys</code> and <code>queryParams</code>, to be resolved to request url</td>
+<td><code>http://www.test.com/profiles/${memberId}</code></td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.verb</code></td>
+<td>Required, <a href="http://www.restapitutorial.com/lessons/httpmethods.html">http verbs</a></td>
+<td>get, update, delete, etc</td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.errorCodeWhitelist</code></td>
+<td>Optional, http error codes allowed to pass through</td>
+<td>404, 500, etc. No error code is allowed by default</td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.maxAttempts</code></td>
+<td>Optional, max number of attempts including initial send</td>
+<td>Default is 3</td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.contentType</code></td>
+<td>Optional, content type of the request body</td>
+<td><code>"application/json"</code>, which is the default value</td>
+</tr>
+</tbody>
+</table>
+<h2 id="r2restwriterbuilder"><code>R2RestWriterBuilder</code></h2>
+<p>A <code>R2RestWriterBuilder</code> builds an <code>AsyncHttpWriter</code> on top of <a href="https://github.com/linkedin/rest.li/wiki/Request---Response-API-(R2)">restli r2 framework</a>, sending
+rest request. The 3 major components are:</p>
+<ul>
+<li><code>R2Client</code>. It uses a R2 <a href="https://github.com/linkedin/rest.li/blob/master/r2-core/src/main/java/com/linkedin/r2/transport/common/Client.java"><code>Client</code></a> to
+  send <a href="https://github.com/linkedin/rest.li/blob/master/r2-core/src/main/java/com/linkedin/r2/message/rest/RestRequest.java"><code>RestRequest</code></a> and
+  receive <a href="https://github.com/linkedin/rest.li/blob/master/r2-core/src/main/java/com/linkedin/r2/message/rest/RestResponse.java"><code>RestResponse</code></a></li>
+<li><code>R2RestRequestBuilder</code>. It builds a <code>R2Request</code>, which is an <code>AsyncRequest</code> that wraps the <code>RestRequest</code>, from one <code>HttpOperation</code></li>
+<li><code>R2RestResponseHandler</code>. It handles a <code>RestResponse</code></li>
+</ul>
+<p><code>R2RestWriterBuilder</code> has <a href="https://github.com/linkedin/rest.li/wiki/Dynamic-Discovery">d2</a> and ssl support. Configurations(<code>(d2.)</code> part should be added in d2 mode) for the builder are:</p>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gobblin.writer.http.urlTemplate</code></td>
+<td>Required, the url template(schema and port included), together with <code>keys</code> and <code>queryParams</code>, to be resolved to request url. If the schema is <code>d2</code>, d2 is enabled</td>
+<td><code>http://www.test.com/profiles/${memberId}</code></td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.verb</code></td>
+<td>Required, <a href="https://github.com/linkedin/rest.li/wiki/Rest.li-User-Guide#resource-methods">rest(rest.li) verbs</a></td>
+<td>get, update, put, delete, etc</td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.maxAttempts</code></td>
+<td>Optional, max number of attempts including initial send</td>
+<td>Default is 3</td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.errorCodeWhitelist</code></td>
+<td>Optional, http error codes allowed to pass through</td>
+<td>404, 500, etc. No error code is allowed by default</td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.d2.zkHosts</code></td>
+<td>Required for d2, the zookeeper address</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.(d2.)ssl</code></td>
+<td>Optional, enable ssl</td>
+<td>Default is false</td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.(d2.)keyStoreFilePath</code></td>
+<td>Required for ssl</td>
+<td>/tmp/identity.p12</td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.(d2.)keyStoreType</code></td>
+<td>Required for ssl</td>
+<td>PKCS12</td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.(d2.)keyStorePassword</code></td>
+<td>Required for ssl</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.(d2.)trustStoreFilePath</code></td>
+<td>Required for ssl</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.(d2.)trustStorePassword</code></td>
+<td>Required for ssl</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gobblin.writer.http.protocolVersion</code></td>
+<td>Optional, protocol version of rest.li</td>
+<td><code>2.0.0</code>, which is the default value</td>
+</tr>
+</tbody>
+</table>
+<p><code>R2RestWriterBuilder</code> isn't ingegrated with <code>PasswordManager</code> to process encrypted passwords yet. The task is tracked as https://issues.apache.org/jira/browse/GOBBLIN-487</p>
+<h1 id="build-a-synchronous-writer">Build a synchronous writer</h1>
+<p>The idea is to reuse an asynchronous writer to build its synchronous version. The technical difference between them
+is the size of outstanding writes. Set <code>gobblin.writer.http.maxOutstandingWrites</code> to be <code>1</code>(default value is <code>1000</code>) to make a synchronous writer</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Gobblin-JDBC-Writer/" class="btn btn-neutral float-right" title="JDBC">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../CouchbaseWriter/" class="btn btn-neutral" title="Couchbase"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../CouchbaseWriter/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Gobblin-JDBC-Writer/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

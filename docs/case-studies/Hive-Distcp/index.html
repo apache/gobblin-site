@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Hive Distcp - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Hive Distcp";
+    var mkdocs_page_input_path = "case-studies/Hive-Distcp.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sinks/AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Hive Distcp</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#introduction">Introduction</a></li>
+    
+
+    <li class="toctree-l3"><a href="#configure-hive-distcp-job">Configure Hive Distcp Job</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#source-and-target-metastores">Source and target metastores</a></li>
+        
+            <li><a class="toctree-l4" href="#database-and-tables-to-copy">Database and tables to copy</a></li>
+        
+            <li><a class="toctree-l4" href="#target-path-computation">Target path computation</a></li>
+        
+            <li><a class="toctree-l4" href="#conflicting-table-and-partitions-treatment">Conflicting table and partitions treatment</a></li>
+        
+            <li><a class="toctree-l4" href="#deregistering-tables-partitions">Deregistering tables / partitions</a></li>
+        
+            <li><a class="toctree-l4" href="#finding-copy-files">Finding copy files</a></li>
+        
+            <li><a class="toctree-l4" href="#partition-filter">Partition Filter</a></li>
+        
+            <li><a class="toctree-l4" href="#fast-partition-skip-predicate">Fast partition skip predicate</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Case Studies &raquo;</li>
+        
+      
+    
+    <li>Hive Distcp</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/case-studies/Hive-Distcp.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#configure-hive-distcp-job">Configure Hive Distcp Job</a><ul>
+<li><a href="#source-and-target-metastores">Source and target metastores</a></li>
+<li><a href="#database-and-tables-to-copy">Database and tables to copy</a></li>
+<li><a href="#target-path-computation">Target path computation</a></li>
+<li><a href="#conflicting-table-and-partitions-treatment">Conflicting table and partitions treatment</a></li>
+<li><a href="#deregistering-tables-partitions">Deregistering tables / partitions</a></li>
+<li><a href="#finding-copy-files">Finding copy files</a></li>
+<li><a href="#partition-filter">Partition Filter</a></li>
+<li><a href="#fast-partition-skip-predicate">Fast partition skip predicate</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="introduction">Introduction</h1>
+<p>Gobblin hive distcp is built on top of <a href="http://gobblin.readthedocs.io/en/latest/adaptors/Gobblin-Distcp/">Gobblin distcp</a>. It uses Hive metastore to find datasets to copy, then performs regular file listings to find the actual files to copy. After finishing the copy, the Hive registrations in the source are replicated on the target.</p>
+<p>This document will show an sample job config of running Gobblin hive distcp, and explain how it works.</p>
+<h1 id="configure-hive-distcp-job">Configure Hive Distcp Job</h1>
+<p>Below is the sample job config of running Gobblin hive distcp. Gobblin job constructs and data flow are the same as <a href="http://gobblin.readthedocs.io/en/latest/adaptors/Gobblin-Distcp/">Gobblin distcp</a>. The only difference is the <code>gobblin.data.profile.class</code> and hive related properties.</p>
+<pre><code>job.name=SampleHiveDistcp
+job.group=HiveDistcp
+job.description=Sample job config for hive distcp
+
+extract.namespace=org.apache.gobblin.copy.tracking
+gobblin.dataset.profile.class=org.apache.gobblin.data.management.copy.hive.HiveDatasetFinder
+data.publisher.type=org.apache.gobblin.data.management.copy.publisher.CopyDataPublisher
+source.class=org.apache.gobblin.data.management.copy.CopySource
+writer.builder.class=org.apache.gobblin.data.management.copy.writer.FileAwareInputStreamDataWriterBuilder
+converter.classes=org.apache.gobblin.converter.IdentityConverter
+
+hive.dataset.copy.target.table.prefixToBeReplaced=
+hive.dataset.copy.target.table.prefixReplacement=
+data.publisher.final.dir=${hive.dataset.copy.target.table.prefixReplacement}
+
+hive.dataset.hive.metastore.uri=
+hive.dataset.copy.target.metastore.uri=
+
+hive.dataset.whitelist=
+hive.dataset.copy.target.database=
+
+hive.dataset.existing.entity.conflict.policy=REPLACE_PARTITIONS
+hive.dataset.copy.deregister.fileDeleteMethod=NO_DELETE
+
+hive.dataset.copy.location.listing.method=RECURSIVE
+hive.dataset.copy.locations.listing.skipHiddenPaths=true
+
+gobblin.copy.preserved.attributes=rgbp
+</code></pre>
+
+<h2 id="source-and-target-metastores">Source and target metastores</h2>
+<p><code>hive.dataset.hive.metastore.uri</code> and <code>hive.dataset.copy.target.metastore.uri</code> specify the source and target metastore uri. Make sure the hive distcp job has access to both hive metastores.</p>
+<h2 id="database-and-tables-to-copy">Database and tables to copy</h2>
+<p>Use a whitelist and optionally a blacklist using to specify tables to copy using the keys <code>hive.dataset.whitelist</code> and <code>hive.dataset.blacklist</code>. Both whitelist and blacklist accept various patterns, for example:</p>
+<ul>
+<li>sampleDb.sampleTable -&gt; specific table <code>sampleTable</code> in database <code>sampleDb</code>;</li>
+<li>sampleDb -&gt; all tables in database <code>sampleDb</code>;</li>
+<li>sampleDb.samplei* -&gt; specific tables starting with <code>sample</code> in database <code>sampleDb</code>.</li>
+</ul>
+<p>The key <code>hive.dataset.copy.target.database</code> specifies the target database to create tables under. If omitted, will use the same as the source.</p>
+<h2 id="target-path-computation">Target path computation</h2>
+<p>This specifies where copied files should be placed. There are a few options on how the target paths will be computed:</p>
+<ul>
+<li>Prefix replacement: simply replace a prefix in each file copied, e.g. /a/b to /a/btest. Use the keys <code>hive.dataset.copy.target.table.prefixToBeReplaced</code> and <code>hive.dataset.copy.target.table.prefixReplacement</code>. Any paths that are not a descendant of <code>prefixToBeReplaced</code> will throw an error and will fail the dataset. Note that setting both keys to "/" effectively replicates all paths exactly. </li>
+<li>New table root: Puts files in a new table root. The source table root is its location (which is a Hive registration parameter). This mode will simply do a prefix replacement of the table root for each path in that table. Use the key <code>hive.dataset.copy.target.table.root</code> to specify the replacement. Note there is some primitive token replacement in the value of the key if using the tokens $DB and $TABLE, which will be replaced by the database and table name respectively. If the token $TABLE is not present, however, the table name will be automatically appended to the new table root (see last example below).<ul>
+<li>/data/$DB/$TABLE -&gt; /data/databaseName/tableName</li>
+<li>/data/$TABLE -&gt; /data/tableName</li>
+<li>/data -&gt; /data/tableName</li>
+</ul>
+</li>
+<li>Relocate files: This mode will move all files in a table to a structure matching Hive's native directory structure. I.e. all files for a partition "abc" of table "myDb.myTable" will be placed at path "<prefix>/abc" where prefix is specified using the key <code>hive.dataset.copy.target.table.root</code> and processed with the token replacements explained in "new table root". To enable this mode set <code>hive.dataset.copy.relocate.data.files</code> to true and set <code>hive.dataset.copy.target.table.root</code> appropriately. </li>
+</ul>
+<h2 id="conflicting-table-and-partitions-treatment">Conflicting table and partitions treatment</h2>
+<p>If distcp-ng finds that a partition or table it needs to create already exists it will determine whether the existing table / partition is identical to what it would register (e.g. compare schema, location, etc.). If not, it will use a policy to determine how to proceed. The policy is specified using the key <code>hive.dataset.existing.entity.conflict.policy</code> and can take the following values:</p>
+<ul>
+<li>ABORT: the conflicting table will not be copied (default)</li>
+<li>REPLACE_PARTITIONS: replace any conflicting partitions, but not tables</li>
+<li>REPLACE_TABLES: replace any conflicting tables by deregistrating previous tables first.</li>
+<li>UPDATE_TABLES: Keep the original-registered table but make modification.</li>
+</ul>
+<h2 id="deregistering-tables-partitions">Deregistering tables / partitions</h2>
+<p>Sometimes distcp-ng must deregister a table / partition, for example if it doesn't exist in the source, or if it must be replaced. In this case, distcp-ng offers options on what to do with the files under the deregistered partition. Set this policy using the key <code>hive.dataset.copy.deregister.fileDeleteMethod</code> which can take the following values:</p>
+<ul>
+<li>NO_DELETE: do not delete the files (default)</li>
+<li>INPUT_FORMAT: use the table / partition input format to infer which files are actually used by that table / partition, and delete only those files.</li>
+<li>RECURSIVE: delete the entire directory in the table / partition location.</li>
+</ul>
+<h2 id="finding-copy-files">Finding copy files</h2>
+<p>To specify the files that distcp will copy for each table / partition, use the key <code>hive.dataset.copy.location.listing.method</code> which can take the values:</p>
+<ul>
+<li>INPUT_FORMAT: use the table / partition input format to infer which files are actually used by that table / partition. (default)</li>
+<li>RECURSIVE: copy all files under the directory in the table / partition location recursively.
+If the recursive method is used, user can additionally specify <code>hive.dataset.copy.locations.listing.skipHiddenPaths</code>, which, if true, will not copy any hidden files.</li>
+</ul>
+<h2 id="partition-filter">Partition Filter</h2>
+<p>A partition filter can be applied when copying partitioned tables. Filters can only be applied to text partition columns. To speficy a partition filter use the key <code>hive.dataset.copy.partition.filter.generator</code>.</p>
+<ul>
+<li><code>gobblin.data.management.copy.hive.filter.LookbackPartitionFilterGenerator</code>: Filters date-representing partitions by a lookback (i.e. only copy recent partitions). Use the keys <code>hive.dataset.partition.filter.datetime.column</code>, <code>hive.dataset.partition.filter.datetime.lookback</code>, and <code>hive.dataset.partition.filter.datetime.format</code> to configure the filter.</li>
+</ul>
+<h2 id="fast-partition-skip-predicate">Fast partition skip predicate</h2>
+<p>A predicate that operates on partitions can be provided to distcp-ng to allow it to quickly skip partitions without having to list all of the source and target files and do a diff on those sets (a costly operation). To set this predicate, provide the class name of the predicate with the key <code>hive.dataset.copy.fast.partition.skip.predicate</code>. Currently only one such predicate exists:</p>
+<ul>
+<li><code>RegistrationTimeSkipPredicate</code>: This predicate compares the Hive partition attribute <code>registrationGenerationTimeMillis</code> in the target with the modification time of the partition directory in the source. The partition is skipped unless the directory was modified more recently than the registrationGenerationTime. The attribute <code>registrationGenerationTimeMillis</code> is an attribute set by distcp-ng representing (for all practical purposes) the time at which the distcp-ng job that registered that table started.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../data-management/Gobblin-Retention/" class="btn btn-neutral float-right" title="Retention">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Writing-ORC-Data/" class="btn btn-neutral" title="Writing ORC Data"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Writing-ORC-Data/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../data-management/Gobblin-Retention/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

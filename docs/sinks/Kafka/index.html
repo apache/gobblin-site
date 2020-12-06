@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Kafka - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Kafka";
+    var mkdocs_page_input_path = "sinks/Kafka.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Kafka</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#introduction">Introduction</a></li>
+    
+
+    <li class="toctree-l3"><a href="#pre-requisites">Pre-requisites</a></li>
+    
+
+    <li class="toctree-l3"><a href="#steps">Steps</a></li>
+    
+
+    <li class="toctree-l3"><a href="#configuration-details">Configuration Details</a></li>
+    
+
+    <li class="toctree-l3"><a href="#what-next">What Next?</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Sinks (Writers) &raquo;</li>
+        
+      
+    
+    <li>Kafka</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/Kafka.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#pre-requisites">Pre-requisites</a></li>
+<li><a href="#steps">Steps</a></li>
+<li><a href="#configuration-details">Configuration Details</a></li>
+<li><a href="#what-next">What Next?</a></li>
+</ul>
+</div>
+<h1 id="introduction">Introduction</h1>
+<p>The Kafka writer allows users to create pipelines that ingest data from Gobblin sources into Kafka. This also enables Gobblin users to seamlessly transition their pipelines from ingesting directly to HDFS to ingesting into Kafka first, and then ingesting from Kafka to HDFS.</p>
+<h1 id="pre-requisites">Pre-requisites</h1>
+<ul>
+<li>
+<p>The following guide assumes that you are somewhat familiar with running Gobblin. If not, you should follow the <a href="Getting-Started">Getting Started</a> page first, then come back to this guide.</p>
+</li>
+<li>
+<p>Before you can use the Kafka writer, you need to set up a Kafka cluster to write to. You can follow any of the guides listed by the Kafka project such as the <a href="http://kafka.apache.org/documentation.html#quickstart">Apache Kafka quickstart guide</a>.</p>
+</li>
+</ul>
+<h1 id="steps">Steps</h1>
+<ul>
+<li>Edit the <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/wikipedia-kafka.pull">wikipedia-kafka.pull</a> example to get started with setting up ingestion into Kafka. This is a very similar pipeline to the <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/wikipedia.pull">wikipedia.pull</a> example which pulls pages from 5 titles from Wikipedia to HDFS. The main differences to note are: <ul>
+<li>The <code>writer.builder.class</code> is set to <code>gobblin.kafka.writer.KafkaDataWriterBuilder</code>. This is the class that creates a Kafka writer.</li>
+<li>The <code>writer.kafka.topic</code> is set to <code>WikipediaExample</code>. This is the topic that the writer will write the records to.</li>
+<li>The <code>writer.kafka.producerConfig.bootstrap.servers</code> is set to <code>localhost:9092</code>. This is the address of the kafka broker(s) that the writer must write to.</li>
+<li>There is no partitioner class specified. This implementation of the Kafka writer does not support partitioning and will use the default Kafka partitioner. </li>
+<li>The <code>data.publisher.type</code> is set to <code>gobblin.publisher.NoopPublisher</code>. This is because Kafka doesn't offer transactional semantics, so it isn't possible to have a separate publish step to finally commit the data. </li>
+<li>There is configuration for setting up the Schema Registry and Serializers that you will be using to write the data to Kafka. If you're using the Apache Kafka distribution, this file should work out of the box. </li>
+<li>If you're using the Confluent distribution and want to use the Confluent schema registry, comment out the Local Schema Registry section and un-comment the Confluent schema registry section. The result should match the text below for Confluent users.</li>
+</ul>
+</li>
+</ul>
+<pre><code>#Confluent Schema Registry and serializers
+writer.kafka.producerConfig.value.serializer=io.confluent.kafka.serializers.KafkaAvroSerializer
+writer.kafka.producerConfig.key.serializer=io.confluent.kafka.serializers.KafkaAvroSerializer
+writer.kafka.producerConfig.schema.registry.url=http://localhost:8081  #Set this to the correct schema-reg url
+
+##Use Local Schema Registry and serializers
+#writer.kafka.producerConfig.value.serializer=org.apache.gobblin.kafka.serialize.LiAvroSerializer
+#writer.kafka.producerConfig.kafka.schemaRegistry.class=org.apache.gobblin.kafka.schemareg.ConfigDrivenMd5SchemaRegistry
+#writer.kafka.producerConfig.schemaRegistry.schema.name=WikipediaExample
+#writer.kafka.producerConfig.schemaRegistry.schema.value={&quot;namespace&quot;: &quot;example.wikipedia.avro&quot;,&quot;type&quot;: &quot;record&quot;,&quot;name&quot;: &quot;WikipediaArticle&quot;,&quot;fields&quot;: [{&quot;name&quot;: &quot;pageid&quot;, &quot;type&quot;: [&quot;double&quot;, &quot;null&quot;]},{&quot;name&quot;: &quot;title&quot;, &quot;type&quot;: [&quot;string&quot;, &quot;null&quot;]},{&quot;name&quot;: &quot;user&quot;, &quot;type&quot;: [&quot;string&quot;, &quot;null&quot;]},{&quot;name&quot;: &quot;anon&quot;, &quot;type&quot;: [&quot;string&quot;, &quot;null&quot;]},{&quot;name&quot;: &quot;userid&quot;,  &quot;type&quot;: [&quot;double&quot;, &quot;null&quot;]},{&quot;name&quot;: &quot;timestamp&quot;, &quot;type&quot;: [&quot;string&quot;, &quot;null&quot;]},{&quot;name&quot;: &quot;size&quot;,  &quot;type&quot;: [&quot;double&quot;, &quot;null&quot;]},{&quot;name&quot;: &quot;contentformat&quot;,  &quot;type&quot;: [&quot;string&quot;, &quot;null&quot;]},{&quot;name&quot;: &quot;contentmodel&quot;,  &quot;type&quot;: [&quot;string&quot;, &quot;null&quot;]},{&quot;name&quot;: &quot;content&quot;, &quot;type&quot;: [&quot;string&quot;, &quot;null&quot;]}]}
+</code></pre>
+
+<ul>
+<li>Run the standalone launcher with the wikipedia-kafka.pull file. You should see something like this. </li>
+</ul>
+<pre><code>INFO  [TaskExecutor-0] gobblin.example.wikipedia.WikipediaExtractor  243 - 5 record(s) retrieved for title LinkedIn
+INFO  [TaskExecutor-0] gobblin.example.wikipedia.WikipediaExtractor  243 - 5 record(s) retrieved for title Parris_Cues
+INFO  [TaskExecutor-0] gobblin.example.wikipedia.WikipediaExtractor  243 - 5 record(s) retrieved for title Barbara_Corcoran
+INFO  [TaskExecutor-0] gobblin.runtime.Task  176 - Extracted 20 data records
+INFO  [TaskExecutor-0] gobblin.runtime.Task  177 - Row quality checker finished with results:
+INFO  [TaskExecutor-0] gobblin.publisher.TaskPublisher  43 - All components finished successfully, checking quality tests
+INFO  [TaskExecutor-0] gobblin.publisher.TaskPublisher  45 - All required test passed for this task passed.
+INFO  [TaskExecutor-0] gobblin.publisher.TaskPublisher  47 - Cleanup for task publisher executed successfully.
+INFO  [TaskExecutor-0] gobblin.runtime.Fork  261 - Committing data for fork 0 of task task_PullFromWikipediaToKafka_1472246706122_0
+INFO  [TaskExecutor-0] gobblin.kafka.writer.KafkaDataWriter  211 - Successfully committed 20 records.
+</code></pre>
+
+<ul>
+<li>To verify that the records have indeed been ingested into Kafka, you can run a kafka console consumer or run Gobblin's <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/kafka-console.pull">kafka-console pull file</a> which prints the events from Kafka onto the console.</li>
+</ul>
+<h1 id="configuration-details">Configuration Details</h1>
+<p>At this time, Gobblin supports integration with Kafka 0.8 and 0.9. The Kafka writer supports all the configuration parameters supported by the version-specific Kafka Producer (e.g. <a href="https://kafka.apache.org/documentation/#producerconfigs">Latest Producer Configs</a>). All you have to do is prefix <code>writer.kafka.producerConfig.</code> to each configuration property that the producer supports. For example, if you want to set the <code>acks</code> parameter to <code>all</code> to ensure full acknowledgement of writes, you would set <code>writer.kafka.producerConfig.acks=all</code> in your pull file. For a comprehensive list of all the configuration properties supported by the producers, go through the <a href="http://kafka.apache.org/082/documentation.html#newproducerconfigs">official documentation here</a>. Note: Since Gobblin is currently built against Kafka 0.8.2, the configuration options apply to the new 0.8.2 java producer.</p>
+<p>There are a few key parameters at the Gobblin level that control the behavior of the data writer. </p>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>writer.kafka.topic</code></td>
+<td>The topic that the writer will be writing to. At this time, the writer can only write to a single topic per pipeline.</td>
+</tr>
+<tr>
+<td><code>writer.kafka.failureAllowancePercentage</code></td>
+<td>The percentage of failures that you are willing to tolerate while writing to Kafka. Gobblin will mark the workunit successful and move on if there are failures but not enough to trip the failure threshold. Only successfully acknowledged writes are counted as successful, all others are considered as failures. The default for the failureAllowancePercentage is set to 20.0. This means that as long as 80% of the data is acknowledged by Kafka, Gobblin will move on. If you want higher guarantees, set this config value to a lower value. e.g. If you want 99% delivery guarantees, set this value to 1.0</td>
+</tr>
+<tr>
+<td><code>writer.kafka.commitTimeoutMillis</code></td>
+<td>The amount of time that the Gobblin committer will wait before abandoning its wait for unacknowledged writes. This defaults to 1 minute.</td>
+</tr>
+<tr>
+<td><code>writer.kafka.keyed</code></td>
+<td>When set to true, enables key-based writes to Kafka. This defaults to false. If you set this to true, make sure to set the keyField configuration property. Serialization of the key is controlled by the Kafka Producer specific configuration property (<code>writer.kafka.producerConfig.key.serializer</code>)</td>
+</tr>
+<tr>
+<td><code>writer.kafka.keyField</code></td>
+<td>The field of the record to use as the key for writing to Kafka. The field path follows a nested notation. So a top-level field "name" would be set to "name", a nested field "name" within a top-level struct "header" would be named "header.name"</td>
+</tr>
+<tr>
+<td><code>writer.kafka.typeMapperClass</code></td>
+<td>The class that the writer should use to extract keys and values from the input record. The default if not specified assumes that AvroGenericRecordTypeMapper is being used</td>
+</tr>
+<tr>
+<td><code>writer.kafka.valueField</code></td>
+<td>The field of the record to use as the value for writing to Kafka. Defaults to "*" which indicates that the entire record should be written. For nested records such as a pair of key, value, one would set the value of this configuration to the field-name for the value structure.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="what-next">What Next?</h1>
+<p>You can now set up Kafka as the destination for any of your sources. All you have to do is set up the writer configuration correctly in your pull files. Happy Ingesting!</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../adaptors/Gobblin-Distcp/" class="btn btn-neutral float-right" title="Gobblin Distcp">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Gobblin-JDBC-Writer/" class="btn btn-neutral" title="JDBC"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Gobblin-JDBC-Writer/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../adaptors/Gobblin-Distcp/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

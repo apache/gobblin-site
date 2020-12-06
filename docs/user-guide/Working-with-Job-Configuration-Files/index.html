@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Job Configuration Files - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Job Configuration Files";
+    var mkdocs_page_input_path = "user-guide/Working-with-Job-Configuration-Files.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Job Configuration Files</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#job-configuration-basics">Job Configuration Basics</a></li>
+    
+
+    <li class="toctree-l3"><a href="#hierarchical-structure-of-job-configuration-files">Hierarchical Structure of Job Configuration Files</a></li>
+    
+
+    <li class="toctree-l3"><a href="#password-encryption">Password Encryption</a></li>
+    
+
+    <li class="toctree-l3"><a href="#adding-or-changing-job-configuration-files">Adding or Changing Job Configuration Files</a></li>
+    
+
+    <li class="toctree-l3"><a href="#scheduled-jobs">Scheduled Jobs</a></li>
+    
+
+    <li class="toctree-l3"><a href="#one-time-jobs">One Time Jobs</a></li>
+    
+
+    <li class="toctree-l3"><a href="#disabled-jobs">Disabled Jobs</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sinks/AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>User Guide &raquo;</li>
+        
+      
+    
+    <li>Job Configuration Files</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Working-with-Job-Configuration-Files.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#job-configuration-basics">Job Configuration Basics</a></li>
+<li><a href="#hierarchical-structure-of-job-configuration-files">Hierarchical Structure of Job Configuration Files</a></li>
+<li><a href="#password-encryption">Password Encryption</a></li>
+<li><a href="#adding-or-changing-job-configuration-files">Adding or Changing Job Configuration Files</a></li>
+<li><a href="#scheduled-jobs">Scheduled Jobs</a></li>
+<li><a href="#one-time-jobs">One Time Jobs</a></li>
+<li><a href="#disabled-jobs">Disabled Jobs</a></li>
+</ul>
+</div>
+<h2 id="job-configuration-basics">Job Configuration Basics</h2>
+<p>A Job configuration file is a text file with extension <code>.pull</code> or <code>.job</code> that defines the job properties that can be loaded into a Java <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html">Properties</a> object. Gobblin uses <a href="http://commons.apache.org/proper/commons-configuration/">commons-configuration</a> to allow variable substitutions in job configuration files. You can find some example Gobblin job configuration files <a href="https://github.com/apache/incubator-gobblin/tree/master/gobblin-core/src/main/resources">here</a>. </p>
+<p>A Job configuration file typically includes the following properties, in additional to any mandatory configuration properties required by the custom <a href="Gobblin-Architecture#gobblin-constructs">Gobblin Constructs</a> classes. For a complete reference of all configuration properties supported by Gobblin, please refer to <a href="Configuration-Properties-Glossary">Configuration Properties Glossary</a>.</p>
+<ul>
+<li><code>job.name</code>: job name.</li>
+<li><code>job.group</code>: the group the job belongs to.</li>
+<li><code>source.class</code>: the <code>Source</code> class the job uses.</li>
+<li><code>converter.classes</code>: a comma-separated list of <code>Converter</code> classes to use in the job. This property is optional.</li>
+<li>Quality checker related configuration properties: a Gobblin job typically has both row-level and task-level quality checkers specified. Please refer to <a href="user-guide/Configuration-Properties-Glossary#Quality-Checker-Properties">Quality Checker Properties</a> for configuration properties related to quality checkers. </li>
+</ul>
+<h2 id="hierarchical-structure-of-job-configuration-files">Hierarchical Structure of Job Configuration Files</h2>
+<p>It is often the case that a Gobblin instance runs many jobs and manages the job configuration files corresponding to those jobs. The jobs may belong to different job groups and are for different data sources. It is also highly likely that jobs for the same data source shares a lot of common properties. So it is very useful to support the following features:</p>
+<ul>
+<li>Job configuration files can be grouped by the job groups they belong to and put into different subdirectories under the root job configuration file directory.</li>
+<li>Common job properties shared among multiple jobs can be extracted out to a common properties file that will be applied into the job configurations of all these jobs. </li>
+</ul>
+<p>Gobblin supports the above features using a hierarchical structure to organize job configuration files under the root job configuration file directory. The basic idea is that there can be arbitrarily deep nesting of subdirectories under the root job configuration file directory. Each directory regardless how deep it is can have a single <code>.properties</code> file storing common properties that will be included when loading the job configuration files under the same directory or in any subdirectories. Below is an example directory structure.</p>
+<pre><code>root_job_config_dir/
+  common.properties
+  foo/
+    foo1.job
+    foo2.job
+    foo.properties
+  bar/
+    bar1.job
+    bar2.job
+    bar.properties
+    baz/
+      baz1.pull
+      baz2.pull
+      baz.properties
+</code></pre>
+
+<p>In this example, <code>common.properties</code> will be included when loading <code>foo1.job</code>, <code>foo2.job</code>, <code>bar1.job</code>, <code>bar2.job</code>, <code>baz1.pull</code>, and <code>baz2.pull</code>. <code>foo.properties</code> will be included when loading <code>foo1.job</code> and <code>foo2.job</code> and properties set here are considered more special and will overwrite the same properties defined in <code>common.properties</code>. Similarly, <code>bar.properties</code> will be included when loading <code>bar1.job</code> and <code>bar2.job</code>, as well as <code>baz1.pull</code> and <code>baz2.pull</code>. <code>baz.properties</code> will be included when loading <code>baz1.pull</code> and <code>baz2.pull</code> and will overwrite the same properties defined in <code>bar.properties</code> and <code>common.properties</code>.</p>
+<h2 id="password-encryption">Password Encryption</h2>
+<p>To avoid storing passwords in configuration files in plain text, Gobblin supports encryption of the password configuration properties. All such properties can be encrypted (and decrypted) using a master password. The master password is stored in a file available at runtime. The file can be on a local file system or HDFS and has restricted access.</p>
+<p>The URI of the master password file is controlled by the configuration option <code>encrypt.key.loc</code> . By default, Gobblin will use <a href="http://www.jasypt.org/api/jasypt/1.8/org/jasypt/util/password/BasicPasswordEncryptor.html">org.jasypt.util.password.BasicPasswordEncryptor</a>. If you have installed the <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html">JCE Unlimited Strength Policy</a>, you can set
+<code>encrypt.use.strong.encryptor=true</code> which will configure Gobblin to use <a href="http://www.jasypt.org/api/jasypt/1.8/org/jasypt/util/password/StrongPasswordEncryptor.html">org.jasypt.util.password.StrongPasswordEncryptor</a>.</p>
+<p>Encrypted passwords can be generated using the <code>CLIPasswordEncryptor</code> tool.</p>
+<pre><code>$ gradle :gobblin-utility:assemble
+$ cd build/gobblin-utility/distributions/
+$ tar -zxf gobblin-utility.tar.gz
+$ bin/gobblin_password_encryptor.sh 
+  usage:
+   -f &lt;master password file&gt;   file that contains the master password used
+                               to encrypt the plain password
+   -h                          print this message
+   -m &lt;master password&gt;        master password used to encrypt the plain
+                               password
+   -p &lt;plain password&gt;         plain password to be encrypted
+   -s                          use strong encryptor
+$ bin/gobblin_password_encryptor.sh -m Hello -p Bye
+ENC(AQWoQ2Ybe8KXDXwPOA1Ziw==)
+</code></pre>
+<p>If you are extending Gobblin and you want some of your configurations (e.g. the ones containing credentials) to support encryption, you can use <code>gobblin.password.PasswordManager.getInstance()</code> methods to get an instance of <code>PasswordManager</code>. You can then use <code>PasswordManager.readPassword(String)</code> which will transparently decrypt the value if needed, i.e. if it is in the form <code>ENC(...)</code> and a master password is provided.</p>
+<h2 id="adding-or-changing-job-configuration-files">Adding or Changing Job Configuration Files</h2>
+<p>The Gobblin job scheduler in the standalone deployment monitors any changes to the job configuration file directory and reloads any new or updated job configuration files when detected. This allows adding new job configuration files or making changes to existing ones without bringing down the standalone instance. Currently, the following types of changes are monitored and supported:</p>
+<ul>
+<li>Adding a new job configuration file with a <code>.job</code> or <code>.pull</code> extension. The new job configuration file is loaded once it is detected. In the example hierarchical structure above, if a new job configuration file <code>baz3.pull</code> is added under <code>bar/baz</code>, it is loaded with properties included from <code>common.properties</code>, <code>bar.properties</code>, and <code>baz.properties</code> in that order.</li>
+<li>Changing an existing job configuration file with a <code>.job</code> or <code>.pull</code> extension. The job configuration file is reloaded once the change is detected. In the example above, if a change is made to <code>foo2.job</code>, it is reloaded with properties included from <code>common.properties</code> and <code>foo.properties</code> in that order.</li>
+<li>Changing an existing common properties file with a <code>.properties</code> extension. All job configuration files that include properties in the common properties file will be reloaded once the change is detected. In the example above, if <code>bar.properties</code> is updated, job configuration files <code>bar1.job</code>, <code>bar2.job</code>, <code>baz1.pull</code>, and <code>baz2.pull</code> will be reloaded. Properties from <code>bar.properties</code> will be included when loading <code>bar1.job</code> and <code>bar2.job</code>. Properties from <code>bar.properties</code> and <code>baz.properties</code> will be included when loading <code>baz1.pull</code> and <code>baz2.pull</code> in that order.</li>
+</ul>
+<p>Note that this job configuration file change monitoring mechanism uses the <code>FileAlterationMonitor</code> of Apache's <a href="http://commons.apache.org/proper/commons-io/">commons-io</a> with a custom <code>FileAlterationListener</code>. Regardless of how close two adjacent file system checks are, there are still chances that more than one files are changed between two file system checks. In case more than one file including at least one common properties file are changed between two adjacent checks, the reloading of affected job configuration files may be intermixed and applied in an order that is not desirable. This is because the order the listener is called on the changes is not controlled by Gobblin, but instead by the monitor itself. So the best practice to use this feature is to avoid making multiple changes together in a short period of time.   </p>
+<h2 id="scheduled-jobs">Scheduled Jobs</h2>
+<p>Gobblin ships with a job scheduler backed by a <a href="http://quartz-scheduler.org/">Quartz</a> scheduler and supports Quartz's <a href="http://quartz-scheduler.org/generated/2.2.1/html/qs-all/#page/Quartz_Scheduler_Documentation_Set%2Fco-trg_crontriggers.html%23">cron triggers</a>. A job that is to be scheduled should have a cron schedule defined using the property <code>job.schedule</code>. Here is an example cron schedule that triggers every two minutes:</p>
+<pre><code>job.schedule=0 0/2 * * * ?
+</code></pre>
+
+<h2 id="one-time-jobs">One Time Jobs</h2>
+<p>Some Gobblin jobs may only need to be run once. A job without a cron schedule in the job configuration is considered a run-once job and will not be scheduled but run immediately after being loaded. A job with a cron schedule but also the property <code>job.runonce=true</code> specified in the job configuration is also treated as a run-once job and will only be run the first time the cron schedule is triggered.</p>
+<h2 id="disabled-jobs">Disabled Jobs</h2>
+<p>A Gobblin job can be disabled by setting the property <code>job.disabled</code> to <code>true</code>. A disabled job will not be loaded nor scheduled to run.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Gobblin-Deployment/" class="btn btn-neutral float-right" title="Deployment">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../Gobblin-Architecture/" class="btn btn-neutral" title="Architecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../Gobblin-Architecture/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Gobblin-Deployment/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

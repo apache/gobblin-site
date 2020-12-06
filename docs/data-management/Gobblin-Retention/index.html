@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Retention - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Retention";
+    var mkdocs_page_input_path = "data-management/Gobblin-Retention.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sinks/AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Retention</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table Of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#introduction">Introduction</a></li>
+    
+
+    <li class="toctree-l3"><a href="#design">Design</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#overview-of-gobblin-config-management-library">Overview of Gobblin Config Management Library</a></li>
+        
+            <li><a class="toctree-l4" href="#retention-constructs">Retention Constructs</a></li>
+        
+            <li><a class="toctree-l4" href="#retention-configuration">Retention Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#supported-retention-configurations">Supported Retention Configurations</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Gobblin Data Management &raquo;</li>
+        
+      
+    
+    <li>Retention</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/data-management/Gobblin-Retention.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="table-of-contents">Table Of Contents</h1>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table Of Contents</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#design">Design</a><ul>
+<li><a href="#overview-of-gobblin-config-management-library">Overview of Gobblin Config Management Library</a></li>
+<li><a href="#retention-constructs">Retention Constructs</a><ul>
+<li><a href="#datasetcleaner">DatasetCleaner</a></li>
+<li><a href="#datasetfinder">DatasetFinder</a></li>
+<li><a href="#managedcleanabledatasetfinder">ManagedCleanableDatasetFinder</a></li>
+<li><a href="#configurablecleanabledataset">ConfigurableCleanableDataset</a></li>
+<li><a href="#versionfinder">VersionFinder</a></li>
+<li><a href="#versionselectionpolicy">VersionSelectionPolicy</a></li>
+<li><a href="#retentionaction">RetentionAction</a></li>
+</ul>
+</li>
+<li><a href="#retention-configuration">Retention Configuration</a><ul>
+<li><a href="#tags">Tags</a></li>
+<li><a href="#dataset-overrides">Dataset overrides</a></li>
+<li><a href="#examples">Examples</a></li>
+</ul>
+</li>
+<li><a href="#supported-retention-configurations">Supported Retention Configurations</a><ul>
+<li><a href="#1-time-based-retention">1. Time based retention</a></li>
+<li><a href="#2-newest-k-retention">2. Newest K retention</a></li>
+<li><a href="#3-combining-multiple-policies">3. Combining multiple policies</a></li>
+<li><a href="#4-datasets-with-multiple-kinds-of-versions">4. Datasets with multiple kinds of versions</a></li>
+<li><a href="#5-time-based-hive-retention">5. Time based Hive Retention</a></li>
+<li><a href="#6-setting-permissionsownergroup-for-versions-of-a-dataset">6. Setting permissions/owner/group for versions of a dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="introduction">Introduction</h1>
+<p>Gobblin retention management is a framework to manage the retention of Hadoop datasets. The system allows users to configure retention policies for individual datasets using the Gobblin config store. This framework gives the flexibility to associate retention configurations both at a dataset level and a cluster level.
+For HDFS datasets, the framework comes with several standard policies like timebased policy, policy to retain top k files in a dataset and many more. It also has in-built support for standard data layouts like daily/hourly paritioned data and snapshot data. Gobblin retention management supports several retention actions. The most basic action is deleting files that satisfy a policy. Gobblin also supports actions like access control which set permissions on files that satisfy a policy.</p>
+<h1 id="design">Design</h1>
+<p>The design has two parts. First part describes the contructs like dataset finders, version finders and policies. Second part describes the configuration aspects of gobblin retention management.</p>
+<h2 id="overview-of-gobblin-config-management-library">Overview of Gobblin Config Management Library</h2>
+<p>To support all the retention configuration requirements, we use Gobblin Dataset Config Management library.This is a short overview. In the gobblin code base it can be found in the module <code>gobblin-config-management</code></p>
+<p>The Gobblin Dataset Config Management Library is a library for storing, managing and accessing configuration. The library is an extension to TypeSafe Config with additional features like dataset awareness and tags.</p>
+<p>The library provides a mapping from a config key to a config object. Each config key is represented through a URI. The config object is a map from property name to a property value.</p>
+<p>A config key K can import one or more config keys I1, I2, ... . The config key K will inherit any properties from I1, I2, … that are not defined in K. The inheritance is resolved in the order of the keys I1, I2, … etc., i.e. the property will be resolved to the value in the last Im that defines the property. Applications can create tags T1, T2 etc and import them explicitly in K.</p>
+<p>We also use the path in the config key URI for implicit tagging. For example, /trackingData/someEvent implicitly imports which /trackingData which implicitly imports /.</p>
+<p><strong>ConfigClient</strong> - The client APIs that an application uses to interact with the library</p>
+<p><strong>ConfigLibrary</strong> - Core implementation that stores the topology of configs in the store. Business logic such as substitution resolution and interpolation of configs happen here.</p>
+<p><strong>ConfigStore</strong> - The physical store for all the configs and tags. Currently a HDFS based
+ConfigStore is implemented but other physical stores can be implemented</p>
+<h2 id="retention-constructs">Retention Constructs</h2>
+<p><img alt="Gobblin Retention Architecture" src="../../img/Gobblin-Retention-Architecture.png" /></p>
+<h3 id="datasetcleaner">DatasetCleaner</h3>
+<p>The <code>DatasetCleaner</code> is the retention runner. The class takes in job properites as key value pairs. A single <code>DatasetCleaner</code> can manage retention for different kinds of datasets. Each kind of dataset gets its own <code>DatasetFinder</code>. <code>DatasetCleaner</code> is responsible for instantiating all the <code>DatasetFinder</code>s. For each <code>DatasetFinder</code> it finds all the <code>CleanableDataset</code>s and calls the <code>CleanableDataset.clean()</code> method to delete data.</p>
+<p>To instantiate all the dataset finders, it uses the <code>gobblin.retention.tag</code> job property. This is a comma seperated list of tag URIs in the <code>ConfigStore</code>. A <code>DatasetFinder</code> will be created for every dataset that imports any of these tags.</p>
+<p>For instance let's say we have a all the event based datasets at <code>/datasets/trackingData</code> in the <code>ConfigStore</code> and it is tagged with a tag <code>/tags/retention/TimeBased</code>. When <code>gobblin.retention.tag</code> is set to <code>/tags/retention/TimeBased</code>. All datasets that are tagged with <code>/tags/retention/TimeBased</code> in the <code>ConfigStore</code> will be processed by this retention job. So in this case a <code>DatasetFinder</code> will be created for <code>/datasets/trackingData</code>. More details about the <code>ConfigStore</code> in <a href="#Retention Configuration">Retention Configuration</a> section.</p>
+<h3 id="datasetfinder">DatasetFinder</h3>
+<p>A <code>DatasetFinder</code> is an interface to find all <code>CleanableDataset</code>s</p>
+<h3 id="managedcleanabledatasetfinder">ManagedCleanableDatasetFinder</h3>
+<p>This is the most basic implementation of a <code>DatasetFinder</code> that extends a <code>ConfigurableGlobDatasetFinder</code> to find HDFS datasets based on a glob pattern. It uses the <code>ConfigClient</code> to connect to the <code>ConfigStore</code> and get the dataset specific configs for each dataset found.</p>
+<h3 id="configurablecleanabledataset">ConfigurableCleanableDataset</h3>
+<p>The <code>ManagedCleanableDatasetFinder</code> instantiates a <code>ConfigurableClenableDataset</code> for every match in the glob pattern. This class reads the dataset config to instatiate a list of <code>VersionFinder</code> and <code>VersionSelectionPolicy</code> pairs. The Retention Configuration section provides details on config keys used to specify the <code>VersionFinder</code> and <code>VersionSelectionPolicy</code> classes.</p>
+<h3 id="versionfinder">VersionFinder</h3>
+<p>A version is defined as a deletable entity (or a path) in a dataset. A version can either be retained or deleted. The <code>VersionFinder</code> finds all the versions of a dataset.</p>
+<h3 id="versionselectionpolicy">VersionSelectionPolicy</h3>
+<p>A predicate to select subset of versions from the list of all version discovered by the <code>VersionFinder</code>. By default all the versions selected by the <code>VersionSelectionPolicy</code> will be <strong>deleted</strong>. Apart from delete, gobblin also provides other <code>RetentionAction</code>s on the selected versions.</p>
+<h3 id="retentionaction">RetentionAction</h3>
+<p>An abstraction for the kind of action to be performed on all the versions discoverd by the <code>VersionFinder</code> or a subset of versions filtered by the <code>VersionSelectionPolicy</code>. Delete is the default action on selected versions. Gobblin also supports <code>AccessControlAction</code> which sets permissions on selected versions.</p>
+<h2 id="retention-configuration">Retention Configuration</h2>
+<p>Gobblin Retention is configured through Gobblin config management. All dataset configs are stored in a config store that can be accessed through a <code>ConfigClient</code>. The gobblin config management uses <a href="https://github.com/typesafehub/config">TypeSafe Config</a>. The language used is <a href="https://github.com/typesafehub/config/blob/master/HOCON.md#hocon-human-optimized-config-object-notation">HOCON</a>, a more readable JSON superset.</p>
+<p>The gobblin config management library allows any implementation of config store but for the scope of this document we assume a HDFS based ConfigStore that stores dataset configs in files on HDFS.</p>
+<p>Let us take an example ConfigStore instance on HDFS as below.</p>
+<pre>
+├── _CONFIG_STORE
+   └── 2.0
+       ├── data
+       │   └── events
+       │      └── main.conf
+       │      └── includes.conf
+       │          ├── loginEvent
+       │             └── main.conf
+       │             └── includes.conf
+       ├── tags
+          └── retention
+            └── main.conf
+                 ├── timebased
+                    └── main.conf
+
+</pre>
+
+<p>Every config store has a store root directory named <code>_CONFIG_STORE</code>. Each new deployment of a store creates a new version (2.0 shown above). Each directory in the store may have a main.conf file and an includes.conf file. The main.conf file holds the config key/value pairs. And includes.conf are used to import other directory paths in the same store. For instance, <code>_CONFIG_STORE/2.0/data/events</code> can import <code>/tags/retention</code> in its includes.conf file. All the key value pairs in <code>/tags/retention/main.conf</code> are automatically imported into <code>/data/events</code>.</p>
+<p>Note that the directory structure under the configStore correspond to the direcctory structure of data on HDFS. In this case <code>hdfs://data/events/loginEvent</code>'s retention configs are at <code>hdfs://_CONFIG_STORE/2.0/data/events/loginEvent/main.conf</code> in the config store.</p>
+<h3 id="tags">Tags</h3>
+<p>For maintainability and reusablity we define all the configs as tags and import them into the dataset.</p>
+<ul>
+<li>Below is a sample timebased retention tag, <code>/tags/retention/timebased/main.conf</code></li>
+</ul>
+<pre>
+
+gobblin.retention : {
+
+    ##Alias
+    TimeBasedSelectionPolicy=org.apache.gobblin.data.management.policy.SelectBeforeTimeBasedPolicy
+    DateTimeDatasetVersionFinder=org.apache.gobblin.data.management.version.finder.DateTimeDatasetVersionFinder
+
+    dataset : {
+      finder.class=org.apache.gobblin.data.management.retention.profile.ManagedCleanableDatasetFinder
+      partitions=[${gobblin.retention.daily}
+    }
+
+    daily : {
+      selection {
+        policy.class = ${gobblin.retention.TimeBasedSelectionPolicy}
+        timeBased.lookbackTime=1000d
+      }
+      version : {
+        finder.class=${gobblin.retention.DateTimeDatasetVersionFinder}
+        globPattern = "daily/*/*/*"
+        datetime.pattern = "yyyy/MM/dd"
+      }
+    }
+}
+</pre>
+
+<ul>
+<li>To apply this retention config to <code>hdfs://data/events</code> the tag <code>/tags/retention/timeBased</code> can be imported by <code>_CONFIG_STORE/2.0/data/events/includes.conf</code> shown below.</li>
+</ul>
+<pre>
+###### Include files for /data/events ######
+tags/retention/timeBased
+</pre>
+
+<ul>
+<li><code>_CONFIG_STORE/2.0/data/events/includes.conf</code> Will have the configs specific to <code>data/events</code> shown below.</li>
+</ul>
+<pre>
+##### Common configs for all of /data/events ######
+# Glob pattern to use to find datasets
+gobblin.dataset.pattern = "/data/events/*"
+</pre>
+
+<p>Similarly the same tag <code>/tags/retention/timebased</code> can be imported by other datasets as well.</p>
+<h3 id="dataset-overrides">Dataset overrides</h3>
+<p>By default all the event datasets under <code>hdfs://data/events</code> get the configs from <code>_CONFIG_STORE/2.0/data/events</code> but sometimes it becomes necessary to override the retention for a specific dataset under <code>hdfs://data/events</code>. This can be done by creating a directory under <code>_CONFIG_STORE/2.0/data/events</code> with the name of dataset and overriding config keys. For instance if we want retention of 1d for <code>loginEvent</code> we can create <code>_CONFIG_STORE/2.0/data/events/loginEvent/main.conf</code> as below.
+All other event datasets will have the default retention of 1000d.</p>
+<pre>
+gobblin.retention : {
+    daily : {
+      selection {
+        timeBased.lookbackTime=1d
+      }
+    }
+}
+</pre>
+
+<h3 id="examples">Examples</h3>
+<p>Browse the <a href="/gobblin-data-management/config-example">gobblin-data-management/config-example</a> directory to see example configuration.</p>
+<h2 id="supported-retention-configurations">Supported Retention Configurations</h2>
+<p>Below is a list of ready to use supported retention configurations. But users can always implement their own <code>DatasetFinder</code>,<code>VersionFinder</code> and <code>VersionSelectionPolicy</code> and plug it in.</p>
+<h3 id="1-time-based-retention">1. Time based retention</h3>
+<p>To delete data older than some time</p>
+<pre>
+gobblin.retention : {
+
+    dataset : {
+      pattern="/user/gobblin/*"
+      finder.class=org.apache.gobblin.data.management.retention.profile.ManagedCleanableDatasetFinder
+    }
+
+    selection : {
+      policy.class=org.apache.gobblin.data.management.policy.SelectBeforeTimeBasedPolicy
+      timeBased.lookbackTime=7d
+    }
+
+    version : {
+      finder.class=org.apache.gobblin.data.management.version.finder.GlobModTimeDatasetVersionFinder
+    }
+}
+</pre>
+
+<h3 id="2-newest-k-retention">2. Newest K retention</h3>
+<p>To always keep k new versions and delete the rest</p>
+<pre>
+gobblin.retention : {
+
+    dataset : {
+      pattern="/user/gobblin/*"
+      finder.class=org.apache.gobblin.data.management.retention.profile.ManagedCleanableDatasetFinder
+    }
+
+    selection : {
+      policy.class=org.apache.gobblin.data.management.policy.NewestKSelectionPolicy
+      newestK.versionsNotSelected=2
+    }
+
+    version : {
+      finder.class=org.apache.gobblin.data.management.version.finder.GlobModTimeDatasetVersionFinder
+    }
+}
+</pre>
+
+<h3 id="3-combining-multiple-policies">3. Combining multiple policies</h3>
+<p>The below config deletes versions older than 3 days but making sure we always have at least 2 version. So if we have only 1 version and it is 4 days old it is not deleted.</p>
+<pre>
+gobblin.retention : {
+
+    dataset : {
+      pattern="/user/gobblin/snapshots/*/*"
+      finder.class=org.apache.gobblin.data.management.retention.profile.ManagedCleanableDatasetFinder
+    }
+
+    selection : {
+      policy.class=org.apache.gobblin.data.management.policy.CombineSelectionPolicy
+      combine.operation=INTERSECT
+      combine.policy.classes=[
+        org.apache.gobblin.data.management.policy.SelectBeforeTimeBasedPolicy,
+        org.apache.gobblin.data.management.policy.NewestKSelectionPolicy
+      ]
+      timeBased.lookbackTime=3d
+      newestK.versionsNotSelected=2
+
+    }
+
+    version : {
+      finder.class=org.apache.gobblin.data.management.version.finder.GlobModTimeDatasetVersionFinder
+    }
+}
+</pre>
+
+<h3 id="4-datasets-with-multiple-kinds-of-versions">4. Datasets with multiple kinds of versions</h3>
+<p>This is mostly useful for retention management of datasets that have different kinds of versions with each having their own policies. For example an event dataset may have daily and hourly partitions. For daily we may want a higher retention of 5 days but hourly the retention may be set to 2 days.</p>
+<pre>
+gobblin.retention : {
+
+    TimeBasedSelectionPolicy=org.apache.gobblin.data.management.policy.SelectBeforeTimeBasedPolicy
+    DateTimeDatasetVersionFinder=org.apache.gobblin.data.management.version.finder.DateTimeDatasetVersionFinder
+
+    dataset : {
+      pattern="/user/gobblin/data/*"
+      finder.class=org.apache.gobblin.data.management.retention.profile.ManagedCleanableDatasetFinder
+      partitions=[${gobblin.retention.hourly}, ${gobblin.retention.daily}]
+    }
+
+    daily : {
+      selection {
+        policy.class = ${gobblin.retention.TimeBasedSelectionPolicy}
+        timeBased.lookbackTime = 5d
+      }
+      version : {
+        finder.class=${gobblin.retention.DateTimeDatasetVersionFinder}
+        globPattern = "daily/*/*/*"
+        datetime.pattern = "yyyy/MM/dd"
+      }
+    }
+
+    hourly : {
+      selection {
+        policy.class = ${gobblin.retention.TimeBasedSelectionPolicy}
+        timeBased.lookbackTime = 2d
+      }
+      version : {
+        finder.class=${gobblin.retention.DateTimeDatasetVersionFinder}
+        globPattern = "hourly/*/*/*/*"
+        datetime.pattern = "yyyy/MM/dd/hh"
+      }
+  }
+}
+
+</pre>
+
+<h3 id="5-time-based-hive-retention">5. Time based Hive Retention</h3>
+<p>Gobblin supports retention for a hive partitioned table. Partitions older than n days can be dropped using this policy. A job can optionally choose to delete data associated with the partition. By default the job does NOT delete data. It only drops the hive partition.</p>
+<pre>
+
+gobblin.retention : {
+
+    is.blacklisted=false
+
+    dataset : {
+      finder.class=org.apache.gobblin.data.management.retention.dataset.finder.CleanableHiveDatasetFinder
+    }
+
+    selection : {
+      policy.class=org.apache.gobblin.data.management.policy.SelectBeforeTimeBasedPolicy
+
+      ## Partitions older than 3 days will be deleted
+      timeBased.lookbackTime=3d
+    }
+
+    version.finder.class=org.apache.gobblin.data.management.version.finder.DatePartitionHiveVersionFinder
+
+    hive {
+      partition {
+        key.name=datepartition
+        value.datetime.pattern=yyyy-MM-dd-HH
+      }
+    }
+}
+
+</pre>
+
+<p>Job level configuration to enable data deletion
+<pre>
+gobblin.retention.hive.shouldDeleteData=true
+</pre></p>
+<h3 id="6-setting-permissionsownergroup-for-versions-of-a-dataset">6. Setting permissions/owner/group for versions of a dataset</h3>
+<p>Gobblin retention can set permissions, change owner/group for certain versions of a dataset. The below configuration is an extention to example #4, where along with deleting daily versions older than 5 days, it also restricts the access for daily versions older than 4 days to owner only.
+All the access control policies to apply are discovered through the key <code>accessControl.policies</code>. The below example shows one such policy called <code>ownerOnly</code>. Users can define any arbitrary policy and add them to <code>accessControl.policies</code>.</p>
+<pre>
+gobblin.retention : {
+
+    TimeBasedSelectionPolicy=org.apache.gobblin.data.management.policy.SelectBeforeTimeBasedPolicy
+    DateTimeDatasetVersionFinder=org.apache.gobblin.data.management.version.finder.DateTimeDatasetVersionFinder
+
+    dataset : {
+      pattern="/user/gobblin/data/*"
+      finder.class=org.apache.gobblin.data.management.retention.profile.ManagedCleanableDatasetFinder
+      partitions=[${gobblin.retention.hourly}, ${gobblin.retention.daily}]
+    }
+
+    daily : {
+      selection {
+        policy.class = ${gobblin.retention.TimeBasedSelectionPolicy}
+        timeBased.lookbackTime = 5d
+      }
+      version : {
+        finder.class=${gobblin.retention.DateTimeDatasetVersionFinder}
+        globPattern = "daily/*/*/*"
+        datetime.pattern = "yyyy/MM/dd"
+      }
+      accessControl {
+
+            ## Provide a list of comma separated policies to apply. Each entry in this list should have a corresponding config section.
+            policies = [ownerOnly]
+
+            ownerOnly {
+                 selection {
+                    policy.class = ${gobblin.retention.TimeBasedSelectionPolicy}
+                    timeBased.lookbackTime=4d
+                 }
+                 mode : 700
+                 user : myUser
+                 group : noAccess
+            }
+        }
+    }
+
+    hourly : {
+      selection {
+        policy.class = ${gobblin.retention.TimeBasedSelectionPolicy}
+        timeBased.lookbackTime = 2d
+      }
+      version : {
+        finder.class=${gobblin.retention.DateTimeDatasetVersionFinder}
+        globPattern = "hourly/*/*/*/*"
+        datetime.pattern = "yyyy/MM/dd/hh"
+      }
+  }
+}
+
+</pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../DistcpNgEvents/" class="btn btn-neutral float-right" title="Distcp-NG events">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../case-studies/Hive-Distcp/" class="btn btn-neutral" title="Hive Distcp"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../case-studies/Hive-Distcp/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../DistcpNgEvents/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

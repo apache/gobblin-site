@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Configuration Glossary - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Configuration Glossary";
+    var mkdocs_page_input_path = "user-guide/Configuration-Properties-Glossary.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Configuration Glossary</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#properties-file-format">Properties File Format </a></li>
+    
+
+    <li class="toctree-l3"><a href="#creating-a-basic-properties-file">Creating a Basic Properties File </a></li>
+    
+
+    <li class="toctree-l3"><a href="#job-launcher-properties">Job Launcher Properties </a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#common-job-launcher-properties">Common Job Launcher Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#schedulerdaemon-properties">SchedulerDaemon Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#climrjoblauncher-properties">CliMRJobLauncher Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#azkabanjoblauncher-properties">AzkabanJobLauncher Properties </a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#job-type-properties">Job Type Properties </a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#common-job-type-properties">Common Job Type Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#localjoblauncher-properties">LocalJobLauncher Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#mrjoblauncher-properties">MRJobLauncher Properties </a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#retry-properties">Retry Properties </a></li>
+    
+
+    <li class="toctree-l3"><a href="#task-execution-properties">Task Execution Properties </a></li>
+    
+
+    <li class="toctree-l3"><a href="#state-store-properties">State Store Properties </a></li>
+    
+
+    <li class="toctree-l3"><a href="#metrics-properties">Metrics Properties </a></li>
+    
+
+    <li class="toctree-l3"><a href="#email-alert-properties">Email Alert Properties </a></li>
+    
+
+    <li class="toctree-l3"><a href="#source-properties">Source Properties </a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#common-source-properties">Common Source Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#distcp-copysource-properties">Distcp CopySource Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#querybasedextractor-properties">QueryBasedExtractor Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#filebasedextractor-properties">FileBasedExtractor Properties </a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#converter-properties">Converter Properties </a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#csvtojsonconverter-properties">CsvToJsonConverter Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#jsonintermediatetoavroconverter-properties">JsonIntermediateToAvroConverter Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#jsonstringtojsonintermediateconverter-properties">JsonStringToJsonIntermediateConverter Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#avrofilterconverter-properties">AvroFilterConverter Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#avrofieldretrieverconverter-properties">AvroFieldRetrieverConverter Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#avrofieldspickconverter-properties">AvroFieldsPickConverter Properties </a></li>
+        
+            <li><a class="toctree-l4" href="#avrotojdbcentryconverter-properties">AvroToJdbcEntryConverter Properties </a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#fork-properties">Fork Properties </a></li>
+    
+
+    <li class="toctree-l3"><a href="#quality-checker-properties">Quality Checker Properties </a></li>
+    
+
+    <li class="toctree-l3"><a href="#writer-properties">Writer Properties </a></li>
+    
+
+    <li class="toctree-l3"><a href="#data-publisher-properties">Data Publisher Properties </a></li>
+    
+
+    <li class="toctree-l3"><a href="#generic-properties">Generic Properties </a></li>
+    
+
+    <li class="toctree-l3"><a href="#filebasedjoblock-properties">FileBasedJobLock Properties </a></li>
+    
+
+    <li class="toctree-l3"><a href="#zookeeperbasedjoblock-properties">ZookeeperBasedJobLock Properties </a></li>
+    
+
+    <li class="toctree-l3"><a href="#jdbc-writer-properties">JDBC Writer properties </a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sinks/AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>User Guide &raquo;</li>
+        
+      
+    
+    <li>Configuration Glossary</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Configuration-Properties-Glossary.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>Configuration properties are key/value pairs that are set in text files. They include system properties that control how Gobblin will pull data, and control what source Gobblin will pull the data from. Configuration files end in some user-specified suffix (by default text files ending in <code>.pull</code> or <code>.job</code> are recognized as configs files, although this is configurable). Each file represents some unit of work that needs to be done in Gobblin. For example, there will typically be a separate configuration file for each table that needs to be pulled from a database.  </p>
+<p>The first section of this document contains all the required properties needed to run a basic Gobblin job. The rest of the document is dedicated to other properties that can be used to configure Gobbin jobs. The description of each configuration parameter will often refer to core Gobblin concepts and terms. If any of these terms are confusing, check out the <a href="../Gobblin-Architecture">Gobblin Architecture</a> page for a more detailed explanation of how Gobblin works. The GitHub repo also contains sample config files for specific sources. For example, there are sample config files to connect to <a href="https://github.com/apache/incubator-gobblin/tree/master/gobblin-core/src/main/resources/mysql">MySQL databases</a> and <a href="https://github.com/apache/incubator-gobblin/tree/master/gobblin-core/src/main/resources/sftp">SFTP servers</a>.  </p>
+<p>Gobblin also allows you to specify a global configuration file that contains common properties that are shared across all jobs. The <a href="#Job-Launcher-Properties">Job Launcher Properties</a> section has more information on how to specify a global properties file.  </p>
+<h1 id="table-of-contents">Table of Contents</h1>
+<ul>
+<li><a href="#Properties-File-Format">Properties File Format</a></li>
+<li><a href="#Creating-a-Basic-Properties-File">Creating a Basic Properties File</a>   </li>
+<li><a href="#Job-Launcher-Properties">Job Launcher Properties</a>  <ul>
+<li><a href="#Common-Launcher-Properties">Common Job Launcher Properties</a>  </li>
+<li><a href="#SchedulerDaemon-Properties">SchedulerDaemon Properties</a>  </li>
+<li><a href="#CliMRJobLauncher-Properties">CliMRJobLauncher Properties</a>  </li>
+<li><a href="#AzkabanJobLauncher-Properties">AzkabanJobLauncher Properties</a>  </li>
+</ul>
+</li>
+<li><a href="#Job-Type-Properties">Job Type Properties</a>  <ul>
+<li><a href="#Common-Job-Type-Properties">Common Job Type Properties</a>  </li>
+<li><a href="#LocalJobLauncher-Properties">LocalJobLauncher Properties</a>  </li>
+<li><a href="#MRJobLauncher-Properties">MRJobLauncher Properties</a>  </li>
+</ul>
+</li>
+<li><a href="#Retry-Properties">Retry Properties</a></li>
+<li><a href="#Task-Execution-Properties">Task Execution Properties</a>  </li>
+<li><a href="#State-Store-Properties">State Store Properties</a>  </li>
+<li><a href="#Metrics-Properties">Metrics Properties</a>  </li>
+<li><a href="#Email-Alert-Properties">Email Alert Properties</a>  </li>
+<li><a href="#Source-Properties">Source Properties</a>  <ul>
+<li><a href="#Common-Source-Properties">Common Source Properties</a>  </li>
+<li><a href="#Distcp-CopySource-Properties">Distcp CopySource Properties</a><ul>
+<li><a href="#RecursiveCopyableDataset-Properties">RecursiveCopyableDataset Properties</a></li>
+<li><a href="#DistcpFileSplitter-Properties">DistcpFileSplitter Properties</a></li>
+<li><a href="#WorkUnitBinPacker-Properties">WorkUnitBinPacker Properties</a></li>
+</ul>
+</li>
+<li><a href="#QueryBasedExtractor-Properties">QueryBasedExtractor Properties</a> <ul>
+<li><a href="#JdbcExtractor-Properties">JdbcExtractor Properties</a>  </li>
+</ul>
+</li>
+<li><a href="#FileBasedExtractor-Properties">FileBasedExtractor Properties</a>  <ul>
+<li><a href="#SftpExtractor-Properties">SftpExtractor Properties</a>  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Converter-Properties">Converter Properties</a><ul>
+<li><a href="#CsvToJsonConverter-Properties">CsvToJsonConverter Properties</a>    </li>
+<li><a href="#JsonIntermediateToAvroConverter-Properties">JsonIntermediateToAvroConverter Properties</a></li>
+<li><a href="#JsonStringToJsonIntermediateConverter-Properties">JsonStringToJsonIntermediateConverter Properties</a></li>
+<li><a href="#AvroFilterConverter-Properties">AvroFilterConverter Properties</a>  </li>
+<li><a href="#AvroFieldRetrieverConverter-Properties">AvroFieldRetrieverConverter Properties</a>  </li>
+<li><a href="#AvroFieldsPickConverter-Properties">AvroFieldsPickConverter Properties</a>  </li>
+<li><a href="#AvroToJdbcEntryConverter-Properties">AvroToJdbcEntryConverter Properties</a>  </li>
+</ul>
+</li>
+<li><a href="#Fork-Properties">Fork Properties</a></li>
+<li><a href="#Quality-Checker-Properties">Quality Checker Properties</a>  </li>
+<li><a href="#Writer-Properties">Writer Properties</a>  </li>
+<li><a href="#Data-Publisher-Properties">Data Publisher Properties</a>  </li>
+<li><a href="#Generic-Properties">Generic Properties</a>  </li>
+<li><a href="#FileBasedJobLock-Properties">FileBasedJobLock Properties</a></li>
+<li><a href="#ZookeeperBasedJobLock-Properties">ZookeeperBasedJobLock Properties</a></li>
+<li><a href="#JdbcWriter-Properties">JDBC Writer Properties</a></li>
+</ul>
+<h1 id="properties-file-format">Properties File Format <a name="Properties-File-Format"></a></h1>
+<p>Configuration properties files follow the <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html#load(java.io.Reader)">Java Properties text file format</a>. Further, file includes and variable expansion/interpolation as defined in <a href="http://commons.apache.org/proper/commons-configuration/userguide_v1.10/user_guide.html">Apache Commons Configuration</a> are also supported.</p>
+<p>Example:</p>
+<ul>
+<li>common.properties</li>
+</ul>
+<pre><code>    writer.staging.dir=/path/to/staging/dir/
+    writer.output.dir=/path/to/output/dir/
+</code></pre>
+
+<ul>
+<li>my-job.properties</li>
+</ul>
+<pre><code>    include=common.properties
+
+    job.name=MyFirstJob
+</code></pre>
+
+<h1 id="creating-a-basic-properties-file">Creating a Basic Properties File <a name="Creating-a-Basic-Properties-File"></a></h1>
+<p>In order to create a basic configuration property there is a small set of required properties that need to be set. The following properties are required to run any Gobblin job:</p>
+<ul>
+<li><code>job.name</code> - Name of the job  </li>
+<li><code>source.class</code> - Fully qualified path to the Source class responsible for connecting to the data source  </li>
+<li><code>writer.staging.dir</code> - The directory each task will write staging data to  </li>
+<li><code>writer.output.dir</code> - The directory each task will commit data to  </li>
+<li><code>data.publisher.final.dir</code> - The final directory where all the data will be published</li>
+<li><code>state.store.dir</code> - The directory where state-store files will be written  </li>
+</ul>
+<p>For more information on each property, check out the comprehensive list below.  </p>
+<p>If only these properties are set, then by default, Gobblin will run in Local mode, as opposed to running on Hadoop M/R. This means Gobblin will write Avro data to the local filesystem. In order to write to HDFS, set the <code>writer.fs.uri</code> property to the URI of the HDFS NameNode that data should be written to. Since the default version of Gobblin writes data in Avro format, the writer expects Avro records to be passed to it. Thus, any data pulled from an external source must be converted to Avro before it can be written out to the filesystem.  </p>
+<p>The <code>source.class</code> property is one of the most important properties in Gobblin. It specifies what Source class to use. The Source class is responsible for determining what work needs to be done during each run of the job, and specifies what Extractor to use in order to read over each sub-unit of data. Examples of Source classes are <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/java/org/apache/gobblin/example/wikipedia/WikipediaSource.java">WikipediaSource</a> and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/java/org/apache/gobblin/example/simplejson/SimpleJsonSource.java">SimpleJsonSource</a>, which can be found in the GitHub repository. For more information on Sources and Extractors, check out the <a href="../Gobblin-Architecture">Architecture</a> page.  </p>
+<p>Typically, Gobblin jobs will be launched using the launch scripts in the <code>bin</code> folder. These scripts allow jobs to be launched on the local machine (e.g. SchedulerDaemon) or on Hadoop (e.g. CliMRJobLauncher). Check out the Job Launcher section below, to see the configuration difference between each launch mode. The <a href="Gobblin-Deployment">Deployment</a> page also has more information on the different ways a job can be launched.  </p>
+<h1 id="job-launcher-properties">Job Launcher Properties <a name="Job-Launcher-Properties"></a></h1>
+<p>Gobblin jobs can be launched and scheduled in a variety of ways. They can be scheduled via a Quartz scheduler or through <a href="https://github.com/azkaban/azkaban">Azkaban</a>. Jobs can also be run without a scheduler via the Command Line. For more information on launching Gobblin jobs, check out the <a href="Gobblin-Deployment">Deployment</a> page.</p>
+<h2 id="common-job-launcher-properties">Common Job Launcher Properties <a name="Common-Launcher-Properties"></a></h2>
+<p>These properties are common to both the Job Launcher and the Command Line.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>job.name</code></td>
+<td>The name of the job to run. This name must be unique within a single Gobblin instance.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>job.group</code></td>
+<td>A way to group logically similar jobs together.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>job.description</code></td>
+<td>A description of what the jobs does.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>job.lock.enabled</code></td>
+<td>If set to true job locks are enabled, if set to false they are disabled</td>
+<td>No</td>
+<td>True</td>
+</tr>
+<tr>
+<td><code>job.lock.type</code></td>
+<td>The fully qualified name of the JobLock class to run. The JobLock is responsible for ensuring that only a single instance of a job runs at a time. <br><br> Allowed values: <a href="#FileBasedJobLock-Properties">gobblin.runtime.locks.FileBasedJobLock</a>, <a href="#ZookeeperBasedJobLock-Properties">gobblin.runtime.locks.ZookeeperBasedJobLock</a></td>
+<td>No</td>
+<td><code>gobblin.runtime.locks.FileBasedJobLock</code></td>
+</tr>
+<tr>
+<td><code>job.runonce</code></td>
+<td>A boolean specifying whether the job will be only once, or multiple times. If set to true the job will only be run once even if a job.schedule is specified. If set to false and a job.schedule is specified then it will run according to the schedule. If set false and a job.schedule is not specified, it will run only once.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>job.disabled</code></td>
+<td>Whether the job is disabled or not. If set to true, then Gobblin will not run this job.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h2 id="schedulerdaemon-properties">SchedulerDaemon Properties <a name="SchedulerDaemon-Properties"></a></h2>
+<p>This class is used to schedule Gobblin jobs on Quartz. The job can be launched via the command line, and takes in the location of a global configuration file as a parameter. This configuration file should have the property <code>jobconf.dir</code> in order to specify the location of all the <code>.job</code> or <code>.pull</code> files. Another core difference, is that the global configuration file for the SchedulerDaemon must specify the following properties:</p>
+<ul>
+<li><code>writer.staging.dir</code>  </li>
+<li><code>writer.output.dir</code>  </li>
+<li><code>data.publisher.final.dir</code>  </li>
+<li><code>state.store.dir</code>  </li>
+</ul>
+<p>They should not be set in individual job files, as they are system-level parameters.
+For more information on how to set the configuration parameters for jobs launched through the SchedulerDaemon, check out the <a href="Gobblin-Deployment">Deployment</a> page.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>job.schedule</code></td>
+<td>Cron-Based job schedule. This schedule only applies to jobs that run using Quartz.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>jobconf.dir</code></td>
+<td>When running in local mode, Gobblin will check this directory for any configuration files. Each configuration file should correspond to a separate Gobblin job, and each one should in a suffix specified by the jobconf.extensions parameter.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>jobconf.extensions</code></td>
+<td>Comma-separated list of supported job configuration file extensions. When running in local mode, Gobblin will only pick up job files ending in these suffixes.</td>
+<td>No</td>
+<td>pull,job</td>
+</tr>
+<tr>
+<td><code>jobconf.monitor.interval</code></td>
+<td>Controls how often Gobblin checks the jobconf.dir for new configuration files, or for configuration file updates. The parameter is measured in milliseconds.</td>
+<td>No</td>
+<td>300000</td>
+</tr>
+</tbody>
+</table>
+<h2 id="climrjoblauncher-properties">CliMRJobLauncher Properties <a name="CliMRJobLauncher-Properties"></a></h2>
+<p>There are no configuration parameters specific to CliMRJobLauncher. This class is used to launch Gobblin jobs on Hadoop from the command line, the jobs are not scheduled. Common properties are set using the <code>--sysconfig</code> option when launching jobs via the command line. For more information on how to set the configuration parameters for jobs launched through the command line, check out the <a href="Gobblin-Deployment">Deployment</a> page.</p>
+<h2 id="azkabanjoblauncher-properties">AzkabanJobLauncher Properties <a name="AzkabanJobLauncher-Properties"></a></h2>
+<p>There are no configuration parameters specific to AzkabanJobLauncher. This class is used to schedule Gobblin jobs on Azkaban. Common properties can be set through Azkaban by creating a <code>.properties</code> file, check out the <a href="http://azkaban.github.io/">Azkaban Documentation</a> for more information. For more information on how to set the configuration parameters for jobs scheduled through the Azkaban, check out the <a href="Gobblin-Deployment">Deployment</a> page.</p>
+<h1 id="job-type-properties">Job Type Properties <a name="Job-Type-Properties"></a></h1>
+<h2 id="common-job-type-properties">Common Job Type Properties <a name="Common-Job-Type-Properties"></a></h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>launcher.type</code></td>
+<td>Job launcher type; one of LOCAL, MAPREDUCE, YARN. LOCAL mode runs on a single machine (LocalJobLauncher), MAPREDUCE runs on a Hadoop cluster (MRJobLauncher), and YARN runs on a YARN cluster (not implemented yet).</td>
+<td>No</td>
+<td>LOCAL</td>
+</tr>
+</tbody>
+</table>
+<h2 id="localjoblauncher-properties">LocalJobLauncher Properties <a name="LocalJobLauncher-Properties"></a></h2>
+<p>There are no configuration parameters specific to LocalJobLauncher. The LocalJobLauncher will launch a Hadoop job on a single machine. If launcher.type is set to LOCAL then this class will be used to launch the job.
+Properties required by the MRJobLauncher class.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>framework.jars</code></td>
+<td>Comma-separated list of jars the Gobblin framework depends on. These jars will be added to the classpath of the job, and to the classpath of any containers the job launches.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>job.jars</code></td>
+<td>Comma-separated list of jar files the job depends on. These jars will be added to the classpath of the job, and to the classpath of any containers the job launches.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>job.hdfs.jars</code></td>
+<td>Comma-separated list of jar files the job depends on located in HDFS. These jars will be added to the classpath of the job, and to the classpath of any containers the job launches.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>job.local.files</code></td>
+<td>Comma-separated list of local files the job depends on. These files will be available to any map tasks that get launched via the DistributedCache.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>job.hdfs.files</code></td>
+<td>Comma-separated list of files on HDFS the job depends on. These files will be available to any map tasks that get launched via the DistributedCache.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mrjoblauncher-properties">MRJobLauncher Properties <a name="MRJobLauncher-Properties"></a></h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mr.job.root.dir</code></td>
+<td>Working directory for a Gobblin Hadoop MR job. Gobblin uses this to write intermediate data, such as the workunit state files that are used by each map task. This has to be a path on HDFS.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>mr.job.max.mappers</code></td>
+<td>Maximum number of mappers to use in a Gobblin Hadoop MR job. If no explicit limit is set then a map task for each workunit will be launched. If the value of this properties is less than the number of workunits created, then each map task will run multiple tasks.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>mr.include.task.counters</code></td>
+<td>Whether to include task-level counters in the set of counters reported as Hadoop counters. Hadoop imposes a system-level limit (default to 120) on the number of counters, so a Gobblin MR job may easily go beyond that limit if the job has a large number of tasks and each task has a few counters. This property gives users an option to not include task-level counters to avoid going over that limit.</td>
+<td>Yes</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h1 id="retry-properties">Retry Properties <a name="Retry-Properties"></a></h1>
+<p>Properties that control how tasks and jobs get retried on failure.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>workunit.retry.enabled</code></td>
+<td>Whether retries of failed work units across job runs are enabled or not.</td>
+<td>No</td>
+<td>True</td>
+</tr>
+<tr>
+<td><code>workunit.retry.policy</code></td>
+<td>Work unit retry policy, can be one of {always, never, onfull, onpartial}.</td>
+<td>No</td>
+<td>always</td>
+</tr>
+<tr>
+<td><code>task.maxretries</code></td>
+<td>Maximum number of task retries. A task will be re-tried this many times before it is considered a failure.</td>
+<td>No</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>task.retry.intervalinsec</code></td>
+<td>Interval in seconds between task retries. The interval increases linearly with each retry. For example, if the first interval is 300 seconds, then the second one is 600 seconds, etc.</td>
+<td>No</td>
+<td>300</td>
+</tr>
+<tr>
+<td><code>job.max.failures</code></td>
+<td>Maximum number of failures before an alert email is triggered.</td>
+<td>No</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h1 id="task-execution-properties">Task Execution Properties <a name="Task-Execution-Properties"></a></h1>
+<p>These properties control how tasks get executed for a job. Gobblin uses thread pools in order to executes the tasks for a specific job. In local mode there is a single thread pool per job that executes all the tasks for a job. In MR mode there is a thread pool for each map task (or container), and all Gobblin tasks assigned to that mapper are executed in that thread pool.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>taskexecutor.threadpool.size</code></td>
+<td>Size of the thread pool used by task executor for task execution. Each task executor will spawn this many threads to execute any Tasks that is has been allocated.</td>
+<td>No</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>tasktracker.threadpool.coresize</code></td>
+<td>Core size of the thread pool used by task tracker for task state tracking and reporting.</td>
+<td>No</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>tasktracker.threadpool.maxsize</code></td>
+<td>Maximum size of the thread pool used by task tracker for task state tracking and reporting.</td>
+<td>No</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>taskretry.threadpool.coresize</code></td>
+<td>Core size of the thread pool used by the task executor for task retries.</td>
+<td>No</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>taskretry.threadpool.maxsize</code></td>
+<td>Maximum size of the thread pool used by the task executor for task retries.</td>
+<td>No</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>task.status.reportintervalinms</code></td>
+<td>Task status reporting interval in milliseconds.</td>
+<td>No</td>
+<td>30000</td>
+</tr>
+</tbody>
+</table>
+<h1 id="state-store-properties">State Store Properties <a name="State-Store-Properties"></a></h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>state.store.dir</code></td>
+<td>Root directory where job and task state files are stored. The state-store is used by Gobblin to track state between different executions of a job. All state-store files will be written to this directory.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>state.store.fs.uri</code></td>
+<td>File system URI for file-system-based state stores.</td>
+<td>No</td>
+<td>file:///</td>
+</tr>
+</tbody>
+</table>
+<h1 id="metrics-properties">Metrics Properties <a name="Metrics-Properties"></a></h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metrics.enabled</code></td>
+<td>Whether metrics collecting and reporting are enabled or not.</td>
+<td>No</td>
+<td>True</td>
+</tr>
+<tr>
+<td><code>metrics.report.interval</code></td>
+<td>Metrics reporting interval in milliseconds.</td>
+<td>No</td>
+<td>60000</td>
+</tr>
+<tr>
+<td><code>metrics.log.dir</code></td>
+<td>The directory where metric files will be written to.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>metrics.reporting.file.enabled</code></td>
+<td>A boolean indicating whether or not metrics should be reported to a file.</td>
+<td>No</td>
+<td>True</td>
+</tr>
+<tr>
+<td><code>metrics.reporting.jmx.enabled</code></td>
+<td>A boolean indicating whether or not metrics should be exposed via JMX.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h1 id="email-alert-properties">Email Alert Properties <a name="Email-Alert-Properties"></a></h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>email.alert.enabled</code></td>
+<td>Whether alert emails are enabled or not. Email alerts are only sent out when jobs fail consecutively job.max.failures number of times.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>email.notification.enabled</code></td>
+<td>Whether job completion notification emails are enabled or not. Notification emails are sent whenever the job completes, regardless of whether it failed or not.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>email.host</code></td>
+<td>Host name of the email server.</td>
+<td>Yes, if email notifications or alerts are enabled.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>email.smtp.port</code></td>
+<td>SMTP port number.</td>
+<td>Yes, if email notifications or alerts are enabled.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>email.user</code></td>
+<td>User name of the sender email account.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>email.password</code></td>
+<td>User password of the sender email account.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>email.from</code></td>
+<td>Sender email address.</td>
+<td>Yes, if email notifications or alerts are enabled.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>email.tos</code></td>
+<td>Comma-separated list of recipient email addresses.</td>
+<td>Yes, if email notifications or alerts are enabled.</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h1 id="source-properties">Source Properties <a name="Source-Properties"></a></h1>
+<h2 id="common-source-properties">Common Source Properties <a name="Common-Source-Properties"></a></h2>
+<p>These properties are common properties that are used among different Source implementations. Depending on what source class is being used, these parameters may or may not be necessary. These parameters are not tied to a specific source, and thus can be used in new source classes.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source.class</code></td>
+<td>Fully qualified name of the Source class. For example, <code>org.apache.gobblin.example.wikipedia.WikipediaSource</code></td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.entity</code></td>
+<td>Name of the source entity that needs to be pulled from the source. The parameter represents a logical grouping of data that needs to be pulled from the source. Often this logical grouping comes in the form a database table, a source topic, etc. In many situations, such as when using the QueryBasedExtractor, it will be the name of the table that needs to pulled from the source.</td>
+<td>Required for QueryBasedExtractors, FileBasedExtractors.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.timezone</code></td>
+<td>Timezone of the data being pulled in by the extractor. Examples include "PST" or "UTC".</td>
+<td>Required for QueryBasedExtractors</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.max.number.of.partitions</code></td>
+<td>Maximum number of partitions to split this current run across. Only used by the QueryBasedSource and FileBasedSource.</td>
+<td>No</td>
+<td>20</td>
+</tr>
+<tr>
+<td><code>source.skip.first.record</code></td>
+<td>True if you want to skip the first record of each data partition. Only used by the FileBasedExtractor.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>extract.namespace</code></td>
+<td>Namespace for the extract data. The namespace will be included in the default file name of the outputted data.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.conn.use.proxy.url</code></td>
+<td>The URL of the proxy to connect to when connecting to the source. This parameter is only used for SFTP and REST sources.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.conn.use.proxy.port</code></td>
+<td>The port of the proxy to connect to when connecting to the source. This parameter is only used for SFTP and REST sources.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.conn.username</code></td>
+<td>The username to authenticate with the source. This is parameter is only used for SFTP and JDBC sources.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.conn.password</code></td>
+<td>The password to use when authenticating with the source. This is parameter is only used for JDBC sources.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.conn.host</code></td>
+<td>The name of the host to connect to.</td>
+<td>Required for SftpExtractor, MySQLExtractor, OracleExtractor, SQLServerExtractor and TeradataExtractor.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.conn.rest.url</code></td>
+<td>URL to connect to for REST requests. This parameter is only used for the Salesforce source.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.conn.version</code></td>
+<td>Version number of communication protocol. This parameter is only used for the Salesforce source.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.conn.timeout</code></td>
+<td>The timeout set for connecting to the source in milliseconds.</td>
+<td>No</td>
+<td>500000</td>
+</tr>
+<tr>
+<td><code>source.conn.port</code></td>
+<td>The value of the port to connect to.</td>
+<td>Required for SftpExtractor, MySQLExtractor, OracleExtractor, SQLServerExtractor and TeradataExtractor.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.conn.sid</code></td>
+<td>The Oracle System ID (SID) that identifies the database to connect to.</td>
+<td>Required for OracleExtractor.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>extract.table.name</code></td>
+<td>Table name in Hadoop which is different table name in source.</td>
+<td>No</td>
+<td>Source table name</td>
+</tr>
+<tr>
+<td><code>extract.is.full</code></td>
+<td>True if this pull should treat the data as a full dump of table from the source, false otherwise.</td>
+<td>No</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>extract.delta.fields</code></td>
+<td>List of columns that will be used as the delta field for the data.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>extract.primary.key.fields</code></td>
+<td>List of columns that will be used as the primary key for the data.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>extract.pull.limit</code></td>
+<td>This limits the number of records read by Gobblin. In Gobblin's extractor the readRecord() method is expected to return records until there are no more to pull, in which case it runs null. This parameter limits the number of times readRecord() is executed. This parameter is useful for pulling a limited sample of the source data for testing purposes.</td>
+<td>No</td>
+<td>Unbounded</td>
+</tr>
+<tr>
+<td><code>extract.full.run.time</code></td>
+<td>TODO</td>
+<td>TODO</td>
+<td>TODO</td>
+</tr>
+</tbody>
+</table>
+<h2 id="distcp-copysource-properties">Distcp CopySource Properties <a name="Distcp-CopySource-Properties"></a></h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gobblin.copy.simulate</code></td>
+<td>Will perform copy file listing but doesn't execute actual copy.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>gobblin.copy.includeEmptyDirectories</code></td>
+<td>Whether to include empty directories from the source in the copy.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recursivecopyabledataset-properties">RecursiveCopyableDataset Properties <a name="RecursiveCopyableDataset-Properties"></a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gobblin.copy.recursive.deleteEmptyDirectories</code></td>
+<td>Whether to delete newly empty directories found, up to the dataset root.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>gobblin.copy.recursive.delete</code></td>
+<td>Whether to delete files in the target that don't exist in the source.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>gobblin.copy.recursive.update</code></td>
+<td>Will update files that are different between the source and target, and skip files already in the target.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h3 id="distcpfilesplitter-properties">DistcpFileSplitter Properties <a name="DistcpFileSplitter-Properties"></a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gobblin.copy.split.enabled</code></td>
+<td>Will split files into block level granularity work units, which can be copied independently, then merged back together before publishing. To actually achieve splitting, the max split size property also needs to be set.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>gobblin.copy.file.max.split.size</code></td>
+<td>If splitting is enabled, the split size (in bytes) for the block level work units is calculated based on rounding down the value of this property to the nearest integer multiple of the block size. If the value of this property is less than the block size, it gets adjusted up.</td>
+<td>No</td>
+<td>Long.MAX_VALUE</td>
+</tr>
+</tbody>
+</table>
+<h3 id="workunitbinpacker-properties">WorkUnitBinPacker Properties <a name="WorkUnitBinPacker-Properties"></a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gobblin.copy.binPacking.maxSizePerBin</code></td>
+<td>Limits the maximum weight that can be packed into a multi work unit produced from bin packing. A value of 0 means packing is not done.</td>
+<td>No</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>gobblin.copy.binPacking.maxWorkUnitsPerBin</code></td>
+<td>Limits the maximum number/amount of work units that can be packed into a multi work unit produced from bin packing.</td>
+<td>No</td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
+<h2 id="querybasedextractor-properties">QueryBasedExtractor Properties <a name="QueryBasedExtractor-Properties"></a></h2>
+<p>The following table lists the query based extractor configuration properties.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source.querybased.watermark.type</code></td>
+<td>The format of the watermark that is used when extracting data from the source. Possible types are timestamp, date, hour, simple.</td>
+<td>Yes</td>
+<td>timestamp</td>
+</tr>
+<tr>
+<td><code>source.querybased.start.value</code></td>
+<td>Value for the watermark to start pulling data from, also the default watermark if the previous watermark cannot be found in the old task states.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.querybased.partition.interval</code></td>
+<td>Number of hours to pull in each partition.</td>
+<td>No</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>source.querybased.hour.column</code></td>
+<td>Delta column with hour for hourly extracts (Ex: hour_sk)</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.querybased.skip.high.watermark.calc</code></td>
+<td>If it is true, skips high watermark calculation in the source and it will use partition higher range as high watermark instead of getting it from source.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>source.querybased.query</code></td>
+<td>The query that the extractor should execute to pull data.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.querybased.hourly.extract</code></td>
+<td>True if hourly extract is required.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>source.querybased.extract.type</code></td>
+<td>"snapshot" for the incremental dimension pulls. "append_daily", "append_hourly" and "append_batch" for the append data append_batch for the data with sequence numbers as watermarks</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.querybased.end.value</code></td>
+<td>The high watermark which this entire job should pull up to. If this is not specified, pull entire data from the table</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.querybased.append.max.watermark.limit</code></td>
+<td>max limit of the high watermark for the append data.  CURRENT_DATE - X CURRENT_HOUR - X where X&gt;=1</td>
+<td>No</td>
+<td>CURRENT_DATE for daily extract CURRENT_HOUR for hourly extract</td>
+</tr>
+<tr>
+<td><code>source.querybased.is.watermark.override</code></td>
+<td>True if this pull should override previous watermark with start.value and end.value. False otherwise.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>source.querybased.low.watermark.backup.secs</code></td>
+<td>Number of seconds that needs to be backup from the previous high watermark. This is to cover late data.  Ex: Set to 3600 to cover 1 hour late data.</td>
+<td>No</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>source.querybased.schema</code></td>
+<td>Database name</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.querybased.is.specific.api.active</code></td>
+<td>True if this pull needs to use source specific apis instead of standard protocols.  Ex: Use salesforce bulk api instead of rest api</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>source.querybased.skip.count.calc</code></td>
+<td>A boolean, if true then the QueryBasedExtractor will skip the source count calculation.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>source.querybased.fetch.size</code></td>
+<td>This parameter is currently only used in JDBCExtractor. The JDBCExtractor will process this many number of records from the JDBC ResultSet at a time. It will then take these records and return them to the rest of the Gobblin flow so that they can get processed by the rest of the Gobblin components.</td>
+<td>No</td>
+<td>1000</td>
+</tr>
+<tr>
+<td><code>source.querybased.is.metadata.column.check.enabled</code></td>
+<td>When a query is specified in the configuration file, it is possible a user accidentally adds in a column name that does not exist on the source side. By default, this parameter is set to false, which means that if a column is specified in the query and it does not exist in the source data set, Gobblin will just skip over that column. If it is set to true, Gobblin will actually take the config specified column and check to see if it exists in the source data set. If it doesn't exist then the job will fail.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>source.querybased.is.compression.enabled</code></td>
+<td>A boolean specifying whether or not compression should be enabled when pulling data from the source. This parameter is only used for MySQL sources. If set to true, the MySQL will send compressed data back to the source.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>source.querybased.jdbc.resultset.fetch.size</code></td>
+<td>The number of rows to pull through JDBC at a time. This is useful when the JDBC ResultSet is too big to fit into memory, so only "x" number of records will be fetched at a time.</td>
+<td>No</td>
+<td>1000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jdbcextractor-properties">JdbcExtractor Properties <a name="JdbcExtractor-Properties"></a></h3>
+<p>The following table lists the jdbc based extractor configuration properties.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source.conn.driver</code></td>
+<td>The fully qualified path of the JDBC driver used to connect to the external source.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.column.name.case</code></td>
+<td>A enum specifying whether or not to convert the column names to a specific case before performing a query. Possible values are TOUPPER or TOLOWER.</td>
+<td>No</td>
+<td>NOCHANGE</td>
+</tr>
+</tbody>
+</table>
+<h2 id="filebasedextractor-properties">FileBasedExtractor Properties <a name="FileBasedExtractor-Properties"></a></h2>
+<p>The following table lists the file based extractor configuration properties.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source.filebased.data.directory</code></td>
+<td>The data directory from which to pull data from.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.filebased.files.to.pull</code></td>
+<td>A list of files to pull - this should be set in the Source class and the extractor will pull the specified files.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>filebased.report.status.on.count</code></td>
+<td>The FileBasedExtractor will report it's status every time it processes the number of records specified by this parameter. The way it reports status is by logging out how many records it has seen.</td>
+<td>No</td>
+<td>10000</td>
+</tr>
+<tr>
+<td><code>source.filebased.fs.uri</code></td>
+<td>The URI of the filesystem to connect to.</td>
+<td>Required for HadoopExtractor.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.filebased.preserve.file.name</code></td>
+<td>A boolean, if true then the original file names will be preserved when they are are written to the source.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>source.schema</code></td>
+<td>The schema of the data that will be pulled by the source.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sftpextractor-properties">SftpExtractor Properties <a name="SftpExtractor-Properties"></a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source.conn.private.key</code></td>
+<td>File location of the private key used for key based authentication. This parameter is only used for the SFTP source.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>source.conn.known.hosts</code></td>
+<td>File location of the known hosts file used for key based authentication.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h1 id="converter-properties">Converter Properties <a name="Converter-Properties"></a></h1>
+<p>Properties for Gobblin converters.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>converter.classes</code></td>
+<td>Comma-separated list of fully qualified names of the Converter classes. The order is important as the converters will be applied in this order.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h2 id="csvtojsonconverter-properties">CsvToJsonConverter Properties <a name="CsvToJsonConverter-Properties"></a></h2>
+<p>This converter takes in text data separated by a delimiter (converter.csv.to.json.delimiter), and splits the data into a JSON format recognized by JsonIntermediateToAvroConverter.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>converter.csv.to.json.delimiter</code></td>
+<td>The regex delimiter between CSV based files, only necessary when using the CsvToJsonConverter - e.g. ",", "/t" or some other regex</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jsonintermediatetoavroconverter-properties">JsonIntermediateToAvroConverter Properties <a name="JsonIntermediateToAvroConverter-Properties"></a></h2>
+<p>This converter takes in JSON data in a specific schema, and converts it to Avro data.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>converter.avro.date.format</code></td>
+<td>Source format of the date columns for Avro-related converters.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>converter.avro.timestamp.format</code></td>
+<td>Source format of the timestamp columns for Avro-related converters.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>converter.avro.time.format</code></td>
+<td>Source format of the time columns for Avro-related converters.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>converter.avro.binary.charset</code></td>
+<td>Source format of the time columns for Avro-related converters.</td>
+<td>No</td>
+<td>UTF-8</td>
+</tr>
+<tr>
+<td><code>converter.is.epoch.time.in.seconds</code></td>
+<td>A boolean specifying whether or not a epoch time field in the JSON object is in seconds or not.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>converter.avro.max.conversion.failures</code></td>
+<td>This converter is will fail for this many number of records before throwing an exception.</td>
+<td>No</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>converter.avro.nullify.fields.enabled</code></td>
+<td>Generate new avro schema by nullifying fields that previously existed but not in the current schema.</td>
+<td>No</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>converter.avro.nullify.fields.original.schema.path</code></td>
+<td>Path of the original avro schema which will be used for merging and nullify fields.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jsonstringtojsonintermediateconverter-properties">JsonStringToJsonIntermediateConverter Properties <a name="JsonStringToJsonIntermediateConverter-Properties"></a></h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gobblin.converter.jsonStringToJsonIntermediate.unpackComplexSchemas</code></td>
+<td>Parse nested JSON record using source.schema.</td>
+<td>No</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<h2 id="avrofilterconverter-properties">AvroFilterConverter Properties <a name="AvroFilterConverter-Properties"></a></h2>
+<p>This converter takes in an Avro record, and filters out records by performing an equality operation on the value of the field specified by converter.filter.field and the value specified in converter.filter.value. It returns the record unmodified if the equality operation evaluates to true, false otherwise.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>converter.filter.field</code></td>
+<td>The name of the field in the Avro record, for which the converter will filter records on.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>converter.filter.value</code></td>
+<td>The value that will be used in the equality operation to filter out records.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h2 id="avrofieldretrieverconverter-properties">AvroFieldRetrieverConverter Properties <a name="AvroFieldRetrieverConverter-Properties"></a></h2>
+<p>This converter takes a specific field from an Avro record and returns its value.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>converter.avro.extractor.field.path</code></td>
+<td>The field in the Avro record to retrieve. If it is a nested field, then each level must be separated by a period.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h2 id="avrofieldspickconverter-properties">AvroFieldsPickConverter Properties <a name="AvroFieldsPickConverter-Properties"></a></h2>
+<p>Unlike AvroFieldRetriever, this converter takes multiple fields from Avro schema and convert schema and generic record.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>converter.avro.fields</code></td>
+<td>Comma-separted list of the fields in the Avro record. If it is a nested field, then each level must be separated by a period.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h2 id="avrotojdbcentryconverter-properties">AvroToJdbcEntryConverter Properties <a name="AvroToJdbcEntryConverter-Properties"></a></h2>
+<p>Converts Avro schema and generic record into Jdbc entry schema and data.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>converter.avro.jdbc.entry_fields_pairs</code></td>
+<td>Converts Avro field name(s) to fit for JDBC underlying data base. Input format is key value pairs of JSON array where key is avro field name and value is corresponding JDBC column name.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h1 id="fork-properties">Fork Properties <a name="Fork-Properties"></a></h1>
+<p>Properties for Gobblin's fork operator.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fork.operator.class</code></td>
+<td>Fully qualified name of the ForkOperator class.</td>
+<td>No</td>
+<td><code>org.apache.gobblin.fork.IdentityForkOperator</code></td>
+</tr>
+<tr>
+<td><code>fork.branches</code></td>
+<td>Number of fork branches.</td>
+<td>No</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>fork.branch.name.${branch index}</code></td>
+<td>Name of a fork branch with the given index, e.g., 0 and 1.</td>
+<td>No</td>
+<td>fork_${branch index}, e.g., fork_0 and fork_1.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="quality-checker-properties">Quality Checker Properties <a name="Quality-Checker-Properties"></a></h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>qualitychecker.task.policies</code></td>
+<td>Comma-separted list of fully qualified names of the TaskLevelPolicy classes that will run at the end of each Task.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>qualitychecker.task.policy.types</code></td>
+<td>OPTIONAL implies the corresponding class in qualitychecker.task.policies is optional and if it fails the Task will still succeed, FAIL implies that if the corresponding class fails then the Task will fail too.</td>
+<td>No</td>
+<td>OPTIONAL</td>
+</tr>
+<tr>
+<td><code>qualitychecker.row.policies</code></td>
+<td>Comma-separted list of fully qualified names of the RowLevelPolicy classes that will run on each record.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>qualitychecker.row.policy.types</code></td>
+<td>OPTIONAL implies the corresponding class in qualitychecker.row.policies is optional and if it fails the Task will still succeed, FAIL implies that if the corresponding class fails then the Task will fail too, ERR_FILE implies that if the record does not pass the test then the record will be written to an error file.</td>
+<td>No</td>
+<td>OPTIONAL</td>
+</tr>
+<tr>
+<td><code>qualitychecker.row.err.file</code></td>
+<td>The quality checker will write the current record to the location specified by this parameter, if the current record fails to pass the quality checkers specified by qualitychecker.row.policies; this file will only be written to if the quality checker policy type is ERR_FILE.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h1 id="writer-properties">Writer Properties <a name="Writer-Properties"></a></h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>writer.destination.type</code></td>
+<td>Writer destination type. Can be HDFS, KAFKA, MYSQL or TERADATA</td>
+<td>No</td>
+<td>HDFS</td>
+</tr>
+<tr>
+<td><code>writer.output.format</code></td>
+<td>Writer output format; currently only Avro is supported.</td>
+<td>No</td>
+<td>AVRO</td>
+</tr>
+<tr>
+<td><code>writer.fs.uri</code></td>
+<td>File system URI for writer output.</td>
+<td>No</td>
+<td>file:///</td>
+</tr>
+<tr>
+<td><code>writer.staging.dir</code></td>
+<td>Staging directory of writer output. All staging data that the writer produces will be placed in this directory, but all the data will be eventually moved to the writer.output.dir.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>writer.output.dir</code></td>
+<td>Output directory of writer output. All output data that the writer produces will be placed in this directory, but all the data will be eventually moved to the final directory by the publisher.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>writer.builder.class</code></td>
+<td>Fully qualified name of the writer builder class.</td>
+<td>No</td>
+<td><code>org.apache.gobblin.writer.AvroDataWriterBuilder</code></td>
+</tr>
+<tr>
+<td><code>writer.file.path</code></td>
+<td>The Path where the writer will write it's data. Data in this directory will be copied to it's final output directory by the DataPublisher.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>writer.file.name</code></td>
+<td>The name of the file the writer writes to.</td>
+<td>Yes</td>
+<td>part</td>
+</tr>
+<tr>
+<td><code>writer.partitioner.class</code></td>
+<td>Partitioner used for distributing records into multiple output files. <code>writer.builder.class</code> must be a subclass of <code>PartitionAwareDataWriterBuilder</code>, otherwise Gobblin will throw an error.</td>
+<td>No</td>
+<td>None (will not use partitioner)</td>
+</tr>
+<tr>
+<td><code>writer.buffer.size</code></td>
+<td>Writer buffer size in bytes. This parameter is only applicable for the AvroHdfsDataWriter.</td>
+<td>No</td>
+<td>4096</td>
+</tr>
+<tr>
+<td><code>writer.deflate.level</code></td>
+<td>Writer deflate level. Deflate is a type of compression for Avro data.</td>
+<td>No</td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>writer.codec.type</code></td>
+<td>This is used to specify the type of compression used when writing data out. Possible values are NOCOMPRESSION, DEFLATE, SNAPPY.</td>
+<td>No</td>
+<td>DEFLATE</td>
+</tr>
+<tr>
+<td><code>writer.eager.initialization</code></td>
+<td>This is used to control the writer creation. If the value is set to true, writer is created before records are read. This means an empty file will be created even if no records were read.</td>
+<td>No</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>writer.parquet.page.size</code></td>
+<td>The page size threshold</td>
+<td>No</td>
+<td>1048576</td>
+</tr>
+<tr>
+<td><code>writer.parquet.dictionary.page.size</code></td>
+<td>The block size threshold.</td>
+<td>No</td>
+<td>134217728</td>
+</tr>
+<tr>
+<td><code>writer.parquet.dictionary</code></td>
+<td>To turn dictionary encoding on.</td>
+<td>No</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code>writer.parquet.validate</code></td>
+<td>To turn on validation using the schema.</td>
+<td>No</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>writer.parquet.version</code></td>
+<td>Version of parquet writer to use. Available versions are v1 and v2.</td>
+<td>No</td>
+<td>v1</td>
+</tr>
+</tbody>
+</table>
+<h1 id="data-publisher-properties">Data Publisher Properties <a name="Data-Publisher-Properties"></a></h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data.publisher.type</code></td>
+<td>The fully qualified name of the DataPublisher class to run. The DataPublisher is responsible for publishing task data once all Tasks have been completed.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>data.publisher.final.dir</code></td>
+<td>The final output directory where the data should be published.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>data.publisher.replace.final.dir</code></td>
+<td>A boolean, if true and the the final output directory already exists, then the data will not be committed. If false and the final output directory already exists then it will be overwritten.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>data.publisher.final.name</code></td>
+<td>The final name of the file that is produced by Gobblin. By default, Gobblin already assigns a unique name to each file it produces. If that default name needs to be overridden then this parameter can be used. Typically, this parameter should be set on a per workunit basis so that file names don't collide.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h1 id="generic-properties">Generic Properties <a name="Generic-Properties"></a></h1>
+<p>These properties are used throughout multiple Gobblin components.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fs.uri</code></td>
+<td>Default file system URI for all file storage; over-writable by more specific configuration properties.</td>
+<td>No</td>
+<td>file:///</td>
+</tr>
+</tbody>
+</table>
+<h1 id="filebasedjoblock-properties">FileBasedJobLock Properties <a name="FileBasedJobLock-Properties"></a></h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>job.lock.dir</code></td>
+<td>Directory where job locks are stored. Job locks are used by the scheduler to ensure two executions of a job do not run at the same time. If a job is scheduled to run, Gobblin will first check this directory to see if there is a lock file for the job. If there is one, it will not run the job, if there isn't one then it will run the job.</td>
+<td>No</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h1 id="zookeeperbasedjoblock-properties">ZookeeperBasedJobLock Properties <a name="ZookeeperBasedJobLock-Properties"></a></h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zookeeper.connection.string</code></td>
+<td>The connection string to the ZooKeeper cluster used to manage the lock.</td>
+<td>No</td>
+<td>localhost:2181</td>
+</tr>
+<tr>
+<td><code>zookeeper.session.timeout.seconds</code></td>
+<td>The zookeeper session timeout.</td>
+<td>No</td>
+<td>180</td>
+</tr>
+<tr>
+<td><code>zookeeper.connection.timeout.seconds</code></td>
+<td>The zookeeper conection timeout.</td>
+<td>No</td>
+<td>30</td>
+</tr>
+<tr>
+<td><code>zookeeper.retry.backoff.seconds</code></td>
+<td>The amount of time in seconds to wait between retries.  This will increase exponentially when retries occur.</td>
+<td>No</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>zookeeper.retry.count.max</code></td>
+<td>The maximum number of times to retry.</td>
+<td>No</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>zookeeper.locks.acquire.timeout.milliseconds</code></td>
+<td>The amount of time in milliseconds to wait while attempting to acquire the lock.</td>
+<td>No</td>
+<td>5000</td>
+</tr>
+<tr>
+<td><code>zookeeper.locks.reaper.threshold.seconds</code></td>
+<td>The threshold in seconds that determines when a lock path can be deleted.</td>
+<td>No</td>
+<td>300</td>
+</tr>
+</tbody>
+</table>
+<h1 id="jdbc-writer-properties">JDBC Writer properties <a name="JdbcWriter-Properties"></a></h1>
+<p>Writer(and publisher) that writes to JDBC database. Please configure below two properties to use JDBC writer &amp; publisher.</p>
+<ul>
+<li>writer.builder.class=org.apache.gobblin.writer.JdbcWriterBuilder</li>
+<li>data.publisher.type=org.apache.gobblin.publisher.JdbcPublisher</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>jdbc.publisher.database_name</code></td>
+<td>Destination database name</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>jdbc.publisher.table_name</code></td>
+<td>Destination table name</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>jdbc.publisher.replace_table</code></td>
+<td>Gobblin will replace the data in destination table.</td>
+<td>No</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>jdbc.publisher.username</code></td>
+<td>User name to connect to destination database</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>jdbc.publisher.password</code></td>
+<td>Password to connect to destination database. Also, accepts encrypted password.</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>jdbc.publisher.encrypt_key_loc</code></td>
+<td>Location of a key to decrypt an encrypted password</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>jdbc.publisher.url</code></td>
+<td>Connection URL</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>jdbc.publisher.driver</code></td>
+<td>JDBC driver class</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>writer.staging.table</code></td>
+<td>User can pass staging table for Gobblin to use instead of Gobblin to create one. (e.g: For the user who does not have create table previlege can pass staging table for Gobblin to use).</td>
+<td>No</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>writer.truncate.staging.table</code></td>
+<td>Truncate staging table if user passed their own staging table via "writer.staging.table".</td>
+<td>No</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>writer.jdbc.batch_size</code></td>
+<td>Batch size for Insert operation</td>
+<td>No</td>
+<td>30</td>
+</tr>
+<tr>
+<td><code>writer.jdbc.insert_max_param_size</code></td>
+<td>Maximum number of parameters for JDBC insert operation (for MySQL Writer).</td>
+<td>No</td>
+<td>100,000 (MySQL limitation)</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Source-schema-and-Converters/" class="btn btn-neutral float-right" title="Source schema and Converters">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Working-with-the-ForkOperator/" class="btn btn-neutral" title="Fork Operator"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Working-with-the-ForkOperator/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Source-schema-and-Converters/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

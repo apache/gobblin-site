@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Camus to Gobblin Migration - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Camus to Gobblin Migration";
+    var mkdocs_page_input_path = "miscellaneous/Camus-to-Gobblin-Migration.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sinks/AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Camus to Gobblin Migration</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#advantages-of-migrating-to-gobblin">Advantages of Migrating to Gobblin</a></li>
+    
+
+    <li class="toctree-l3"><a href="#kafka-ingestion-related-job-config-properties">Kafka Ingestion Related Job Config Properties</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#config-properties-for-pulling-kafka-topics">Config properties for pulling Kafka topics</a></li>
+        
+            <li><a class="toctree-l4" href="#config-properties-for-compaction">Config properties for compaction</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#deployment-and-checkpoint-management">Deployment and Checkpoint Management</a></li>
+    
+
+    <li class="toctree-l3"><a href="#migrating-from-camus-to-gobblin-in-production">Migrating from Camus to Gobblin in Production</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Miscellaneous &raquo;</li>
+        
+      
+    
+    <li>Camus to Gobblin Migration</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/miscellaneous/Camus-to-Gobblin-Migration.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#advantages-of-migrating-to-gobblin">Advantages of Migrating to Gobblin</a></li>
+<li><a href="#kafka-ingestion-related-job-config-properties">Kafka Ingestion Related Job Config Properties</a><ul>
+<li><a href="#config-properties-for-pulling-kafka-topics">Config properties for pulling Kafka topics</a></li>
+<li><a href="#config-properties-for-compaction">Config properties for compaction</a></li>
+</ul>
+</li>
+<li><a href="#deployment-and-checkpoint-management">Deployment and Checkpoint Management</a></li>
+<li><a href="#migrating-from-camus-to-gobblin-in-production">Migrating from Camus to Gobblin in Production</a></li>
+</ul>
+</div>
+<p>This page is a guide for <a href="https://github.com/linkedin/camus">Camus</a> → Gobblin migration, intended for users and organizations currently using Camus. Camus is LinkedIn's previous-generation Kafka-HDFS pipeline.</p>
+<p>It is recommended that one read <a href="../case-studies/Kafka-HDFS-Ingestion">Kafka-HDFS Ingestion</a> before reading this page. This page focuses on the Kafka-related configuration properties in Gobblin vs Camus.</p>
+<h2 id="advantages-of-migrating-to-gobblin">Advantages of Migrating to Gobblin</h2>
+<p><strong>Operability</strong>: Gobblin is a generic data ingestion pipeline that supports not only Kafka but several other data sources, and new data sources can be easily added. If you have multiple data sources, using a single tool to ingest data from these sources is a lot more pleasant operationally than deploying a separate tool for each source.</p>
+<p><strong>Performance</strong>: The performance of Gobblin in MapReduce mode is comparable to Camus', and faster in some cases (e.g., the average record size of a Kafka topic is not proportional to the average time of pulling a topic) due to a better mapper load balancing algorithm. In the new continuous ingestion mode (currently under development), the performance of Gobblin will further improve.</p>
+<p><strong>Metrics and Monitoring</strong>: Gobblin has a powerful end-to-end metrics collection and reporting module for monitoring purpose, making it much easier to spot problems in time and find the root causes. See the "Gobblin Metrics" section in the wiki and <a href="../metrics/Gobblin-Metrics-next-generation-instrumentation-for-applications">this post</a> for more details.</p>
+<p><strong>Features</strong>: In addition to the above, there are several other useful features for Kafka-HDFS ingestion in Gobblin that are not available in Camus, e.g., <a href="../user-guide/Compaction#handling-late-records">handling late events in data compaction</a>; dataset retention management; converter and quality checker; all-or-nothing job commit policy, etc. Also, Gobblin is under active development and new features are added frequently.</p>
+<h2 id="kafka-ingestion-related-job-config-properties">Kafka Ingestion Related Job Config Properties</h2>
+<p>This list contains Kafka-specific properties. For general configuration properties please refer to <a href="../user-guide/Configuration-Properties-Glossary">Configuration Properties Glossary</a>.</p>
+<h3 id="config-properties-for-pulling-kafka-topics">Config properties for pulling Kafka topics</h3>
+<table>
+<thead>
+<tr>
+<th>Gobblin Property</th>
+<th>Corresponding Camus Property</th>
+<th align="center">Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>topic.whitelist</td>
+<td>kafka.whitelist.topics</td>
+<td align="center">.*</td>
+</tr>
+<tr>
+<td>topic.blacklist</td>
+<td>kafka.blacklist.topics</td>
+<td align="center">a^</td>
+</tr>
+<tr>
+<td>mr.job.max.mappers</td>
+<td>mapred.map.tasks</td>
+<td align="center">100</td>
+</tr>
+<tr>
+<td>kafka.brokers</td>
+<td>kafka.host.url</td>
+<td align="center">(required)</td>
+</tr>
+<tr>
+<td>topics.move.to.latest.offset</td>
+<td>kafka.move.to.last.offset.list</td>
+<td align="center">empty</td>
+</tr>
+<tr>
+<td>bootstrap.with.offset</td>
+<td>none</td>
+<td align="center">latest</td>
+</tr>
+<tr>
+<td>reset.on.offset.out.of.range</td>
+<td>none</td>
+<td align="center">nearest</td>
+</tr>
+</tbody>
+</table>
+<p>Remarks:</p>
+<ul>
+<li>topic.whitelist and topic.blacklist supports regex.</li>
+<li>topics.move.to.latest.offset: Topics in this list will always start from the latest offset (i.e., no records will be pulled). To move all topics to the latest offset, use "all". This property is useful in Camus for moving a new topic to the latest offset, but in Gobblin it should rarely, if ever, be used, since you can use bootstrap.with.offset to achieve the same purpose more conveniently.</li>
+<li>bootstrap with offset: For new topics / partitions, this property controls whether they start at the earliest offset or the latest offset. Possible values: earliest, latest, skip.</li>
+<li>reset.on.offset.out.of.range: This property controls what to do if a partition's previously persisted offset is out of the range of the currently available offsets. Possible values: earliest (always move to earliest available offset), latest (always move to latest available offset), nearest (move to earliest if the previously persisted offset is smaller than the earliest offset, otherwise move to latest), skip (skip this partition).</li>
+</ul>
+<h3 id="config-properties-for-compaction">Config properties for compaction</h3>
+<p>Gobblin compaction is comparable to Camus sweeper, which can deduplicate records in an input folder. Compaction is useful for Kafka-HDFS ingestion for two reasons:</p>
+<ol>
+<li>
+<p>Although Gobblin guarantees no loss of data, in rare circumstances where data is published on HDFS but checkpoints failed to be persisted into the state store, it may pull the same records twice.</p>
+</li>
+<li>
+<p>If you have a hierarchy of Kafka clusters where topics are replicated among the Kafka clusters, duplicate records may be generated during replication.</p>
+</li>
+</ol>
+<p>Below are the configuration properties related to compaction. For more information please visit the MapReduce Compaction section in the <a href="../user-guide/Compaction">Compaction</a> page.</p>
+<table>
+<thead>
+<tr>
+<th>Gobblin Property</th>
+<th>Corresponding Camus Property</th>
+<th align="center">Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>compaction.input.dir</td>
+<td>camus.sweeper.source.dir</td>
+<td align="center">(required)</td>
+</tr>
+<tr>
+<td>compaction.dest.dir</td>
+<td>camus.sweeper.dest.dir</td>
+<td align="center">(required)</td>
+</tr>
+<tr>
+<td>compaction.input.subdir</td>
+<td>camus.sweeper.source.dir</td>
+<td align="center">hourly</td>
+</tr>
+<tr>
+<td>compaction.dest.subdir</td>
+<td>camus.sweeper.dest.dir</td>
+<td align="center">daily</td>
+</tr>
+<tr>
+<td>compaction.tmp.dest.dir</td>
+<td>camus.sweeper.tmp.dir</td>
+<td align="center">/tmp/gobblin-compaction</td>
+</tr>
+<tr>
+<td>compaction.whitelist</td>
+<td>camus.sweeper.whitelist</td>
+<td align="center">.*</td>
+</tr>
+<tr>
+<td>compaction.blacklist</td>
+<td>camus.sweeper.blacklist</td>
+<td align="center">a^</td>
+</tr>
+<tr>
+<td>compaction.high.priority.topics</td>
+<td>none</td>
+<td align="center">a^</td>
+</tr>
+<tr>
+<td>compaction.normal.priority.topics</td>
+<td>none</td>
+<td align="center">a^</td>
+</tr>
+<tr>
+<td>compaction.input.deduplicated</td>
+<td>none</td>
+<td align="center">false</td>
+</tr>
+<tr>
+<td>compaction.output.deduplicated</td>
+<td>none</td>
+<td align="center">true</td>
+</tr>
+<tr>
+<td>compaction.file.system.uri</td>
+<td>none</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>compaction.timebased.max.time.ago</td>
+<td>none</td>
+<td align="center">3d</td>
+</tr>
+<tr>
+<td>compaction.timebased.min.time.ago</td>
+<td>none</td>
+<td align="center">1d</td>
+</tr>
+<tr>
+<td>compaction.timebased.folder.pattern</td>
+<td>none</td>
+<td align="center">YYYY/mm/dd</td>
+</tr>
+<tr>
+<td>compaction.thread.pool.size</td>
+<td>num.threads</td>
+<td align="center">20</td>
+</tr>
+<tr>
+<td>compaction.max.num.reducers</td>
+<td>max.files</td>
+<td align="center">900</td>
+</tr>
+<tr>
+<td>compaction.target.output.file.size</td>
+<td>camus.sweeper.target.file.size</td>
+<td align="center">268435456</td>
+</tr>
+<tr>
+<td>compaction.mapred.min.split.size</td>
+<td>mapred.min.split.size</td>
+<td align="center">268435456</td>
+</tr>
+<tr>
+<td>compaction.mapred.max.split.size</td>
+<td>mapred.max.split.size</td>
+<td align="center">268435456</td>
+</tr>
+<tr>
+<td>compaction.mr.job.timeout.minutes</td>
+<td>none</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Remarks:</p>
+<ul>
+<li>The following properties support regex: compaction.whitelist, compaction.blacklist, compaction.high.priority.topics, compaction.normal.priority.topics</li>
+<li>compaction.input.dir is the parent folder of input topics, e.g., /data/kafka_topics, which contains topic folders such as /data/kafka_topics/Topic1, /data/kafka_topics/Topic2, etc. Note that Camus uses camus.sweeper.source.dir both as the input folder of Camus sweeper (i.e., compaction), and as the output folder for ingesting Kafka topics. In Gobblin, one should use data.publisher.final.dir as the output folder for ingesting Kafka topics.</li>
+<li>compaction.output.dir is the parent folder of output topics, e.g., /data/compacted_kafka_topics.</li>
+<li>compaction.input.subdir is the subdir name of output topics, if exists. For example, if the input topics are partitioned by hour, e.g., /data/kafka_topics/Topic1/hourly/2015/10/06/20, then compaction.input.subdir should be 'hourly'.</li>
+<li>compaction.output.subdir is the subdir name of output topics, if exists. For example, if you want to publish compacted data into day-partitioned folders, e.g., /data/compacted_kafka_topics/Topic1/daily/2015/10/06, then compaction.output.subdir should be 'daily'.</li>
+<li>There are 3 priority levels: high, normal, low. Topics not included in compaction.high.priority.topics or compaction.normal.priority.topics are considered low priority.</li>
+<li>compaction.input.deduplicated and compaction.output.deduplicated controls the behavior of the compaction regarding deduplication. Please see the <a href="../user-guide/Compaction">Compaction</a> page for more details.</li>
+<li>compaction.timebased.max.time.ago and compaction.timebased.min.time.ago controls the earliest and latest input folders to process, when using <code>MRCompactorTimeBasedJobPropCreator</code>. The format is ?m?d?h, e.g., 3m or 2d10h (m = month, not minute). For example, suppose <code>compaction.timebased.max.time.ago=3d</code>, <code>compaction.timebased.min.time.ago=1d</code> and the current time is 10/07 9am. Folders whose timestamps are before 10/04 9am, or folders whose timestamps are after 10/06 9am will not be processed.</li>
+<li>compaction.timebased.folder.pattern: time pattern in the folder path, when using <code>MRCompactorTimeBasedJobPropCreator</code>. This should come after <code>compaction.input.subdir</code>, e.g., if the input folder to a compaction job is <code>/data/compacted_kafka_topics/Topic1/daily/2015/10/06</code>, this property should be <code>YYYY/mm/dd</code>.</li>
+<li>compaction.thread.pool.size: how many compaction MR jobs to run concurrently.</li>
+<li>compaction.max.num.reducers: max number of reducers for each compaction job</li>
+<li>compaction.target.output.file.size: This also controls the number of reducers. The number of reducers will be the smaller of <code>compaction.max.num.reducers</code> and <code>&lt;input data size&gt; / compaction.target.output.file.size</code>.</li>
+<li>compaction.mapred.min.split.size and compaction.mapred.max.split.size are used to control the number of mappers.</li>
+</ul>
+<h2 id="deployment-and-checkpoint-management">Deployment and Checkpoint Management</h2>
+<p>For deploying Gobblin in standalone or MapReduce mode, please see the <a href="../user-guide/Gobblin-Deployment">Deployment</a> page.</p>
+<p>Gobblin and Camus checkpoint management are similar in the sense that they both create checkpoint files in each run, and the next run will load the checkpoint files created by the previous run and start from there. Their difference is that Gobblin creates a single checkpoint file per job run or per dataset per job run, and provides two job commit policies: <code>full</code> and <code>partial</code>. In <code>full</code> mode, data are only commited for the job/dataset if all workunits of the job/dataset succeeded. Otherwise, the checkpoint of all workunits/datasets will be rolled back. Camus writes one checkpoint file per mapper, and only supports the <code>partial</code> mode. For Gobblin's state management, please refer to the <a href="../user-guide/State-Management-and-Watermarks">Wiki page</a> for more information.</p>
+<h2 id="migrating-from-camus-to-gobblin-in-production">Migrating from Camus to Gobblin in Production</h2>
+<p>If you are currently running in production, you can use the following steps to migrate to Gobblin:</p>
+<ol>
+<li>Deploy Gobblin based on the instructions in <a href="../user-guide/Gobblin-Deployment">Deployment</a> and <a href="../case-studies/Kafka-HDFS-Ingestion">Kafka-HDFS Ingestion</a>, and set the properties mentioned in this page as well as other relevant properties in <a href="../user-guide/Configuration-Properties-Glossary">Configuration Glossary</a> to the appropriate values.</li>
+<li>Whitelist the topics in Gobblin ingestion, and schedule Gobblin to run at your desired frequency.</li>
+<li>Once Gobblin starts running, blacklist these topics in Camus.</li>
+<li>If compaction is applicable to you, set up the compaction jobs based on instructions in <a href="../case-studies/Kafka-HDFS-Ingestion">Kafka-HDFS Ingestion</a> and <a href="../user-guide/Compaction">Compaction</a>. Whitelist the topics you want to migrate in Gobblin and blacklist them in Camus.</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Exactly-Once-Support/" class="btn btn-neutral float-right" title="Exactly Once Support">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../project/Posts/" class="btn btn-neutral" title="Posts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../project/Posts/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Exactly-Once-Support/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

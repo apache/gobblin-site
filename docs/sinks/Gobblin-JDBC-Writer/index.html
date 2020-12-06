@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>JDBC - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "JDBC";
+    var mkdocs_page_input_path = "sinks/Gobblin-JDBC-Writer.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Http/">HTTP</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">JDBC</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#gobblin-jdbc-writer-publisher">Gobblin JDBC writer &amp; publisher</a></li>
+    
+
+    <li class="toctree-l3"><a href="#proposed-design">Proposed design</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#requirements">Requirements</a></li>
+        
+            <li><a class="toctree-l4" href="#design-summary">Design summary</a></li>
+        
+            <li><a class="toctree-l4" href="#design-detail">Design detail</a></li>
+        
+            <li><a class="toctree-l4" href="#concrete-implementations">Concrete implementations</a></li>
+        
+            <li><a class="toctree-l4" href="#performance-and-scalability">Performance and Scalability</a></li>
+        
+            <li><a class="toctree-l4" href="#important-note">Important note</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Sinks (Writers) &raquo;</li>
+        
+      
+    
+    <li>JDBC</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/Gobblin-JDBC-Writer.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#gobblin-jdbc-writer-publisher">Gobblin JDBC writer &amp; publisher</a></li>
+<li><a href="#proposed-design">Proposed design</a><ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#design-summary">Design summary</a></li>
+<li><a href="#design-detail">Design detail</a><ul>
+<li><a href="#writerinitializer">WriterInitializer</a></li>
+<li><a href="#jdbcwriterinitializer">JdbcWriterInitializer</a></li>
+<li><a href="#avrofieldspickconverter">AvroFieldsPickConverter</a></li>
+<li><a href="#avrotojdbcentryconverter">AvroToJdbcEntryConverter</a></li>
+<li><a href="#jdbcwriter">JdbcWriter</a></li>
+<li><a href="#skipping-staging-table">Skipping staging table</a></li>
+<li><a href="#jdbc-publisher">JDBC Publisher</a></li>
+</ul>
+</li>
+<li><a href="#concrete-implementations">Concrete implementations</a><ul>
+<li><a href="#mysql-writer">MySQL Writer</a></li>
+<li><a href="#teradata-writer">Teradata Writer</a></li>
+</ul>
+</li>
+<li><a href="#performance-and-scalability">Performance and Scalability</a></li>
+<li><a href="#important-note">Important note</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="gobblin-jdbc-writer-publisher">Gobblin JDBC writer &amp; publisher</h2>
+<p>Gobblin is a general data ingestion framework that can extract, convert, and publish data. Currently publishing into JDBC compatible RDBMS is not in Gobblin and here we are introducing JDBC writer (and publisher) so that Gobblin can easily write into JDBC compatible RDBMS by using new JDBC writer at the same time reusing existing extraction, and conversion.</p>
+<h2 id="proposed-design">Proposed design</h2>
+<h3 id="requirements">Requirements</h3>
+<ol>
+<li>User can choose to replace the destination table.</li>
+<li>User can pass the staging table, for the case user does not have permission to create table. If user chose to use their own staging table, user can also choose to truncate the staging table.</li>
+<li>User should be able to skip staging table for performance reason.</li>
+<li>User can choose level of parallelism.</li>
+<li>For Avro → JDBC use case, user should be able to cherry pick the fields to be copied.</li>
+</ol>
+<h3 id="design-summary">Design summary</h3>
+<ul>
+<li>New JdbcWriter, JdbcPublisher will be introduced, along with AvroFieldsPickConverter and AvroToJdbcEntry.</li>
+<li>Figure 1 shows Gobblin general flow and figure 2 shows the specific flow; Avro → RDBMS through JDBC.</li>
+<li>JdbcWriter will use staging table mainly for failure handling. Since Gobblin breaks down the job into multiple task and process it in parallel, each writer will hold transaction and there will be more than one transaction against the database. If there’s no staging table and writer writes directly to destination table, partial failure among the writers may result partial data push into destination table. Having partial data is mostly bad for consumption and could also result subsequent failure of next data load due to data inconsistency. Also, having partial data also makes it hard to retry on failure. Thus, Gobblin will use staging table so that writer writes into staging table and publisher can copy data from staging table into destination table in one single transaction. Having one transaction from the publisher level enables Gobblin to revert back to original on failure and make it able to be retried from previous state.</li>
+<li>For performance reason, and from the requirement, user may skip staging. This comes with the cost of giving up failure handling and for this case Gobblin does not guarantee recovery from failure.
+Will introduce WriterInitializer for the case that writer needs an initialization but needs to be done before going on parallel processing. (more on below)</li>
+</ul>
+<p align="center">
+    <img src=../../img/Gobblin-Constructs.png>
+</p>
+
+<p style="text-align: center;"> - figure 1. Gobblin general flow - </p>
+
+<p align="center">
+    <img src=../../img/jdbc/HDFS_JDBC_Flow.png>
+</p>
+
+<p style="text-align: center;"> - figure 2. Gobblin Avro → RDBMS through JDBC specific flow - </p>
+
+<ul>
+<li>AvroFieldsPickConverter will cherry pick the columns that user wants.</li>
+<li>AvroToJdbcEntryConverter will convert Avro to JDBC entry.</li>
+<li>JdbcWriter will write JdbcEntry to staging table. (user can skip staging which is addressed below in JDBC Writer/Publisher section).</li>
+<li>JdbcPublisher will write into destination table.</li>
+</ul>
+<h3 id="design-detail">Design detail</h3>
+<h4 id="writerinitializer">WriterInitializer</h4>
+<p>Note that this is a new interface where its responsibility is to initialize writer, which means it’s tied to writer’s implementation, and clean what it initialized.</p>
+<p>Reasons of introducing writer initializer:</p>
+<ul>
+<li>
+<p>The main reason for this initializer is to perform initialization but not in parallel environment. As writer subjects to run in parallel, certain task that needs to be done only once across all writers is hard to be done. For example, if user chose to skip staging table and also chose to replace destination table, the initialization task would be truncating destination table which needs to be done only once before all writers start writing. This is simply hard to be done in parallel environment and better to avoid trying it for simplicity.</p>
+</li>
+<li>
+<p>Another reason for writer initializer is to simplify the cleanup process. As writer initializer initializes things, it also knows what to clean up. Instead of having other code to figure out what to clean up on which branch and condition all over again, closing writer initializer at the end of the job will just simply clean it up.(This pattern is widely used in JDK(e.g: Stream), where many classes implements interface Closeable). This clean up can be done in writer, but writer is currently being closed in task level, where there’s a case that rest of the flow still needs it. (e.g: staging table should not be cleaned until publish is completed.)</p>
+</li>
+<li>
+<p>Currently, Gobblin has a logic to clean up the the staging data in JobLauncherUtils which is specific to FsDataWriter, where AbstractJobLauncher has the logic to figure out what kind of clean up method of JobLauncherUtils needs to be called. Ideally, we will hide this implementation of clean up behind the interface of WriterInitializer.</p>
+</li>
+<li>
+<p>Figure 3 shows interface of WriterInitializer. WriterInitializer will be extensible in Gobblin via factory method pattern where any writer can plugin their initialization code if needed.</p>
+</li>
+</ul>
+<p align="center">
+    <img src=../../img/jdbc/WriterInitializer.png>
+</p>
+
+<p style="text-align: center;"> - figure 3. Class diagram for WriterInitializer interface - </p>
+
+<h4 id="jdbcwriterinitializer">JdbcWriterInitializer</h4>
+<ul>
+<li>JdbcWriterInitializer will be the first class implements WriterInitializer interface. This will be instantiated by AbstractJobLauncher after Source creates WorkUnit and always get closed by AbstractJobLauncher when job is finished regardless fail or success.</li>
+<li>By default, JdbcWriterInitializer will create staging tables based on the structure of the target table. Therefore it's necessary to create the target table first. 
+  Staging tables are created per Workunit, in which there can be more than one staging table. Having multiple staging table will make parallelism easier for publisher when moving data from staging table to destination. Any table created by JdbcWriterInitializer will be remembered and later will be dropped when it’s being closed.</li>
+<li>Staging will be placed in same destination host, same database, some temporary table name, with same structure. The main purpose of staging table for handling failure. Without staging table, it is hard to recover from failure, because writers writes into table in multiple transactions. Additionally, staging table also brings data integrity check before publishing into destination.</li>
+<li>Before creating the staging table, JdbcWriterInitializer will validate if user has drop table privilege to make sure it can drop it later on.</li>
+<li>User can choose to use their own staging table. This is to support the use case when user does not have privilege to create table. When user chooses to use their own staging table, JdbcWriterInitializer will truncate the table later when it’s being closed.</li>
+<li>Staging table initially should be always empty. User who chose to use user’s own staging table can also choose to truncate staging table. If staging table is not empty and user does not choose to truncate table, JdbcWriterInitializer will make the job fail.</li>
+<li>If user chose to skip staging table and replace the output, JdbcWriterInitializer will truncate destination table. This is because destination table needs to be emptied prior going into parallel processing as more than one writer will start writing simultaneously.</li>
+<li>Figure 4 shows overall flow of JdbcWriterInitializer.</li>
+</ul>
+<p align="center">
+    <img src=../../img/jdbc/JdbcWriterInitializer.png>
+</p>
+
+<p style="text-align: center;"> - figure 4. JdbcWriterInitializer flow - </p>
+
+<h4 id="avrofieldspickconverter">AvroFieldsPickConverter</h4>
+<ul>
+<li>User can define which fields to be copied. Given input from the user, it will narrow down the number of columns by updating schema and data.</li>
+</ul>
+<h4 id="avrotojdbcentryconverter">AvroToJdbcEntryConverter</h4>
+<ul>
+<li>Will convert avro schema and data into JdbcEntrySchema and JdbcEntryData. JdbcEntrySchema consists of pairs of column name and JDBCTypes, and JdbcEntry consists of pairs of column names and object where object can be directly used against PreparedStatement.setObject().</li>
+<li>Although Avro schema can be a recursive structure by having record in the record, RDBMS table structure is not a recursive data structure. Thus, AvroToJdbcEntryConverter does not accept Avro schema that has record type inside record type.</li>
+<li>Both JdbcEntrySchema and JdbcEntry will be case sensitive because Avro field name is case sensitive, and many widely used RDBMS are case sensitive on column name as well.</li>
+<li>In case there’s a mismatch on column names, AvroToJdbcEntryConverter will take column name mapping between Avro field name and Jdbc column name.</li>
+</ul>
+<h4 id="jdbcwriter">JdbcWriter</h4>
+<ul>
+<li>Uses JDBC to persist data into staging table in task level.</li>
+<li>By default it will persist into staging area (and will be put into final destination by publisher).</li>
+<li>Staging table is already ready by WriterInitializer.</li>
+<li>Input column names should exactly match Jdbc column names. User can convert the name using AvroToJdbcEntryConverter.</li>
+<li>Schema evolution: The number of input columns is expected to be equal or smaller than the number of columns in Jdbc. This is to prevent unintended outcome from schema evolution such as additional column. As underlying Jdbc RDBMS can declare constraints on its schema, writer will allow if number of columns in Jdbc is greater than number of input columns.<ul>
+<li>number of input columns &lt;= number of columns in Jdbc</li>
+</ul>
+</li>
+<li>Each writer will open one transaction. Having one transaction per writer has its tradeoffs:<ul>
+<li>Pro: Simple on failure handling as you can just simply execute rollback on failure. Basically, it will revert back to previous state so that the job can retry the task.</li>
+<li>Con: It can lead up to long lived transaction and it can face scalability issue. (Not enough disk space for transaction log, number of record limit on one transaction (2.1B for Postgre sql), etc)</li>
+<li>JdbcWriter will go with one transaction per writer for it’s simplicity on failure handling. Scalability issue with long transaction can be overcome by increasing partition which makes transaction short.</li>
+<li>During the design meeting, we’ve discussed that long transaction could be a problem. One suggestion came out during the meeting was commit periodically. This will address long transaction problem, but we also discussed it would be hard on failure handling. Currently, Gobblin does task level retry on failure and there were three options we’ve discussed. (There was no silver bullet solution from the meeting.) Note that these are all with committing periodically.<ul>
+<li>Revert to previous state: For writer, this will be delete the record it wrote. For JdbcWriter, it could use it’s own staging table or could share staging table with other writer. As staging table can be passed by user where we don’t have control of, not able to add partition information, it is hard to revert back to previous state for all cases.</li>
+<li>Ignore duplicate: The idea is to use Upsert to perform insert or update. As it needs to check the current existence in the dataset, it is expected to show performance degradation. Also, possibility of duplicate entry was also discussed.</li>
+<li>Water mark: In order to use water mark in task level, writer needs to send same order when retried which is not guaranteed.</li>
+<li>Data with over 200M record was tested with single transaction and it had no problem in MySQL 5.6.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Operation:<ul>
+<li>Write operation will write into staging table. (If user chose to skip staging table, write operation will write into destination table directly.)</li>
+<li>Commit operation will commit the transaction.</li>
+<li>Close operation will close database connection. If there was a failure, it will execute rollback before closing connection.</li>
+</ul>
+</li>
+</ul>
+<h4 id="skipping-staging-table">Skipping staging table</h4>
+<ul>
+<li>From the requirement, user can choose to skip staging for performance reason. In this case, writer will directly persist into final destination. Without staging table, it is hard to recover from failure as mentioned above and <strong>for this reason, if user does not want staging, the framework does not guarantee any recovery from the failure.</strong></li>
+<li>If user configures "job.commit.policy=partial" and "publish.at.job.level=false", this means it won't be published in job level and it allows partial success commit. This will make Gobblin to skip staging table as it aligns with the behavior of skipping staging. The reason to reuse these two parameters instead of introducing new parameter is to avoid parameters contradicting each other.</li>
+<li>Figure 4 shows overall flow of JDBC writer.</li>
+</ul>
+<p align="center">
+    <img src=../../img/jdbc/Gobblin_JDBC_Writer.png>
+</p>
+
+<p style="text-align: center;"> - figure 5. JDBC Writer flow - </p>
+
+<h4 id="jdbc-publisher">JDBC Publisher</h4>
+<ul>
+<li>Uses JDBC to publish final result into output.</li>
+<li>If user chose to not to use staging table, for performance reason, JDBC publisher won't do anything as the output is already updated by the writer(s). More precisely, the parameter makes Gobblin skip staging table, will make publisher to be skipped. </li>
+<li>JDBC publisher will copy data from staging table via SQL command that underlying database provides. (Renaming staging table is not viable mainly because 1. it's hard to copy exact structure as original one (constraints, index, sequence, foreign keys, etc). 2. couple of underlying database system, rename requires no active connection to the table.)</li>
+<li>A publisher will open one transaction. Being processed in single transaction, any failure can be reverted by rolling back transaction.
+Operation:<ul>
+<li>PublishData operation opens single transaction and writes into destination table from staging table. If there is any error, transaction will be rolled back. Once completed successfully, transaction will be committed. </li>
+<li>Parallelism: Currently parallelism in publisher level is not supported. For example the MySQL Writer fails on deleting all from table before inserting new data using global transaction with multiple connections.</li>
+<li>PublishMeta won’t do anything.</li>
+</ul>
+</li>
+<li>Figure 6 shows overall flow of JDBC publisher.</li>
+</ul>
+<p align="center">
+    <img src=../../img/jdbc/Gobblin_JDBC_Publisher.png>
+</p>
+
+<p style="text-align: center;"> - figure 6. Gobblin_JDBC_Publisher - </p>
+
+<h3 id="concrete-implementations">Concrete implementations</h3>
+<p>To configure a concrete writer, please refer the <a href="Configuration-Properties-Glossary#JdbcWriter-Properties">JDBC Writer Properties</a> section in the <a href="Configuration-Properties-Glossary">Configuration Glossary</a>.</p>
+<h4 id="mysql-writer">MySQL Writer</h4>
+<p>The MySQL writer uses <a href="http://dev.mysql.com/doc/refman/5.0/en/insert-speed.html">buffered inserts</a> to increase performance.<br />
+The sink configuration for MySQL in a Gobblin job is as follows:</p>
+<pre><code>writer.destination.type=MYSQL
+writer.builder.class=org.apache.gobblin.writer.JdbcWriterBuilder
+
+data.publisher.type=org.apache.gobblin.publisher.JdbcPublisher
+jdbc.publisher.url=jdbc:mysql://host:3306
+jdbc.publisher.driver=com.mysql.jdbc.Driver
+
+converter.classes=org.apache.gobblin.converter.jdbc.AvroToJdbcEntryConverter
+# If field name mapping is needed between the input Avro and the target table:
+converter.avro.jdbc.entry_fields_pairs={\&quot;src_fn\&quot;:\&quot;firstname\&quot;,\&quot;src_ln\&quot;:\&quot;lastname\&quot;}
+</code></pre>
+
+<h4 id="teradata-writer">Teradata Writer</h4>
+<p>Similarly to the MySQL Writer, this writer also inserts data in batches, configured by  <code>writer.jdbc.batch_size</code>.
+Ideally, for performance reasons the target table is advised to be set to type MULTISET, without a primary index.<br />
+Please note, that the Teradata JDBC drivers are <em>not</em> part of Gobblin, one needs to obtain them from 
+<a href="http://downloads.teradata.com/download/connectivity/jdbc-driver">Teradata</a> and pass them as job specific jars to the 
+Gobblin submitter scripts. Teradata may use the FASTLOAD option during the insert if conditions are met.<br />
+The sink configuration for Teradata in a Gobblin job is as follows:</p>
+<pre><code>writer.destination.type=TERADATA
+writer.builder.class=org.apache.gobblin.writer.JdbcWriterBuilder
+
+data.publisher.type=org.apache.gobblin.publisher.JdbcPublisher
+jdbc.publisher.url=jdbc:teradata://host/TMODE=ANSI,CHARSET=UTF16,TYPE=FASTLOAD
+jdbc.publisher.driver=com.teradata.jdbc.TeraDriver
+
+converter.classes=org.apache.gobblin.converter.jdbc.AvroToJdbcEntryConverter
+# If field name mapping is needed between the input Avro and the target table:
+converter.avro.jdbc.entry_fields_pairs={\&quot;src_fn\&quot;:\&quot;firstname\&quot;,\&quot;src_ln\&quot;:\&quot;lastname\&quot;}
+</code></pre>
+
+<h3 id="performance-and-scalability">Performance and Scalability</h3>
+<p>As Gobblin can dial up parallelism, the bottleneck of performance will be the underlying RDBMS. Thus, performance and scalability will be mainly up to underlying RDBMS.</p>
+<p>Benchmark:<br />
+MySQL Writer performance test on 80k records. Each entry consists of 14 fields with sparse density. </p>
+<p>Few observations:<br />
+- Starting from batch insert size 1,000, the performance gain diminishes.<br />
+- The parallelism does not show much of gain. This is mostly because of the overhead of parallelism. Parallelism is expected to show more performance gain on bigger record sets.  </p>
+<table>
+<thead>
+<tr>
+<th>Batch insert size</th>
+<th>Parallelism</th>
+<th>Elapsed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>1</td>
+<td>17 minutes</td>
+</tr>
+<tr>
+<td>30</td>
+<td>1</td>
+<td>5 minutes 30 seconds</td>
+</tr>
+<tr>
+<td>100</td>
+<td>1</td>
+<td>2 minutes 17 seconds</td>
+</tr>
+<tr>
+<td>1,000</td>
+<td>1</td>
+<td>40 seconds</td>
+</tr>
+<tr>
+<td>10,000</td>
+<td>1</td>
+<td>43 seconds</td>
+</tr>
+<tr>
+<td>1,000</td>
+<td>2</td>
+<td>42 seconds</td>
+</tr>
+<tr>
+<td>1,000</td>
+<td>4</td>
+<td>44 seconds</td>
+</tr>
+<tr>
+<td>1,000</td>
+<td>8</td>
+<td>57 seconds</td>
+</tr>
+</tbody>
+</table>
+<p>All tests used:</p>
+<ul>
+<li>Hadoop 2.3 in Pseudo-distributed mode on CPU: 12 cores @1.2GHz, Memory: 64GBytes</li>
+<li>MySQL server 5.6.21 with InnoDB storage engine, and compression on. Server runs on Dual CPU Intel Xeon 6 cores @2.5GHz, Memory: 48 GBytes, and HDD: 2.4TB (10K RPM)</li>
+</ul>
+<h3 id="important-note">Important note</h3>
+<ul>
+<li>As Gobblin framework comes with parallel processing via Hadoop, it can easily overburden the underlying RDBMS. User needs to choose parallelism level conservativley.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Kafka/" class="btn btn-neutral float-right" title="Kafka">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Http/" class="btn btn-neutral" title="HTTP"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Http/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Kafka/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

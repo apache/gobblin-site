@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Deployment - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Deployment";
+    var mkdocs_page_input_path = "user-guide/Gobblin-Deployment.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Deployment</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#gobblin-execution-modes-overview">Gobblin Execution Modes Overview </a></li>
+    
+
+    <li class="toctree-l3"><a href="#standalone-architecture">Standalone Architecture </a></li>
+    
+
+    <li class="toctree-l3"><a href="#mapreduce-architecture">MapReduce architecture </a></li>
+    
+
+    <li class="toctree-l3"><a href="#master-worker-architecture">Master-Worker architecture</a></li>
+    
+
+    <li class="toctree-l3"><a href="#aws-architecture">AWS architecture</a></li>
+    
+
+    <li class="toctree-l3"><a href="#yarn-architecture">YARN architecture</a></li>
+    
+
+    <li class="toctree-l3"><a href="#gobblin-as-a-service-architecture">Gobblin-As-A-Service  architecture</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sinks/AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>User Guide &raquo;</li>
+        
+      
+    
+    <li>Deployment</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Gobblin-Deployment.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#gobblin-execution-modes-overview">Gobblin Execution Modes Overview <a name="gobblin-execution-modes-Overview"></a></a></li>
+<li><a href="#standalone-architecture">Standalone Architecture <a name="Standalone-Architecture"></a></a></li>
+<li><a href="#mapreduce-architecture">MapReduce architecture <a name="MapReduce-Architecture"></a></a></li>
+<li><a href="#master-worker-architecture">Master-Worker architecture</a></li>
+<li><a href="#aws-architecture">AWS architecture</a></li>
+<li><a href="#yarn-architecture">YARN architecture</a></li>
+<li><a href="#gobblin-as-a-service-architecture">Gobblin-As-A-Service  architecture</a></li>
+</ul>
+</div>
+<h2 id="gobblin-execution-modes-overview">Gobblin Execution Modes Overview <a name="gobblin-execution-modes-Overview"></a></h2>
+<p>One important feature of Gobblin is that it can be run on different platforms. Currently, Gobblin can run in standalone mode (which runs on a single machine), and on Hadoop MapReduce mode (which runs on a Hadoop cluster). This page summarizes the different deployment modes of Gobblin. It is important to understand the architecture of Gobblin in a specific deployment mode, so this page also describes the architecture of each deployment mode.  </p>
+<p>Gobblin supports Java 7 and up, but can only run on Hadoop 2.x. By default, Gobblin will build against Hadoop 2.x, run <code>./gradlew clean build</code>. More information on how to build Gobblin can be found <a href="https://github.com/apache/incubator-gobblin/blob/master/README.md">here</a>. All directories/paths referred below are relative to <code>gobblin-dist</code>.</p>
+<p>To run gobblin in any of the following executuon mode using <code>gobblin.sh</code>, refer <a href="/gobblin-docs/user-guide/Gobblin-CLI.md">Gobblin-CLI</a> for the usage.</p>
+<h2 id="standalone-architecture">Standalone Architecture <a name="Standalone-Architecture"></a></h2>
+<p>The following diagram illustrates the Gobblin standalone architecture. In the standalone mode, a Gobblin instance runs in a single JVM and tasks run in a thread pool, the size of which is configurable. The standalone mode is good for light-weight data sources such as small databases. The standalone mode is also the default mode for trying and testing Gobblin. </p>
+<p align="center"><img src=../../img/Gobblin-on-Single-Node.png alt="Gobblin on Single Node" width="700"></p>
+
+<p>In the standalone deployment, the <code>JobScheduler</code> runs as a daemon process that schedules and runs jobs using the so-called <code>JobLauncher</code>s. The <code>JobScheduler</code> maintains a thread pool in which a new <code>JobLauncher</code> is started for each job run. Gobblin ships with two types of <code>JobLauncher</code>s, namely, the <code>LocalJobLauncher</code> and <code>MRJobLauncher</code> for launching and running Gobblin jobs on a single machine and on Hadoop MapReduce, respectively. Which <code>JobLauncher</code> to use can be configured on a per-job basis, which means the <code>JobScheduler</code> can schedule and run jobs in different deployment modes. This section will focus on the <code>LocalJobLauncher</code> for launching and running Gobblin jobs on a single machine. The <code>MRJobLauncher</code> will be covered in a later section on the architecture of Gobblin on Hadoop MapReduce.  </p>
+<p>Each <code>LocalJobLauncher</code> starts and manages a few components for executing tasks of a Gobblin job. Specifically, a <code>TaskExecutor</code> is responsible for executing tasks in a thread pool, whose size is configurable on a per-job basis. A <code>LocalTaskStateTracker</code> is responsible for keep tracking of the state of running tasks, and particularly updating the task metrics. The <code>LocalJobLauncher</code> follows the steps below to launch and run a Gobblin job:    </p>
+<ol>
+<li>Starting the <code>TaskExecutor</code> and <code>LocalTaskStateTracker</code>.</li>
+<li>Creating an instance of the <code>Source</code> class specified in the job configuration and getting the list of <code>WorkUnit</code>s to do.</li>
+<li>Creating a task for each <code>WorkUnit</code> in the list, registering the task with the <code>LocalTaskStateTracker</code>, and submitting the task to the <code>TaskExecutor</code> to run.</li>
+<li>Waiting for all the submitted tasks to finish.</li>
+<li>Upon completion of all the submitted tasks, collecting tasks states and persisting them to the state store, and publishing the extracted data.  </li>
+</ol>
+<h2 id="mapreduce-architecture">MapReduce architecture <a name="MapReduce-Architecture"></a></h2>
+<p>The digram below shows the architecture of Gobblin on Hadoop MapReduce. As the diagram shows, a Gobblin job runs as a mapper-only MapReduce job that runs tasks of the Gobblin job in the mappers. The basic idea here is to use the mappers purely as <em>containers</em> to run Gobblin tasks. This design also makes it easier to integrate with Yarn. Unlike in the standalone mode, task retries are not handled by Gobblin itself in the Hadoop MapReduce mode. Instead, Gobblin relies on the task retry mechanism of Hadoop MapReduce.  </p>
+<p align="center"><img src=../../img/Gobblin-on-Hadoop-MR.png alt="Gobblin on Hadoop MR" width="700"></p>
+
+<p>In this mode, a <code>MRJobLauncher</code> is used to launch and run a Gobblin job on Hadoop MapReduce, following the steps below:</p>
+<ol>
+<li>Creating an instance of the <code>Source</code> class specified in the job configuration and getting the list of <code>WorkUnit</code>s to do.</li>
+<li>Serializing each <code>WorkUnit</code> into a file on HDFS that will be read later by a mapper.</li>
+<li>Creating a file that lists the paths of the files storing serialized <code>WorkUnit</code>s.</li>
+<li>Creating and configuring a mapper-only Hadoop MapReduce job that takes the file created in step 3 as input.</li>
+<li>Starting the MapReduce job to run on the cluster of choice and waiting for it to finish.</li>
+<li>Upon completion of the MapReduce job, collecting tasks states and persisting them to the state store, and publishing the extracted data. </li>
+</ol>
+<p>A mapper in a Gobblin MapReduce job runs one or more tasks, depending on the number of <code>WorkUnit</code>s to do and the (optional) maximum number of mappers specified in the job configuration. If there is no maximum number of mappers specified in the job configuration, each <code>WorkUnit</code> corresponds to one task that is executed by one mapper and each mapper only runs one task. Otherwise, if a maximum number of mappers is specified and there are more <code>WorkUnit</code>s than the maximum number of mappers allowed, each mapper may handle more than one <code>WorkUnit</code>. There is also a special type of <code>WorkUnit</code>s named <code>MultiWorkUnit</code> that group multiple <code>WorkUnit</code>s to be executed together in one batch in a single mapper.</p>
+<p>A mapper in a Gobblin MapReduce job follows the step below to run tasks assigned to it:</p>
+<ol>
+<li>Starting the <code>TaskExecutor</code> that is responsible for executing tasks in a configurable-size thread pool and the <code>MRTaskStateTracker</code> that is responsible for keep tracking of the state of running tasks in the mapper. </li>
+<li>Reading the next input record that is the path to the file storing a serialized <code>WorkUnit</code>.</li>
+<li>Deserializing the <code>WorkUnit</code> and adding it to the list of <code>WorkUnit</code>s to do. If the input is a <code>MultiWorkUnit</code>, the <code>WorkUnit</code>s it wraps are all added to the list. Steps 2 and 3 are repeated until all assigned <code>WorkUnit</code>s are deserialized and added to the list.</li>
+<li>For each <code>WorkUnit</code> on the list of <code>WorkUnit</code>s to do, creating a task for the <code>WorkUnit</code>, registering the task with the <code>MRTaskStateTracker</code>, and submitting the task to the <code>TaskExecutor</code> to run. Note that the tasks may run in parallel if the <code>TaskExecutor</code> is <a href="Configuration-Properties-Glossary#taskexecutorthreadpoolsize">configured</a> to have more than one thread in its thread pool.</li>
+<li>Waiting for all the submitted tasks to finish.</li>
+<li>Upon completion of all the submitted tasks, writing out the state of each task into a file that will be read by the <code>MRJobLauncher</code> when collecting task states.</li>
+<li>Going back to step 2 and reading the next input record if available.</li>
+</ol>
+<h2 id="master-worker-architecture">Master-Worker architecture</h2>
+<h2 id="aws-architecture">AWS architecture</h2>
+<h2 id="yarn-architecture">YARN architecture</h2>
+<h2 id="gobblin-as-a-service-architecture">Gobblin-As-A-Service  architecture</h2>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Gobblin-as-a-Library/" class="btn btn-neutral float-right" title="Gobblin as a Library">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Working-with-Job-Configuration-Files/" class="btn btn-neutral" title="Job Configuration Files"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Working-with-Job-Configuration-Files/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Gobblin-as-a-Library/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

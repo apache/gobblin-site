@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Architecture - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Architecture";
+    var mkdocs_page_input_path = "Gobblin-Architecture.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Architecture</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l2"><a href="#gobblin-architecture-overview">Gobblin Architecture Overview</a></li>
+    
+
+    <li class="toctree-l2"><a href="#gobblin-job-flow">Gobblin Job Flow</a></li>
+    
+
+    <li class="toctree-l2"><a href="#gobblin-constructs">Gobblin Constructs</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#source-and-extractor">Source and Extractor</a></li>
+        
+            <li><a class="toctree-l3" href="#converter">Converter</a></li>
+        
+            <li><a class="toctree-l3" href="#quality-checker">Quality Checker</a></li>
+        
+            <li><a class="toctree-l3" href="#fork-operator">Fork Operator</a></li>
+        
+            <li><a class="toctree-l3" href="#data-writer">Data Writer</a></li>
+        
+            <li><a class="toctree-l3" href="#data-publisher">Data Publisher</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#gobblin-task-flow">Gobblin Task Flow</a></li>
+    
+
+    <li class="toctree-l2"><a href="#job-state-management">Job State Management</a></li>
+    
+
+    <li class="toctree-l2"><a href="#handling-of-failures">Handling of Failures</a></li>
+    
+
+    <li class="toctree-l2"><a href="#job-scheduling">Job Scheduling</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../user-guide/Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Source-schema-and-Converters/">Source schema and Converters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../user-guide/FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../sinks/AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sinks/ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sinks/SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sinks/ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sinks/CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sinks/Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sinks/Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sinks/Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Architecture</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/Gobblin-Architecture.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#gobblin-architecture-overview">Gobblin Architecture Overview</a></li>
+<li><a href="#gobblin-job-flow">Gobblin Job Flow</a></li>
+<li><a href="#gobblin-constructs">Gobblin Constructs</a><ul>
+<li><a href="#source-and-extractor">Source and Extractor</a></li>
+<li><a href="#converter">Converter</a></li>
+<li><a href="#quality-checker">Quality Checker</a></li>
+<li><a href="#fork-operator">Fork Operator</a></li>
+<li><a href="#data-writer">Data Writer</a></li>
+<li><a href="#data-publisher">Data Publisher</a></li>
+</ul>
+</li>
+<li><a href="#gobblin-task-flow">Gobblin Task Flow</a></li>
+<li><a href="#job-state-management">Job State Management</a></li>
+<li><a href="#handling-of-failures">Handling of Failures</a></li>
+<li><a href="#job-scheduling">Job Scheduling</a></li>
+</ul>
+</div>
+<h2 id="gobblin-architecture-overview">Gobblin Architecture Overview</h2>
+<p>Gobblin is built around the idea of extensibility, i.e., it should be easy for users to add new adapters or extend existing adapters to work with new sources and start extracting data from the new sources in any deployment settings. The architecture of Gobblin reflects this idea, as shown in Fig. 1 below:</p>
+<p align="center">
+  <figure>    
+    <img src=../img/Gobblin-Architecture-Overview.png alt="Gobblin Architecture Overview" width="600">
+    <figcaption><br>Figure 1: Gobblin Architecture Overview<br></figcaption>
+  </figure>
+</p>
+
+<p>A Gobblin job is built on a set of constructs (illustrated by the light green boxes in the diagram above) that work together in a certain way and get the data extraction work done. All the constructs are pluggable through the job configuration and extensible by adding new or extending existing implementations. The constructs will be discussed in <a href="Gobblin-Architecture#gobblin-constructs">Gobblin Constructs</a>.</p>
+<p>A Gobblin job consists of a set of tasks, each of which corresponds to a unit of work to be done and is responsible for extracting a portion of the data. The tasks of a Gobblin job are executed by the Gobblin runtime (illustrated by the orange boxes in the diagram above) on the deployment setting of choice (illustrated by the red boxes in the diagram above). </p>
+<p>The Gobblin runtime is responsible for running user-defined Gobblin jobs on the deployment setting of choice. It handles the common tasks including job and task scheduling, error handling and task retries, resource negotiation and management, state management, data quality checking, data publishing, etc.</p>
+<p>Gobblin currently supports two deployment modes: the standalone mode on a single node and the Hadoop MapReduce mode on a Hadoop cluster. We are also working on adding support for deploying and running Gobblin as a native application on <a href="http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html">YARN</a>. Details on deployment of Gobblin can be found in <a href="user-guide/Gobblin-Deployment">Gobblin Deployment</a>.</p>
+<p>The running and operation of Gobblin are supported by a few components and utilities (illustrated by the blue boxes in the diagram above) that handle important things such as metadata management, state management, metric collection and reporting, and monitoring. </p>
+<h2 id="gobblin-job-flow">Gobblin Job Flow</h2>
+<p>A Gobblin job is responsible for extracting data in a defined scope/range from a data source and writing data to a sink such as HDFS. It manages the entire lifecycle of data ingestion in a certain flow as illustrated by Fig. 2 below.</p>
+<p align="center">
+  <figure>
+    <img src=../img/Gobblin-Job-Flow.png alt="Gobblin Job Flow" width="500">
+    <figcaption><br>Figure 2: Gobblin Job Flow<br></figcaption>
+  </figure>
+</p>
+
+<ol>
+<li>
+<p>A Gobblin job starts with an optional phase of acquiring a job lock. The purpose of doing this is to prevent the next scheduled run of the same job from starting until the current run finishes. This phase is optional because some job schedulers such as <a href="http://azkaban.github.io/">Azkaban</a> is already doing this. </p>
+</li>
+<li>
+<p>The next thing the job does is to create an instance of the <code>Source</code> class specified in the job configuration. A <code>Source</code> is responsible for partitioning the data ingestion work into a set of <code>WorkUnit</code>s, each of which represents a logic unit of work for extracting a portion of the data from a data source. A <code>Source</code> is also responsible for creating a <code>Extractor</code> for each <code>WorkUnit</code>. A <code>Extractor</code>, as the name suggests, actually talks to the data source and extracts data from it. The reason for this design is that Gobblin's <code>Source</code> is modeled after Hadoop's <code>InputFormat</code>, which is responsible for partitioning the input into <code>Split</code>s as well as creating a <code>RecordReader</code> for each <code>Split</code>. </p>
+</li>
+<li>
+<p>From the set of <code>WorkUnit</code>s given by the <code>Source</code>, the job creates a set of tasks. A task is a runtime counterpart of a <code>WorkUnit</code>, which represents a logic unit of work. Normally, a task is created per <code>WorkUnit</code>. However, there is a special type of <code>WorkUnit</code>s called <code>MultiWorkUnit</code> that wraps multiple <code>WorkUnit</code>s for which multiple tasks may be created, one per wrapped <code>WorkUnit</code>. </p>
+</li>
+<li>
+<p>The next phase is to launch and run the tasks. How tasks are executed and where they run depend on the deployment setting. In the standalone mode on a single node, tasks are running in a thread pool dedicated to that job, the size of which is configurable on a per-job basis. In the Hadoop MapReduce mode on a Hadoop cluster, tasks are running in the mappers (used purely as containers to run tasks). </p>
+</li>
+<li>
+<p>After all tasks of the job finish (either successfully or unsuccessfully), the job publishes the data if it is OK to do so. Whether extracted data should be published is determined by the task states and the <code>JobCommitPolicy</code> used (configurable). More specifically, extracted data should be published if and only if any one of the following two conditions holds:</p>
+</li>
+<li>
+<p><code>JobCommitPolicy.COMMIT_ON_PARTIAL_SUCCESS</code> is specified in the job configuration.</p>
+</li>
+<li>
+<p><code>JobCommitPolicy.COMMIT_ON_FULL_SUCCESS</code> is specified in the job configuration and all tasks were successful.</p>
+</li>
+<li>
+<p>After the data extracted is published, the job persists the job/task states into the state store. When the next scheduled run of the job starts, it will load the job/task states of the previous run to get things like watermarks so it knows where to start.</p>
+</li>
+<li>
+<p>During its execution, the job may create some temporary working data that is no longer needed after the job is done. So the job will cleanup such temporary work data before exiting.  </p>
+</li>
+<li>
+<p>Finally, an optional phase of the job is to release the job lock if it is acquired at the beginning. This gives green light to the next scheduled run of the same job to proceed.  </p>
+</li>
+</ol>
+<p>If a Gobblin job is cancelled before it finishes, the job will not persist any job/task state nor commit and publish any data (as the dotted line shows in the diagram).</p>
+<h2 id="gobblin-constructs">Gobblin Constructs</h2>
+<p>As described above, a Gobblin job creates and runs tasks, each of which is responsible for extracting a portion of the data to be pulled by the job. A Gobblin task is created from a <code>WorkUnit</code> that represents a unit of work and serves as a container of job configuration at runtime. A task composes the Gobblin constructs into a flow to extract, transform, checks data quality on, and finally writes each extracted data record to the specified sink. Fig. 3 below gives an overview on the Gobblin constructs that constitute the task flows in a Gobblin job. </p>
+<p align="center">
+  <figure>
+    <img src=../img/Gobblin-Constructs.png alt="Gobblin Constructs" width="800">
+    <figcaption><br>Figure 3: Gobblin Constructs<br></figcaption>
+  </figure>
+</p>
+
+<h4 id="source-and-extractor">Source and Extractor</h4>
+<p>A <code>Source</code> represents an adapter between a data source and Gobblin and is used by a Gobblin job at the beginning of the job flow. A <code>Source</code> is responsible for partitioning the data ingestion work into a set of <code>WorkUnit</code>s, each of which represents a logic unit of work for extracting a portion of the data from a data source. </p>
+<p>A <code>Source</code> is also responsible for creating an <code>Extractor</code> for each <code>WorkUnit</code>. An <code>Extractor</code>, as the name suggests, actually talks to the data source and extracts data from it. The reason for this design is that Gobblin's <code>Source</code> is modeled after Hadoop's <code>InputFormat</code>, which is responsible for partitioning the input into <code>Split</code>s as well as creating a <code>RecordReader</code> for each <code>Split</code>. </p>
+<p>Gobblin out-of-the-box provides some built-in <code>Source</code> and <code>Extractor</code> implementations that work with various types of of data sources, e.g., web services offering some Rest APIs, databases supporting JDBC, FTP/SFTP servers, etc. Currently, <code>Extractor</code>s are record-oriented, i.e., an <code>Extractor</code> reads one data record at a time, although internally it may choose to pull and cache a batch of data records. We are planning to add options for <code>Extractor</code>s to support byte-oriented and file-oriented processing.   </p>
+<h4 id="converter">Converter</h4>
+<p>A <code>Converter</code> is responsible for converting both schema and data records and is the core construct for data transformation. <code>Converter</code>s are composible and can be chained together as long as each adjacent pair of <code>Converter</code>s are compatible in the input and output schema and data record types. This allows building complex data transformation from simple <code>Converter</code>s. Note that a <code>Converter</code> converts an input schema to one output schema. It may, however, convert an input data record to zero (<code>1:0</code> mapping), one (<code>1:1</code> mapping), or many (<code>1:N</code> mapping) output data records. Each <code>Converter</code> converts every output records of the previous <code>Converter</code>, except for the first one that converts the original extracted data record. When converting a data record, a <code>Converter</code> also takes in the <em>output converted</em> schema of itself, except for the first one that takes in the original input schema. So each converter first converts the input schema and then uses the output schema in the conversion of each data record. The output schema of each converter is fed into both the converter itself for data record conversion and also the next converter. Fig. 4 explains how <code>Converter</code> chaining works using three example converters that have <code>1:1</code>, <code>1:N</code>, and <code>1:1</code> mappings for data record conversion, respectively.</p>
+<p align="center">
+  <figure>
+    <img src=../img/Converters-Explained.png alt="Converters Explained" width="400">
+    <figcaption><br>Figure 4: How Converter Chaining Works<br></figcaption>
+  </figure>
+</p>
+
+<h4 id="quality-checker">Quality Checker</h4>
+<p>A <code>QualityChecker</code>, as the name suggests, is responsible for data quality checking. There are two types of <code>QualityChecker</code>s: one that checks individual data records and decides if each record should proceed to the next phase in the task flow and the other one that checks the entire task output and decides if data can be committed. We call the two types row-level <code>QualityChecker</code>s and task-level <code>QualityChecker</code>s, respectively. A <code>QualityChecker</code> can be <code>MANDATORY</code> or <code>OPTIONAL</code> and will participate in the decision on if quality checking passes if and only if it is <code>MANDATORY</code>. <code>OPTIONAL</code> <code>QualityChecker</code>s are informational only. Similarly to <code>Converter</code>s, more than one <code>QualityChecker</code> can be specified and in this case, quality checking passes if and only if all <code>MANDATORY</code> <code>QualityChecker</code>s give a <code>PASS</code>.     </p>
+<h4 id="fork-operator">Fork Operator</h4>
+<p>A <code>ForkOperator</code> is a type of control operators that allow a task flow to branch into multiple streams, each of which goes to a separately configured sink. This is useful for situations, e.g., that data records need to be written into multiple different storages, or that data records need to be written out to the same storage (say, HDFS) but in different forms for different downstream consumers. </p>
+<h4 id="data-writer">Data Writer</h4>
+<p>A <code>DataWriter</code> is responsible for writing data records to the sink it is associated to. Gobblin out-of-the-box provides an <code>AvroHdfsDataWriter</code> for writing data in <a href="http://avro.apache.org/">Avro</a> format onto HDFS. Users can plugin their own <code>DataWriter</code>s by specifying a <code>DataWriterBuilder</code> class in the job configuration that Gobblin uses to build <code>DataWriter</code>s.</p>
+<h4 id="data-publisher">Data Publisher</h4>
+<p>A <code>DataPublisher</code> is responsible for publishing extracted data of a Gobblin job. Gobblin ships with a default <code>DataPublisher</code> that works with file-based <code>DataWriter</code>s such as the <code>AvroHdfsDataWriter</code> and moves data from the output directory of each task to a final job output directory. </p>
+<h2 id="gobblin-task-flow">Gobblin Task Flow</h2>
+<p>Fig. 5 below zooms in further and shows the details on how different constructs are connected and composed to form a task flow. The same task flow is employed regardless of the deployment setting and where tasks are running.</p>
+<p align="center">
+  <figure>
+    <img src=../img/Gobblin-Task-Flow.png alt="Gobblin Task Flow" width="600">
+    <figcaption><br>Figure 5: Gobblin Task Flow<br></figcaption>
+  </figure>
+</p>
+
+<p>A Gobblin task flow consists of a main branch and a number of forked branches coming out of a <code>ForkOperator</code>. It is optional to specify a <code>ForkOperator</code> in the job configuration. When no <code>ForkOperator</code> is specified in the job configuration, a Gobblin task flow uses a <code>IdentityForkOperator</code> by default with a single forked branch. The <code>IdentityForkOperator</code> simply connects the master branch and the <em>single</em> forked branch and passes schema and data records between them. The reason behind this is it avoids special logic from being introduced into the task flow when a <code>ForkOperator</code> is indeed specified in the job configuration.</p>
+<p>The master branch of a Gobblin task starts with schema extraction from the source. The extracted schema will go through a schema transformation phase if at least one <code>Converter</code> class is specified in the job configuration. The next phase is to repeatedly extract data records one at a time. Each extracted data record will also go through a transformation phase if at least one <code>Converter</code> class is specified. Each extracted (or converted if applicable) data record is fed into an optional list of row-level <code>QualityChecker</code>s.</p>
+<p>Data records that pass the row-level <code>QualityChecker</code>s will go through the <code>ForkOperator</code> and be further processed in the forked branches. The <code>ForkOperator</code> allows users to specify if the input schema or data record should go to a specific forked branch. If the input schema is specified <em>not</em> to go into a particular branch, that branch will be ignored. If the input schema or data record is specified to go into <em>more than one</em> forked branch, Gobblin assumes that the schema or data record class implements the <code>Copyable</code> interface and will attempt to make a copy before passing it to each forked branch. So it is very important to make sure the input schema or data record to the <code>ForkOperator</code> is an instance of <code>Copyable</code> if it is going into <em>more than one</em> branch.</p>
+<p>Similarly to the master branch, a forked branch also processes the input schema and each input data record (one at a time) through an optional transformation phase and a row-level quality checking phase. Data records that pass the branch's row-level <code>QualityChecker</code>s will be written out to a sink by a <code>DataWriter</code>. Each forked branch has its own sink configuration and a separate <code>DataWriter</code>. </p>
+<p>Upon successful processing of the last record, a forked branch applies an optional list of task-level <code>QualityChecker</code>s to the data processed by the branch in its entirety. If this quality checking passes, the branch commits the data and exits. </p>
+<p>A task flow completes its execution once every forked branches commit and exit. During the execution of a task, a <code>TaskStateTracker</code> keeps track of the task's state and a core set of task metrics, e.g., total records extracted, records extracted per second, total bytes extracted, bytes extracted per second, etc.    </p>
+<h2 id="job-state-management">Job State Management</h2>
+<p>Typically a Gobblin job runs periodically on some schedule and each run of the job is extracting data incrementally, i.e., extracting new data or changes to existing data within a specific range since the last run of the job. To make incremental extraction possible, Gobblin must persist the state of the job upon the completion of each run and load the state of the previous run so the next run knows where to start extracting. Gobblin maintains a state store that is responsible for job state persistence. Each run of a Gobblin job reads the state store for the state of the previous run and writes the state of itself to the state store upon its completion. The state of a run of a Gobblin job consists of the job configuration and any properties set at runtime at the job or task level. </p>
+<p>Out-of-the-box, Gobblin uses an implementation of the state store that serializes job and task states into Hadoop <code>SequenceFile</code>s, one per job run. Each job has a separate directory where its job and task state <code>SequenceFile</code>s are stored. The file system on which the <code>SequenceFile</code>-based state store resides is configurable.   </p>
+<h2 id="handling-of-failures">Handling of Failures</h2>
+<p>As a fault tolerance data ingestion framework, Gobblin employs multiple level of defenses against job and task failures. For job failures, Gobblin keeps track of the number of times a job fails consecutively and optionally sends out an alert email if the number exceeds a defined threshold so the owner of the job can jump in and investigate the failures. For task failures, Gobblin retries failed tasks in a job run up to a configurable maximum number of times. In addition to that, Gobblin also provides an option to enable retries of <code>WorkUnit</code>s corresponding to failed tasks across job runs. The idea is that if a task fails after all retries fail, the <code>WorkUnit</code> based on which the task gets created will be automatically included in the next run of the job if this type of retries is enabled. This type of retries is very useful in handling intermittent failures such as those due to temporary data source outrage.</p>
+<h2 id="job-scheduling">Job Scheduling</h2>
+<p>Like mentioned above, a Gobblin job typically runs periodically on some schedule. Gobblin can be integrated with job schedulers such as <a href="http://azkaban.github.io/">Azkaban</a>,<a href="http://oozie.apache.org/">Oozie</a>, or Crontab. Out-of-the-box, Gobblin also ships with a built-in job scheduler backed by a <a href="http://quartz-scheduler.org/">Quartz</a> scheduler, which is used as the default job scheduler in the standalone deployment and it supports cron-based triggers using the configuration property <code>job.schedule</code> for defining the cron schedule. An important feature of Gobblin is that it decouples the job scheduler and the jobs scheduled by the scheduler such that different jobs may run in different deployment settings. This is achieved using the  abstraction <code>JobLauncher</code> that has different implementations for different deployment settings. For example, a job scheduler may have 5 jobs scheduled: 2 of them run locally on the same host as the scheduler using the <code>LocalJobLauncher</code>, whereas the rest 3 run on a Hadoop cluster somewhere using the <code>MRJobLauncher</code>. Which <code>JobLauncher</code> to use can be simply configured using the property <code>launcher.type</code>. Please refer to this <a href="http://quartz-scheduler.org/documentation/quartz-2.2.x/tutorials/tutorial-lesson-06">tutorial</a> for more information on how to use and configure a cron-based trigger.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../user-guide/Working-with-Job-Configuration-Files/" class="btn btn-neutral float-right" title="Job Configuration Files">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Getting-Started/" class="btn btn-neutral" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Getting-Started/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../user-guide/Working-with-Job-Configuration-Files/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/extra.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

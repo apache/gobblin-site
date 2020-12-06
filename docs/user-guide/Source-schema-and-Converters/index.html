@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Apache Software Foundation">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Source schema and Converters - Apache Gobblin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Source schema and Converters";
+    var mkdocs_page_input_path = "user-guide/Source-schema-and-Converters.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74333035-1', 'gobblin.readthedocs.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Apache Gobblin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="/">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Powered-By/">Companies Powered By Gobblin</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Getting-Started/">Getting Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Gobblin-Architecture/">Architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Working-with-Job-Configuration-Files/">Job Configuration Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Deployment/">Deployment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-as-a-Library/">Gobblin as a Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-CLI/">Gobblin CLI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Compliance/">Gobblin Compliance</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-on-Yarn/">Gobblin on Yarn</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Compaction/">Compaction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../State-Management-and-Watermarks/">State Management and Watermarks</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Working-with-the-ForkOperator/">Fork Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Configuration-Properties-Glossary/">Configuration Glossary</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Source schema and Converters</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#table-of-contents">Table of Contents</a></li>
+    
+
+    <li class="toctree-l3"><a href="#source-schema">Source schema</a></li>
+    
+
+    <li class="toctree-l3"><a href="#converters">Converters</a></li>
+    
+
+    <li class="toctree-l3"><a href="#converters-available-in-gobblin">Converters available in Gobblin</a></li>
+    
+
+    <li class="toctree-l3"><a href="#schema-specification">Schema specification</a></li>
+    
+
+    <li class="toctree-l3"><a href="#supported-data-types-by-different-converters">Supported data types by different converters</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#primitive-types">Primitive types</a></li>
+        
+            <li><a class="toctree-l4" href="#complex-types">Complex types</a></li>
+        
+            <li><a class="toctree-l4" href="#nesting-types">Nesting types</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Partitioned-Writers/">Partitioned Writers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Monitoring/">Monitoring</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-template/">Template</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-Schedulers/">Schedulers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Job-Execution-History-Store/">Job Execution History Store</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Building-Gobblin/">Building Gobblin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Gobblin-genericLoad/">Generic Configuration Loading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Hive-Registration/">Hive Registration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Config-Management/">Config Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Docker-Integration/">Docker Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Troubleshooting/">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../FAQs/">FAQs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sources/AvroFileSource/">Avro files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/CopySource/">File copy</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/QueryBasedSource/">Query based</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/RestApiSource/">Rest Api</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleAnalyticsSource/">Google Analytics</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleDriveSource/">Google Drive</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/GoogleWebmaster/">Google Webmaster</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HadoopTextInputSource/">Hadoop Text Input</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HelloWorldSource/">Hello World</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HiveAvroToOrcSource/">Hive Avro-to-ORC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/HivePurgerSource/">Hive compliance purging</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SimpleJsonSource/">JSON</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/KafkaSource/">Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/MySQLSource/">MySQL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/OracleSource/">Oracle</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SalesforceSource/">Salesforce</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SftpSource/">SFTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/SqlServerSource/">SQL Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/TeradataSource/">Teradata</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sources/WikipediaSource/">Wikipedia</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sinks (Writers)</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sinks/AvroHdfsDataWriter/">Avro HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ParquetHdfsDataWriter/">Parquet HDFS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/SimpleBytesWriter/">HDFS Byte array</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/ConsoleWriter/">Console</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/CouchbaseWriter/">Couchbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Http/">HTTP</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Gobblin-JDBC-Writer/">JDBC</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sinks/Kafka/">Kafka</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Adaptors</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Gobblin-Distcp/">Gobblin Distcp</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../adaptors/Hive-Avro-To-ORC-Converter/">Hive Avro-To-Orc Converter</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Case Studies</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Kafka-HDFS-Ingestion/">Kafka-HDFS Ingestion</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Publishing-Data-to-S3/">Publishing Data to S3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Writing-ORC-Data/">Writing ORC Data</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../case-studies/Hive-Distcp/">Hive Distcp</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Data Management</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../data-management/Gobblin-Retention/">Retention</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../data-management/DistcpNgEvents/">Distcp-NG events</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Gobblin Metrics</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics/">Quick Start</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Existing-Reporters/">Existing Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Metrics-for-Gobblin-ETL/">Metrics for Gobblin ETL</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Architecture/">Gobblin Metrics Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Implementing-New-Reporters/">Implementing New Reporters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../metrics/Gobblin-Metrics-Performance/">Gobblin Metrics Performance</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Developer Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-New-Source/">Customization for New Source</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Customization-for-Converter-and-Operator/">Customization for Converter and Operator</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/CodingStyle/">Code Style Guide</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Gobblin-Compliance-Design/">Gobblin Compliance Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/IDE-setup/">IDE setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Monitoring-Design/">Monitoring Design</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Documentation-Architecture/">Documentation Architecture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/GobblinModules/">Gobblin Modules</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../developer-guide/HighLevelConsumer/">High Level Consumer</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Project</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../project/Feature-List/">Feature List</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="/people">Contributors and Team</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Talks-and-Tech-Blogs/">Talks and Tech Blog Posts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../project/Posts/">Posts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Miscellaneous</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Camus-to-Gobblin-Migration/">Camus to Gobblin Migration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../miscellaneous/Exactly-Once-Support/">Exactly Once Support</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Apache Gobblin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>User Guide &raquo;</li>
+        
+      
+    
+    <li>Source schema and Converters</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Source-schema-and-Converters.md"> Edit on Gobblin</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#source-schema">Source schema</a></li>
+<li><a href="#converters">Converters</a></li>
+<li><a href="#converters-available-in-gobblin">Converters available in Gobblin</a></li>
+<li><a href="#schema-specification">Schema specification</a></li>
+<li><a href="#supported-data-types-by-different-converters">Supported data types by different converters</a><ul>
+<li><a href="#primitive-types">Primitive types</a></li>
+<li><a href="#complex-types">Complex types</a><ul>
+<li><a href="#array">Array</a></li>
+<li><a href="#map">Map</a></li>
+<li><a href="#record">Record</a></li>
+<li><a href="#enum">Enum</a></li>
+</ul>
+</li>
+<li><a href="#nesting-types">Nesting types</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="source-schema">Source schema</h2>
+<p>A source schema has to be declared before extracting the data from the source. 
+To define the source schema <code>source.schema</code> property is available which takes a JSON value defining the source schema. 
+This schema is used by Converters to perform data type or data format conversions. 
+The java class representation of a source schema can be found here <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/schema/Schema.java">Schema.java</a>.</p>
+<h2 id="converters">Converters</h2>
+<p>In Gobblin library a Converter is an interface for classes that implement data transformations, e.g., data type conversions,
+schema projections, data manipulations, data filtering, etc. This interface is responsible for 
+converting both schema and data records. Classes implementing this interface are composible and 
+can be chained together to achieve more complex data transformations.</p>
+<p>A converter basically needs four inputs:
+- Input schema
+- Output schema type
+- Input data
+- Output data type</p>
+<p>There are various inbuilt Converters available within gobblin-core. However, you can also implement your own converter 
+by extending abstract class <code>org.apache.gobblin.converter.Converter</code>. Below, is example of such a custom implementation 
+of Gobblin Converter which replaces multiple newlines and spaces from JSON values.</p>
+<pre><code class="java">
+package org.apache.gobblin.example.sample;
+import org.apache.gobblin.configuration.WorkUnitState;
+import org.apache.gobblin.converter.Converter;
+import org.apache.gobblin.converter.DataConversionException;
+import org.apache.gobblin.converter.SchemaConversionException;
+import org.apache.gobblin.converter.SingleRecordIterable;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+
+public class FilterSpacesConverter extends Converter&lt;JsonArray, JsonArray, JsonObject, JsonObject&gt; {
+  @Override
+  public JsonArray convertSchema(JsonArray inputSchema, WorkUnitState workUnit)
+      throws SchemaConversionException {
+    return inputSchema; //We are not doing any schema conversion
+  }
+
+  @Override
+  public Iterable&lt;JsonObject&gt; convertRecord(JsonArray outputSchema, JsonObject inputRecord, WorkUnitState workUnit)
+      throws DataConversionException {
+    String jsonStr = inputRecord.toString().replaceAll(&quot;\\s{2,}&quot;, &quot; &quot;);
+    return new SingleRecordIterable&lt;&gt;(new JsonParser().parse(jsonStr).getAsJsonObject());
+  }
+}
+</code></pre>
+
+<p>The converters can also be chained to perform sequential conversion on each input record. 
+To chain converters use the property <code>converter.classes</code> and provide a list of comma separated 
+converters with full reference name of converters. The execution order of the converters is same as 
+defined in the comma separated list. </p>
+<p>For example:
+If you are reading data from a JsonSource and you want to write data into Avro format. 
+For this you can chain the converters to convert from Json string to Json and the convert Json into 
+Avro. By using the following property in your .pull file.
+<code>converter.classes="org.apache.gobblin.converter.json.JsonStringToJsonIntermediateConverter,org.apache.gobblin.converter.avro.JsonIntermediateToAvroConverter"</code></p>
+<h2 id="converters-available-in-gobblin">Converters available in Gobblin</h2>
+<ul>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/avro/AvroFieldRetrieverConverter.java">AvroFieldRetrieverConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/avro/AvroRecordToAvroWritableConverter.java">AvroRecordToAvroWritableConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/avro/AvroToAvroCopyableConverter.java">AvroToAvroCopyableConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/avro/AvroToBytesConverter.java">AvroToBytesConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/avro/BytesToAvroConverter.java">BytesToAvroConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/avro/FlattenNestedKeyConverter.java">FlattenNestedKeyConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/avro/JsonIntermediateToAvroConverter.java">JsonIntermediateToAvroConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/avro/JsonRecordAvroSchemaToAvroConverter.java">JsonRecordAvroSchemaToAvroConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/csv/CsvToJsonConverter.java">CsvToJsonConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/csv/CsvToJsonConverterV2.java">CsvToJsonConverterV2.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/filter/AvroFieldsPickConverter.java">AvroFieldsPickConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/filter/AvroFilterConverter.java">AvroFilterConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/http/AvroToRestJsonEntryConverter.java">AvroToRestJsonEntryConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/json/BytesToJsonConverter.java">BytesToJsonConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/json/JsonStringToJsonIntermediateConverter.java">JsonStringToJsonIntermediateConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/json/JsonToStringConverter.java">JsonToStringConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/objectstore/ObjectStoreConverter.java">ObjectStoreConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/objectstore/ObjectStoreDeleteConverter.java">ObjectStoreDeleteConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/serde/HiveSerDeConverter.java">HiveSerDeConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/string/ObjectToStringConverter.java">ObjectToStringConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/string/StringFilterConverter.java">StringFilterConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/string/StringSplitterConverter.java">StringSplitterConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/string/StringSplitterToListConverter.java">StringSplitterToListConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/string/StringToBytesConverter.java">StringToBytesConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/string/TextToStringConverter.java">TextToStringConverter.java</a></li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/GobblinMetricsPinotFlattenerConverter.java">GobblinMetricsPinotFlattenerConverter.java</a></li>
+</ul>
+<h2 id="schema-specification">Schema specification</h2>
+<p>The following section discusses the specification to define source schema using a JSON format.</p>
+<table>
+<thead>
+<tr>
+<th>Key Name</th>
+<th>Value data type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>columnName</td>
+<td>String</td>
+<td>The name of the JSON key which will contain the data.</td>
+</tr>
+<tr>
+<td>isNullable</td>
+<td>Boolean</td>
+<td>Can data be null?</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>String</td>
+<td>Field description just for documentation purpose.</td>
+</tr>
+<tr>
+<td>dataType</td>
+<td>JSON</td>
+<td>Provides more information about the data type.</td>
+</tr>
+<tr>
+<td>dataType.type</td>
+<td>String</td>
+<td>Type of data to store. ex: int, long etc</td>
+</tr>
+<tr>
+<td>dataType.name</td>
+<td>String</td>
+<td>Provide a name to your data type.</td>
+</tr>
+<tr>
+<td>dataType.items</td>
+<td>String/JSON</td>
+<td>Used for array type to define the data type of items contained by the array. If data type of array items is primitive the String is used as value otherwise for complex type dataType JSON should be used as a value to provide further information on complex array items.</td>
+</tr>
+<tr>
+<td>dataType.values</td>
+<td>String/JSON/Array</td>
+<td>Used by map and record types to define the data type of the values. In case of records it will always be Array type defining fields. In case of map it could be String or JSON based on primitive or complex data type involved.</td>
+</tr>
+<tr>
+<td>dataype.symbols</td>
+<td>Array<String></td>
+<td>Array of strings to define the enum symbols.</td>
+</tr>
+<tr>
+<td>watermark</td>
+<td>Boolean</td>
+<td>To specify if the key is used as a watermark. Or use <code>extract.delta.fields</code> property to define comma separated list of watermark fields.</td>
+</tr>
+<tr>
+<td>unique</td>
+<td>Boolean</td>
+<td>To specify if the key should be unique set of records.</td>
+</tr>
+<tr>
+<td>defaultValue</td>
+<td>Object</td>
+<td>To specify the default value.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="supported-data-types-by-different-converters">Supported data types by different converters</h2>
+<p>The converters which perform data format conversions such as CSV to JSON, JSON to AVRO etc. will have to perform data type conversions. Below, is the list of such converters and the data types they support.</p>
+<table>
+<thead>
+<tr>
+<th>Converter</th>
+<th>Data types</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/converter/avro/JsonIntermediateToAvroConverter.java">JsonIntermediateToAvroConverter.java</a></td>
+<td><ul><li>DATE</li><li>TIMESTAMP</li><li>TIME</li><li>STRING</li><li>BYTES</li><li>INT</li><li>LONG</li><li>FLOAT</li><li>DOUBLE</li><li>BOOLEAN</li><li>ARRAY</li><li>MAP</li><li>ENUM</li></ul></td>
+</tr>
+<tr>
+<td><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-parquet/src/main/java/org/apache/gobblin/converter/parquet/JsonIntermediateToParquetGroupConverter.java">JsonIntermediateToParquetGroupConverter.java</a></td>
+<td><ul><li>DATE</li><li>TIMESTAMP</li><li>TIME</li><li>STRING</li><li>BYTES</li><li>INT</li><li>LONG</li><li>FLOAT</li><li>DOUBLE</li><li>BOOLEAN</li><li>ARRAY</li><li>MAP</li><li>ENUM</li></ul></td>
+</tr>
+</tbody>
+</table>
+<h3 id="primitive-types">Primitive types</h3>
+<p>The following primitive types are available int, float, string, double, long, null, boolean.</p>
+<p><strong>Sample data</strong></p>
+<pre><code class="js">{
+    &quot;jobRoles&quot;: 42,
+    &quot;peopleWeightAvg&quot;: 50.5,
+    &quot;peopleOrg&quot;: &quot;EvilCorp&quot;,
+    &quot;peopleAvgSal&quot;: 342222.65,
+        &quot;peopleCount&quot;: 8344242342,
+    &quot;peopleBrain&quot;: null,
+    &quot;public&quot;: false
+}
+</code></pre>
+
+<p><strong>Sample schema</strong></p>
+<pre><code class="js">[
+    {
+        &quot;columnName&quot;: &quot;jobRoles&quot;,
+        &quot;isNullable&quot;: false,
+        &quot;comment&quot;: &quot;Number of roles in the org&quot;
+        &quot;dataType&quot;: {
+                &quot;type&quot;: &quot;int&quot;
+            }
+    },
+    {
+        &quot;columnName&quot;: &quot;peopleWeightAvg&quot;,
+        &quot;isNullable&quot;: false,
+        &quot;comment&quot;: &quot;Avg weight of people in org&quot;
+        &quot;dataType&quot;: {
+                &quot;type&quot;: &quot;float&quot;
+            }
+    },
+    {
+        &quot;columnName&quot;: &quot;peopleOrg&quot;,
+        &quot;isNullable&quot;: false,
+        &quot;comment&quot;: &quot;Name of org people works for&quot;
+        &quot;dataType&quot;: {
+                &quot;type&quot;: &quot;string&quot;
+            }
+    },
+    {
+        &quot;columnName&quot;: &quot;peopleAvgSal&quot;,
+        &quot;isNullable&quot;: false,
+        &quot;comment&quot;: &quot;Avg salary of people in org&quot;
+        &quot;dataType&quot;: {
+                &quot;type&quot;: &quot;double&quot;
+            }
+    },
+    {
+        &quot;columnName&quot;: &quot;peopleCount&quot;,
+        &quot;isNullable&quot;: false,
+        &quot;comment&quot;: &quot;Count of people in org&quot;
+        &quot;dataType&quot;: {
+                &quot;type&quot;: &quot;long&quot;
+            }
+    },
+    {
+        &quot;columnName&quot;: &quot;peopleBrain&quot;,
+        &quot;comment&quot;: &quot;Brain obj of people&quot;
+        &quot;dataType&quot;: {
+                &quot;type&quot;: &quot;null&quot;
+            }
+    },
+    {
+        &quot;columnName&quot;: &quot;public&quot;,
+        &quot;isNullable&quot;: false,
+        &quot;comment&quot;: &quot;Is data public&quot;
+        &quot;dataType&quot;: {
+                &quot;type&quot;: &quot;boolean&quot;
+            }
+    }
+]
+</code></pre>
+
+<h3 id="complex-types">Complex types</h3>
+<h4 id="array">Array</h4>
+<p><strong>Sample data</strong></p>
+<pre><code class="js">{
+    &quot;arrayOfInts&quot;: [25, 50, 75]
+}
+</code></pre>
+
+<p><strong>Sample schema</strong></p>
+<pre><code class="js">[
+    {
+        &quot;columnName&quot;: &quot;arrayOfInts&quot;,
+        &quot;isNullable&quot;: false,
+        &quot;comment&quot;: &quot;Items in array have same data type as defined in dataType.&quot;
+        &quot;dataType&quot;: {
+                &quot;type&quot;: &quot;array&quot;,
+                &quot;items&quot;: &quot;int&quot;
+            }
+    }
+]
+</code></pre>
+
+<h4 id="map">Map</h4>
+<p>Maps can contain n number of key value pairs with constraint of same data type for values and keys are always string.
+<strong>Sample data</strong></p>
+<pre><code class="js">{
+    &quot;bookDetails&quot;:{
+        &quot;harry potter and the deathly hallows&quot;: 10245,
+        &quot;harry potter and the cursed child&quot;: 20362
+    }
+}
+</code></pre>
+
+<p><strong>Sample schema</strong></p>
+<pre><code class="js">[
+    {
+        &quot;columnName&quot;: &quot;bookDetails&quot;,
+        &quot;isNullable&quot;: false,
+        &quot;comment&quot;: &quot;Maps always have string as keys and all values have same type as defined in dataType&quot;
+        &quot;dataType&quot;: {
+                &quot;type&quot;: &quot;map&quot;,
+                &quot;values&quot;: &quot;long&quot;
+            }
+    }
+]
+</code></pre>
+
+<h4 id="record">Record</h4>
+<p>Unlike map, values in record type are not bound by single value type. Keys and values have to be declared in the schema with data type.
+<strong>Sample data</strong></p>
+<pre><code class="js">{
+    &quot;userDetails&quot;: {
+        &quot;userName&quot;: &quot;anonyoumous&quot;,
+        &quot;userAge&quot;: 50,
+    }
+}
+</code></pre>
+
+<p><strong>Sample schema</strong></p>
+<pre><code class="js">[
+    {
+        &quot;columnName&quot;: &quot;userDetails&quot;,
+        &quot;isNullable&quot;: false,
+        &quot;comment&quot;: &quot;user detail&quot;
+        &quot;dataType&quot;: {
+                &quot;type&quot;: &quot;record&quot;,
+                &quot;values&quot;: [
+                    {
+                        &quot;columnName&quot;: &quot;userName&quot;,
+                        &quot;dataType&quot;:{
+                            &quot;type&quot;:&quot;string&quot;
+                        }
+                    },
+                    {
+                        &quot;columnName&quot;: &quot;userAge&quot;,
+                        &quot;dataType&quot;:{
+                            &quot;type&quot;:&quot;int&quot;
+                        }
+                    }
+                ]
+            }
+    }
+]
+</code></pre>
+
+<h4 id="enum">Enum</h4>
+<p><strong>Sample data</strong></p>
+<pre><code class="js">{
+    &quot;userStatus&quot;: &quot;ACTIVE&quot;
+}
+</code></pre>
+
+<p><strong>Sample schema</strong></p>
+<pre><code class="js">[
+    {
+        &quot;columnName&quot;: &quot;userStatus&quot;,
+        &quot;dataType&quot;:{
+            &quot;type&quot;: &quot;enum&quot;,
+            &quot;symbols&quot;:[
+                &quot;ACTIVE&quot;, &quot;INACTIVE&quot;
+            ]
+        }
+    }
+]
+</code></pre>
+
+<h3 id="nesting-types">Nesting types</h3>
+<p>Complex types can be used to created nested schemas.
+<strong>Array, Map and Record can have complex items instead of just primitive types.</strong></p>
+<p>Few of the examples to show how nested schema is written</p>
+<p><strong>Array with nested record</strong></p>
+<pre><code class="js">[
+  {
+    &quot;columnName&quot;: &quot;userName&quot;,
+    &quot;dataType&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    }
+  },
+  {
+    &quot;columnName&quot;: &quot;purchase&quot;,
+    &quot;dataType&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;items&quot;: {
+        &quot;dataType&quot;: {
+          &quot;type&quot;: &quot;record&quot;,
+          &quot;values&quot;: [
+            {
+              &quot;columnName&quot;: &quot;ProductName&quot;,
+              &quot;dataType&quot;: {
+                &quot;type&quot;: &quot;string&quot;
+              }
+            },
+            {
+              &quot;columnName&quot;: &quot;ProductPrice&quot;,
+              &quot;dataType&quot;: {
+                &quot;type&quot;: &quot;long&quot;
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+]
+</code></pre>
+
+<p><strong>Map with nested array</strong></p>
+<pre><code class="js">[
+  {
+    &quot;columnName&quot;: &quot;persons&quot;,
+    &quot;dataType&quot;: {
+      &quot;type&quot;: &quot;map&quot;,
+      &quot;values&quot;: {
+        &quot;dataType&quot;: {
+          &quot;type&quot;: &quot;array&quot;,
+          &quot;items&quot;: &quot;int&quot;
+        }
+      }
+    }
+  }
+]
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Partitioned-Writers/" class="btn btn-neutral float-right" title="Partitioned Writers">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Configuration-Properties-Glossary/" class="btn btn-neutral" title="Configuration Glossary"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Configuration-Properties-Glossary/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Partitioned-Writers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
