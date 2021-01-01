@@ -28,7 +28,6 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -172,9 +171,22 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#gobblin-wikipedia-repository">Gobblin-Wikipedia Repository</a></li>
+            <li><a class="toctree-l4" href="#run-the-docker-image-with-simple-wikipedia-jobs">Run the docker image with simple wikipedia jobs</a></li>
         
-            <li><a class="toctree-l4" href="#gobblin-standalone-repository">Gobblin-Standalone Repository</a></li>
+            <li><a class="toctree-l4" href="#use-gobblin-standalone-on-docker-for-kafka-and-hdfs-ingestion">Use Gobblin Standalone on Docker for Kafka and HDFS Ingestion</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#run-gobblin-as-a-service">Run Gobblin as a Service</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#set-working-directory">Set working directory</a></li>
+        
+            <li><a class="toctree-l4" href="#start-gobblin-as-a-service">Start Gobblin as a Service</a></li>
+        
+            <li><a class="toctree-l4" href="#interact-with-gaas">Interact with GaaS</a></li>
         
         </ul>
     
@@ -535,8 +547,17 @@
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#docker">Docker</a></li>
 <li><a href="#docker-repositories">Docker Repositories</a><ul>
-<li><a href="#gobblin-wikipedia-repository">Gobblin-Wikipedia Repository</a></li>
-<li><a href="#gobblin-standalone-repository">Gobblin-Standalone Repository</a></li>
+<li><a href="#run-the-docker-image-with-simple-wikipedia-jobs">Run the docker image with simple wikipedia jobs</a></li>
+<li><a href="#use-gobblin-standalone-on-docker-for-kafka-and-hdfs-ingestion">Use Gobblin Standalone on Docker for Kafka and HDFS Ingestion</a></li>
+</ul>
+</li>
+<li><a href="#run-gobblin-as-a-service">Run Gobblin as a Service</a><ul>
+<li><a href="#set-working-directory">Set working directory</a></li>
+<li><a href="#start-gobblin-as-a-service">Start Gobblin as a Service</a></li>
+<li><a href="#interact-with-gaas">Interact with GaaS</a><ul>
+<li><a href="#todo-add-an-end-to-end-workflow-example-in-gaas">TODO: Add an end-to-end workflow example in GaaS.</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#future-work">Future Work</a></li>
@@ -547,61 +568,75 @@
 <h1 id="docker">Docker</h1>
 <p>For more information on Docker, including how to install it, check out the documentation at: https://docs.docker.com/</p>
 <h1 id="docker-repositories">Docker Repositories</h1>
-<p>Gobblin currently has four different repositories, and all are on Docker Hub <a href="https://hub.docker.com/u/gobblin/" rel="nofollow">here</a>.</p>
-<p>The <code>gobblin/gobblin-wikipedia</code> repository contains images that run the Gobblin Wikipedia job found in the <a href="../Getting-Started">getting started guide</a>. These images are useful for users new to Docker or Gobblin, they primarily act as a "Hello World" example for the Gobblin Docker integration.</p>
-<p>The <code>gobblin/gobblin-standalone</code> repository contains images that run a <a href="Gobblin-Deployment#standalone-architecture">Gobblin standalone service</a> inside a Docker container. These images provide an easy and simple way to setup a Gobblin standalone service on any Docker compatible machine.</p>
-<p>The <code>gobblin/gobblin-base</code> and <code>gobblin/gobblin-distributions</code> repositories are for internal use only, and are primarily useful for Gobblin developers.</p>
-<h2 id="gobblin-wikipedia-repository">Gobblin-Wikipedia Repository</h2>
-<p>The Docker images for this repository can be found on Docker Hub <a href="https://hub.docker.com/r/gobblin/gobblin-wikipedia/" rel="nofollow">here</a>. These images are mainly meant to act as a "Hello World" example for the Gobblin-Docker integration, and to provide a sanity check to see if the Gobblin-Docker integration is working on a given machine. The image contains the Gobblin configuration files to run the <a href="../Getting-Started">Gobblin Wikipedia job</a>. When a container is launched using the <code>gobblin-wikipedia</code> image, Gobblin starts up, runs the Wikipedia example, and then exits.</p>
-<p>Running the <code>gobblin-wikipedia</code> image requires taking following steps (lets assume we want to an Ubuntu based image):</p>
-<ul>
-<li>Download the images from the <code>gobblin/gobblin-wikipedia</code> repository</li>
-</ul>
-<pre><code>docker pull gobblin/gobblin-wikipedia:ubuntu-gobblin-latest
+<p>Github Actions pushes the latest docker image to the Apache DockerHub repository <a href="https://hub.docker.com/r/apache/gobblin" rel="nofollow">here</a> from <code>gobblin-docker/gobblin/alpine-gobblin-latest/Dockerfile</code></p>
+<p>To run this image, you will need to pass in the corresponding execution mode. The execution modes can be found <a href="https://gobblin.readthedocs.io/en/latest/user-guide/Gobblin-Deployment/" rel="nofollow">here</a></p>
+<pre><code>docker pull apache/gobblin
+docker run apache/gobblin --mode &lt;execution mode&gt; &lt;additional args&gt;
 </code></pre>
 
-<ul>
-<li>Run the <code>gobblin/gobblin-wikipedia:ubuntu-gobblin-latest</code> image in a Docker container</li>
-</ul>
-<pre><code>docker run gobblin/gobblin-wikipedia:ubuntu-gobblin-latest
+<p>For example, to run Gobblin in standalone mode</p>
+<pre><code>docker run apache/gobblin --mode standalone
 </code></pre>
 
-<p>The logs are printed to the console, and no errors should pop up. This should provide a nice sanity check to ensure that everything is working as expected. The output of the job will be written to a directory inside the container. When the container exits that data will be lost. In order to preserve the output of the job, continue to the next step.</p>
-<ul>
-<li>Preserving the output of a Docker container requires using a <a href="https://docs.docker.com/engine/tutorials/dockervolumes/" rel="nofollow">data volume</a>. To do this, run the below command:</li>
-</ul>
-<pre><code>docker run -v /home/gobblin/work-dir:/home/gobblin/work-dir gobblin-wikipedia
+<p>To pass your own configuration to Gobblin standalone, use a docker volume. Due to the nature of the startup script, the volumes
+will need to be declared before the arguments are passed to the execution mode. E.g.</p>
+<pre><code>docker run -v &lt;path to local configuration files&gt;:/home/gobblin/conf/standalone apache/gobblin --mode standalone
 </code></pre>
 
-<p>The output of the Gobblin-Wikipedia job should now be written to <code>/home/gobblin/work-dir/job-output</code>. The <code>-v</code> command in Docker uses a feature of Docker called <a href="https://docs.docker.com/engine/tutorials/dockervolumes/" rel="nofollow">data volumes</a>. The <code>-v</code> option mounts a host directory into a container and is of the form <code>[host-directory]:[container-directory]</code>. Now any modifications to the host directory can be seen inside the container-directory, and any modifications to the container-directory can be seen inside the host-directory. This is a standard way to ensure data persists even after a Docker container finishes. It's important to note that the <code>[host-directory]</code> in the <code>-v</code> option can be changed to any directory (on OSX it must be under the <code>/Users/</code> directory), but the <code>[container-directory]</code> must remain <code>/home/gobblin/work-dir</code> (at least for now).</p>
-<h2 id="gobblin-standalone-repository">Gobblin-Standalone Repository</h2>
-<p>The Docker images for this repository can be found on Docker Hub <a href="https://hub.docker.com/r/gobblin/gobblin-standalone/" rel="nofollow">here</a>. These images run a Gobblin standalone service inside a Docker container. The Gobblin standalone service is a long running process that can run Gobblin jobs defined in a <code>.job</code> or <code>.pull</code> file. The job / pull files are submitted to the standalone service by placing them in a directory on the local filesystem. The standalone service monitors this directory for any new job / pull files and runs them either immediately or on a scheduled basis (more information on how this works can be found <a href="Working-with-Job-Configuration-Files#adding-or-changing-job-configuration-files">here</a>). Running the Gobblin standalone service inside a Docker container allows Gobblin to pick up job / pull files from a directory on the host filesystem, run the job, and write the output back the host filesystem. All the heavy lifting is done inside a Docker container, the user just needs to worry about defining and submitting job / pull files. The goal is to provide a easy to setup environment for the Gobblin standalone service.</p>
-<p>Running the <code>gobblin-standalone</code> image requires taking the following steps:</p>
+<p>Before running docker containers, set a working directory for Gobblin jobs:</p>
+<p><code>export LOCAL_JOB_DIR=&lt;local_gobblin_directory&gt;</code></p>
+<p>We will use this directory as the <a href="https://docs.docker.com/storage/volumes/" rel="nofollow">volume</a> for Gobblin jobs and outputs. Make sure your Docker has the <a href="https://docs.docker.com/docker-for-mac/#file-sharing" rel="nofollow">access</a> to this folder. This is the prerequisite for all following example jobs.</p>
+<h3 id="run-the-docker-image-with-simple-wikipedia-jobs">Run the docker image with simple wikipedia jobs</h3>
+<p>Run these commands to start the docker image:</p>
+<p><code>docker pull apache/gobblin:latest</code></p>
+<p><code>docker run -v $LOCAL_JOB_DIR:/tmp/gobblin-standalone/jobs apache/gobblin:latest --mode standalone</code></p>
+<p>After the container spins up, put the <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/wikipedia.pull" rel="nofollow">wikipedia.pull</a> in ${LOCAL_JOB_DIR}. You will see the Gobblin daemon pick up the job, and the result output is in ${LOCAL_JOB_DIR}/job-output/.</p>
+<p>This example job is correspondent to the <a href="https://gobblin.readthedocs.io/en/latest/Getting-Started/" rel="nofollow">getting started guide</a>. With the docker image, you can focus on the Gobblin functionalities, avoiding the hassle of building a distribution.</p>
+<h3 id="use-gobblin-standalone-on-docker-for-kafka-and-hdfs-ingestion">Use Gobblin Standalone on Docker for Kafka and HDFS Ingestion</h3>
 <ul>
-<li>Download the images from the <code>gobblin/gobblin-standalone</code> repository</li>
+<li>
+<p>To ingest from/to Kafka and HDFS by Gobblin, you need to start services for Zookeeper, Kafka and HDFS along with Gobblin. We use docker <a href="https://docs.docker.com/compose/" rel="nofollow">compose</a> with images contributed to docker hub. Firstly, you need to create a <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-docker/gobblin-recipes/kafka-hdfs/docker-compose.yml" rel="nofollow">docker-compose.yml</a> file.</p>
+</li>
+<li>
+<p>Second, in the same folder of the yml file, create a <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-docker/gobblin-recipes/kafka-hdfs/hadoop.env" rel="nofollow">hadoop.env</a> file to specify all HDFS related config(copy the content into your .env file).</p>
+</li>
+<li>
+<p>Open a terminal in the same folder, pull and run these docker services:</p>
+<p><code>docker-compose -f ./docker-compose.yml pull</code></p>
+<p><code>docker-compose -f ./docker-compose.yml up</code></p>
+<p>Here we expose Zookeeper at port 2128, Kafka at 9092 with an auto created Kafka topic “test”. All hadoop related configs are stated in the .env file.</p>
+</li>
+<li>
+<p>You should see all services running. Now we can push some events into the Kafka topic. Open a terminal from <a href="https://docs.docker.com/desktop/dashboard/" rel="nofollow">docker desktop</a> dashboard or <a href="https://docs.docker.com/engine/reference/commandline/exec/" rel="nofollow">docker exec</a> to interact with Kafka. Inside the Kafka container terminal:</p>
+<p><code>cd /opt/kafka</code></p>
+<p><code>./bin/kafka-console-producer.sh --broker-list kafka:9092 --topic test</code></p>
+<p>You can type messages for the topic “test”, and press ctrl+c to exit.</p>
+</li>
+<li>
+<p>Put the <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/kafka-hdfs.pull" rel="nofollow">kafka-hdfs.pull</a> in ${LOCAL_JOB_DIR}, so that the Gobblin daemon will pick up this job and write the result to HDFS. You will see the Gobblin daemon pick up the job.</p>
+</li>
 </ul>
-<pre><code>docker pull gobblin/gobblin-standalone:ubuntu-gobblin-latest
-</code></pre>
-
-<ul>
-<li>Run the <code>gobblin/gobblin-standalone:ubuntu-gobblin-latest</code> image in a Docker container</li>
-</ul>
-<pre><code>docker run -v /home/gobblin/conf:/etc/opt/job-conf \
-           -v /home/gobblin/work-dir:/home/gobblin/work-dir \
-           -v /home/gobblin/logs:/var/log/gobblin \
-           gobblin/gobblin-standalone:ubuntu-gobblin-latest
-</code></pre>
-
-<p>A data volume needs to be created for the job configuration directory (contains all the job configuration files), the work directory (contains all the job output data), and the logs directory (contains all the Gobblin standalone logs).</p>
-<p>The <code>-v /home/gobblin/conf:/etc/opt/job-conf</code> option allows any new job / pull files added to the <code>/home/gobblin/conf</code> directory on the host filesystem will be seen by the Gobblin standalone service inside the container. So any job / pull added to the <code>/home/gobblin/conf</code> directory on the local filesystem will be run by the Gobblin standalone inside running inside the Docker container. Note the container directory (<code>/etc/opt/job-conf</code>) should not be modified, while the host directory (<code>/home/gobblin/conf</code>) directory can be any directory on the host filesystem that contains job / pull files.</p>
-<p>The <code>-v /home/gobblin/work-dir:/home/gobblin/work-dir</code> option allows the container to write data to the host filesystem, so that the data persists after the container is shutdown. Once again, the container directory (<code>/home/gobblin/work-dir</code>) should not be modified, while the host directory (<code>/home/gobblin/work-dir</code>) can be any directory on the host filesystem.</p>
-<p>The <code>-v /home/gobblin/logs:/var/log/gobblin</code> option allows the Gobblin standalone logs to be written to the host filesystem, so that they can be read on the host machine. This is useful for monitoring and debugging purposes. Once again, the container directory (<code>/var/log/gobblin</code>) directory should not be modified, while the container directory (<code>/home/gobblin/logs</code>) can be any directory on the host filesystem.</p>
+<p>After the job finished, open a terminal in the HDFS namenode container:</p>
+<p><code>hadoop fs -ls /gobblintest/job-output/test/</code></p>
+<p>You will see the result file in this HDFS folder. You can use this command to verify the content in the text file:</p>
+<p><code>hadoop fs -cat /gobblintest/job-output/test/&lt;output_file.txt&gt;</code></p>
+<h1 id="run-gobblin-as-a-service">Run Gobblin as a Service</h1>
+<p>The goal of GaaS(Gobblin as a Service) is to enable a self service so that different users can automatically provision and execute various supported Gobblin applications limiting the need for development and operation teams to be involved during the provisioning process. You can take a look at our <a href="https://cwiki.apache.org/confluence/display/GOBBLIN/Gobblin+as+a+Service">design detail</a>.</p>
+<h3 id="set-working-directory">Set working directory</h3>
+<p>Similar to standalone working directory settings:</p>
+<p><code>export GAAS_JOB_DIR=&lt;gaas_gobblin_directory&gt;</code></p>
+<p><code>export LOCAL_DATAPACK_DIR=&lt;local_directory_of_templateUris&gt;</code></p>
+<h3 id="start-gobblin-as-a-service">Start Gobblin as a Service</h3>
+<p>Run these commands to start the docker image:</p>
+<p><code>docker run -p 6956:6956 -v $GAAS_JOB_DIR:/tmp/gobblin-as-service/jobs -v $LOCAL_DATAPACK_DIR:/tmp/templateCatalog apache/gobblin --mode gobblin-as-service</code></p>
+<p>The GaaS will be started, and the service can now be accessed on localhost:6956.</p>
+<h3 id="interact-with-gaas">Interact with GaaS</h3>
+<h5 id="todo-add-an-end-to-end-workflow-example-in-gaas">TODO: Add an end-to-end workflow example in GaaS.</h5>
 <h1 id="future-work">Future Work</h1>
 <ul>
-<li>Create <code>gobblin-dev</code> images that provide an development environment for Gobblin contributors</li>
-<li>Create <code>gobblin-kafka</code> images that provide an end-to-end service for writing to Kafka and ingesting the Kafka data through Gobblin</li>
-<li>Test and write a tutorial on using <code>gobblin-standalone</code> images to write to a HDFS cluster</li>
-<li>Create images based on <a href="https://hub.docker.com/_/alpine/" rel="nofollow">Linux Alpine</a> (lightweight Linux distro)</li>
+<li>Complete <code>gobblin-service</code> docker guidance that serve as a quick-start for GaaS user</li>
+<li>Implement a simple converter and inject into the docker service. Create a corresponding doc to guide users implement their own logic but no need to tangle with the Gobblin codebase</li>
+<li>Finish the Github action to automate the docker build</li>
 </ul>
               
             </div>
