@@ -541,7 +541,7 @@
     <li>Metrics for Gobblin ETL</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/metrics/Metrics-for-Gobblin-ETL.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/metrics/Metrics-for-Gobblin-ETL.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -747,10 +747,10 @@
 </ul>
 <h1 id="customizing-instrumentation">Customizing Instrumentation</h1>
 <h2 id="custom-constructs">Custom constructs</h2>
-<p>When using a custom construct (for example a custom extractor for your data source), you will get the above mentioned instrumentation for free. However, you may want to implement additional metrics. To aid with this, instead of extending the usual class Extractor, you can extend the class <code>gobblin.instrumented.extractor.InstrumentedExtractor</code>. Similarly, for each construct there is an instrumented version that allows extension of the default metrics (<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/extractor/InstrumentedExtractor.java">InstrumentedExtractor</a>, <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/converter/InstrumentedConverter.java">InstrumentedConverter</a>, <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/fork/InstrumentedForkOperator.java">InstrumentedForkOperator</a>, <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/qualitychecker/InstrumentedRowLevelPolicy.java">InstrumentedRowLevelPolicy</a>, and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/writer/InstrumentedDataWriter.java">InstrumentedDataWriter</a>).</p>
+<p>When using a custom construct (for example a custom extractor for your data source), you will get the above mentioned instrumentation for free. However, you may want to implement additional metrics. To aid with this, instead of extending the usual class Extractor, you can extend the class <code>gobblin.instrumented.extractor.InstrumentedExtractor</code>. Similarly, for each construct there is an instrumented version that allows extension of the default metrics (<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/extractor/InstrumentedExtractor.java" rel="nofollow">InstrumentedExtractor</a>, <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/converter/InstrumentedConverter.java" rel="nofollow">InstrumentedConverter</a>, <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/fork/InstrumentedForkOperator.java" rel="nofollow">InstrumentedForkOperator</a>, <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/qualitychecker/InstrumentedRowLevelPolicy.java" rel="nofollow">InstrumentedRowLevelPolicy</a>, and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/writer/InstrumentedDataWriter.java" rel="nofollow">InstrumentedDataWriter</a>).</p>
 <p>All of the instrumented constructs have Javadoc providing with additional information. In general, when extending an instrumented construct, you will have to implement a different method. For example, when extending an InstrumentedExtractor, instead of implementing <code>readRecord</code>, you will implement <code>readRecordImpl</code>. To make this clearer for the user, implementing <code>readRecord</code> will throw a compilation error, and the javadoc of each method specifies the method that should be implemented.</p>
 <h3 id="instrumentable-interface">Instrumentable Interface</h3>
-<p>Instrumented constructs extend the interface <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/Instrumentable.java">Instrumentable</a>. It contains the following methods:</p>
+<p>Instrumented constructs extend the interface <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core-base/src/main/java/org/apache/gobblin/instrumented/Instrumentable.java" rel="nofollow">Instrumentable</a>. It contains the following methods:</p>
 <ul>
 <li><code>getMetricContext()</code>: get the default metric context generated for that instance of the construct, with all the appropriate tags. Use this metric context to create any additional metrics.</li>
 <li><code>isInstrumentationEnabled()</code>: returns true if instrumentation is enabled.</li>
@@ -762,7 +762,7 @@
 <h3 id="callback-methods">Callback Methods</h3>
 <p>Instrumented constructs have a set of callback methods that are called at different points in the processing of each record, and which can be used to update metrics. For example, the <code>InstrumentedExtractor</code> has the callbacks <code>beforeRead()</code>, <code>afterRead(D, long)</code>, and <code>onException(Exception)</code>. The javadoc for the instrumented constructs has further descriptions for each callback. Users should always call <code>super()</code> when overriding this callbacks, as default metrics depend on that.</p>
 <h2 id="custom-reporters">Custom Reporters</h2>
-<p>Besides the reporters implemented by default (file, Kafka, and JMX), users can add custom reporters to the classpath and instruct Gobblin to use these reporters. To do this, users should extend the interface <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-metrics-libs/gobblin-metrics-base/src/main/java/org/apache/gobblin/metrics/CustomReporterFactory.java">CustomReporterFactory</a>, and specify a comma-separated list of CustomReporterFactory classes in the configuration key <code>metrics.reporting.custom.builders</code>.</p>
+<p>Besides the reporters implemented by default (file, Kafka, and JMX), users can add custom reporters to the classpath and instruct Gobblin to use these reporters. To do this, users should extend the interface <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-metrics-libs/gobblin-metrics-base/src/main/java/org/apache/gobblin/metrics/CustomReporterFactory.java" rel="nofollow">CustomReporterFactory</a>, and specify a comma-separated list of CustomReporterFactory classes in the configuration key <code>metrics.reporting.custom.builders</code>.</p>
 <p>Gobblin will automatically search for these CustomReporterFactory implementations, instantiate each one with a parameter-less constructor, and then call the method <code>newScheduledReporter(MetricContext, Properties)</code>, where the properties contain all of the input configurations supplied to Gobblin. Gobblin will then manage this <code>ScheduledReporter</code>.</p>
               
             </div>
@@ -786,7 +786,7 @@
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

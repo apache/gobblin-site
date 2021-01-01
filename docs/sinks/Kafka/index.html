@@ -514,7 +514,7 @@
     <li>Kafka</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/Kafka.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/Kafka.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -547,7 +547,7 @@
 </ul>
 <h1 id="steps">Steps</h1>
 <ul>
-<li>Edit the <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/wikipedia-kafka.pull">wikipedia-kafka.pull</a> example to get started with setting up ingestion into Kafka. This is a very similar pipeline to the <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/wikipedia.pull">wikipedia.pull</a> example which pulls pages from 5 titles from Wikipedia to HDFS. The main differences to note are: <ul>
+<li>Edit the <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/wikipedia-kafka.pull" rel="nofollow">wikipedia-kafka.pull</a> example to get started with setting up ingestion into Kafka. This is a very similar pipeline to the <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/wikipedia.pull" rel="nofollow">wikipedia.pull</a> example which pulls pages from 5 titles from Wikipedia to HDFS. The main differences to note are: <ul>
 <li>The <code>writer.builder.class</code> is set to <code>gobblin.kafka.writer.KafkaDataWriterBuilder</code>. This is the class that creates a Kafka writer.</li>
 <li>The <code>writer.kafka.topic</code> is set to <code>WikipediaExample</code>. This is the topic that the writer will write the records to.</li>
 <li>The <code>writer.kafka.producerConfig.bootstrap.servers</code> is set to <code>localhost:9092</code>. This is the address of the kafka broker(s) that the writer must write to.</li>
@@ -586,7 +586,7 @@ INFO  [TaskExecutor-0] gobblin.kafka.writer.KafkaDataWriter  211 - Successfully 
 </code></pre>
 
 <ul>
-<li>To verify that the records have indeed been ingested into Kafka, you can run a kafka console consumer or run Gobblin's <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/kafka-console.pull">kafka-console pull file</a> which prints the events from Kafka onto the console.</li>
+<li>To verify that the records have indeed been ingested into Kafka, you can run a kafka console consumer or run Gobblin's <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/kafka-console.pull" rel="nofollow">kafka-console pull file</a> which prints the events from Kafka onto the console.</li>
 </ul>
 <h1 id="configuration-details">Configuration Details</h1>
 <p>At this time, Gobblin supports integration with Kafka 0.8 and 0.9. The Kafka writer supports all the configuration parameters supported by the version-specific Kafka Producer (e.g. <a href="https://kafka.apache.org/documentation/#producerconfigs">Latest Producer Configs</a>). All you have to do is prefix <code>writer.kafka.producerConfig.</code> to each configuration property that the producer supports. For example, if you want to set the <code>acks</code> parameter to <code>all</code> to ensure full acknowledgement of writes, you would set <code>writer.kafka.producerConfig.acks=all</code> in your pull file. For a comprehensive list of all the configuration properties supported by the producers, go through the <a href="http://kafka.apache.org/082/documentation.html#newproducerconfigs">official documentation here</a>. Note: Since Gobblin is currently built against Kafka 0.8.2, the configuration options apply to the new 0.8.2 java producer.</p>
@@ -653,7 +653,7 @@ INFO  [TaskExecutor-0] gobblin.kafka.writer.KafkaDataWriter  211 - Successfully 
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

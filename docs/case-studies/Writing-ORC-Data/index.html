@@ -516,7 +516,7 @@
     <li>Writing ORC Data</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/case-studies/Writing-ORC-Data.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/case-studies/Writing-ORC-Data.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -539,7 +539,7 @@
 </ul>
 </div>
 <h1 id="introduction">Introduction</h1>
-<p>Gobblin is capable of writing data to ORC files by leveraging Hive's SerDe library. Gobblin has native integration with Hive SerDe's library via the <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/HiveSerDeManager.java">HiveSerDeWrapper</a> class.</p>
+<p>Gobblin is capable of writing data to ORC files by leveraging Hive's SerDe library. Gobblin has native integration with Hive SerDe's library via the <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-hive-registration/src/main/java/org/apache/gobblin/hive/HiveSerDeManager.java" rel="nofollow">HiveSerDeWrapper</a> class.</p>
 <p>This document will briefly explain how Gobblin integrates with Hive's SerDe library, and show an example of writing ORC files.</p>
 <h1 id="hive-serde-integration">Hive SerDe Integration</h1>
 <p><a href="https://cwiki.apache.org/confluence/display/Hive/SerDe">Hive's SerDe library</a> defines the interface Hive uses for serialization and deserialization of data. The Hive SerDe library has out of the box SerDe support for Avro, ORC, Parquet, CSV, and JSON SerDes. However, users are free to define custom SerDes.</p>
@@ -550,7 +550,7 @@
 <li><code>HiveWritableHdfsDataWriter</code> writes a <code>Writable</code> object to a specific file, typically this writes the output of a <code>HiveSerDeConverter</code></li>
 </ul>
 <h1 id="writing-to-an-orc-file">Writing to an ORC File</h1>
-<p>An end-to-end example of writing to an ORC file is provided in the configuration found <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/wikipedia-orc.pull">here</a>. This <code>.pull</code> file is almost identical to the Wikipedia example discussed in the <a href="../../Getting-Started/">Getting Started Guide</a>. The only difference is that the output is written in ORC instead of Avro. The configuration file mentioned above can be directly used as a template for writing data to ORC files, below is a detailed explanation of the configuration options that need to be changed, and why they need to be changed.</p>
+<p>An end-to-end example of writing to an ORC file is provided in the configuration found <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/wikipedia-orc.pull" rel="nofollow">here</a>. This <code>.pull</code> file is almost identical to the Wikipedia example discussed in the <a href="../../Getting-Started/">Getting Started Guide</a>. The only difference is that the output is written in ORC instead of Avro. The configuration file mentioned above can be directly used as a template for writing data to ORC files, below is a detailed explanation of the configuration options that need to be changed, and why they need to be changed.</p>
 <ul>
 <li><code>converter.classes</code> requires two additional converters: <code>gobblin.converter.avro.AvroRecordToAvroWritableConverter</code> and <code>gobblin.converter.serde.HiveSerDeConverter</code><ul>
 <li>The output of the first converter (the <code>WikipediaConverter</code>) returns Avro <code>GenericRecord</code>s</li>
@@ -610,7 +610,7 @@
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

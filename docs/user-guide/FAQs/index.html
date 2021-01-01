@@ -519,7 +519,7 @@
     <li>FAQs</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/FAQs.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/FAQs.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -583,7 +583,7 @@
 <h5 id="why-does-gobblin-on-hadoop-stall-for-a-long-time-between-adding-files-to-the-distrbutedcache-and-launching-the-actual-job">Why does Gobblin on Hadoop stall for a long time between adding files to the DistrbutedCache, and launching the actual job?</h5>
 <p>Gobblin takes all WorkUnits created by the Source class and serializes each one into a file on Hadoop. These files are read by each map task, and are deserialized into Gobblin Tasks. These Tasks are then run by the map-task. The reason the job stalls is that Gobblin is writing all these files to HDFS, which can take a while especially if there are a lot of tasks to run. See the <a href="Gobblin Deployment">Gobblin Deployment</a> page for more information.</p>
 <h5 id="how-do-i-fix-unsupportedfilesystemexception-no-abstractfilesystem-for-scheme-null">How do I fix <code>UnsupportedFileSystemException: No AbstractFileSystem for scheme: null</code>?</h5>
-<p>This error typically occurs due to Hadoop version conflict issues. If Gobblin is compiled against a specific Hadoop version, but then deployed on a different Hadoop version or installation, this error may be thrown. For example, if you simply compile Gobblin using <code>./gradlew clean build</code>, but deploy Gobblin to a cluster with <a href="https://www.cloudera.com/content/www/en-us/products/apache-hadoop/key-cdh-components.html">CDH</a> installed, you may hit this error.</p>
+<p>This error typically occurs due to Hadoop version conflict issues. If Gobblin is compiled against a specific Hadoop version, but then deployed on a different Hadoop version or installation, this error may be thrown. For example, if you simply compile Gobblin using <code>./gradlew clean build</code>, but deploy Gobblin to a cluster with <a href="https://www.cloudera.com/content/www/en-us/products/apache-hadoop/key-cdh-components.html" rel="nofollow">CDH</a> installed, you may hit this error.</p>
 <p>It is important to realize that the the <code>gobblin-dist.tar.gz</code> file produced by <code>./gradlew clean build</code> will include all the Hadoop jar dependencies; and if one follows the <a href="Gobblin-Deployment#Hadoop-MapReduce-Deployment">MR deployment guide</a>, Gobblin will be launched with these dependencies on the classpath.</p>
 <p>To fix this take the following steps:</p>
 <ul>
@@ -591,18 +591,18 @@
 <li>Ensure that the environment variable <code>HADOOP_CLASSPATH</code> is set and points to a directory containing the Hadoop libraries for the cluster</li>
 </ul>
 <h5 id="how-do-i-compile-gobblin-against-cdh">How do I compile Gobblin against CDH?</h5>
-<p><a href="https://www.cloudera.com/content/www/en-us/products/apache-hadoop/key-cdh-components.html">Cloudera Distributed Hadoop</a> (often abbreviated as CDH) is a popular Hadoop distribution. Typically, when running Gobblin on a CDH cluster it is recommended that one also compile Gobblin against the same CDH version. Not doing so may cause unexpected runtime behavior. To compile against a specific CDH version simply use the <code>hadoopVersion</code> parameter. For example, to compile against version <code>2.5.0-cdh5.3.0</code> run <code>./gradlew clean build -PhadoopVersion=2.5.0-cdh5.3.0</code>.</p>
+<p><a href="https://www.cloudera.com/content/www/en-us/products/apache-hadoop/key-cdh-components.html" rel="nofollow">Cloudera Distributed Hadoop</a> (often abbreviated as CDH) is a popular Hadoop distribution. Typically, when running Gobblin on a CDH cluster it is recommended that one also compile Gobblin against the same CDH version. Not doing so may cause unexpected runtime behavior. To compile against a specific CDH version simply use the <code>hadoopVersion</code> parameter. For example, to compile against version <code>2.5.0-cdh5.3.0</code> run <code>./gradlew clean build -PhadoopVersion=2.5.0-cdh5.3.0</code>.</p>
 <h5 id="resolve-gobblin-on-mr-exception-ioexception-not-all-tasks-running-in-mapper-attempt_id-completed-successfully">Resolve Gobblin-on-MR Exception <code>IOException: Not all tasks running in mapper attempt_id completed successfully</code></h5>
 <p>This exception usually just means that a Hadoop Map Task running Gobblin Tasks threw some exception. Unfortunately, the exception isn't truly indicative of the underlying problem, all it is really saying is that something went wrong in the Gobblin Task. Each Hadoop Map Task has its own log file and it is often easiest to look at the logs of the Map Task when debugging this problem. There are multiple ways to do this, but one of the easiest ways is to execute <code>yarn logs -applicationId &lt;application ID&gt; [OPTIONS]</code></p>
 <h5 id="gradle-build-fails-with-cannot-invoke-method-geturls-on-null-object">Gradle Build Fails With <code>Cannot invoke method getURLs on null object</code></h5>
-<p>Add <code>-x test</code> to build the project without running the tests; this will make the exception go away. If one needs to run the tests then make sure <a href="https://en.wikipedia.org/wiki/Java_Cryptography_Extension">Java Cryptography Extension</a> is installed.</p>
+<p>Add <code>-x test</code> to build the project without running the tests; this will make the exception go away. If one needs to run the tests then make sure <a href="https://en.wikipedia.org/wiki/Java_Cryptography_Extension" rel="nofollow">Java Cryptography Extension</a> is installed.</p>
 <h1 id="gradle">Gradle</h1>
 <h2 id="technical-questions_1">Technical Questions</h2>
 <h4 id="how-do-i-add-a-new-external-dependency">How do I add a new external dependency?</h4>
-<p>Say I want to add <a href="http://mvnrepository.com/artifact/org.apache.oozie/oozie-core/4.2.0"><code>oozie-core-4.2.0.jar</code></a> as a dependency to the <code>gobblin-scheduler</code> subproject. I would first open the file <code>build.gradle</code> and add the following entry to the <code>ext.externalDependency</code> array: <code>"oozieCore": "org.apache.oozie:oozie-core:4.2.0"</code>.</p>
+<p>Say I want to add <a href="http://mvnrepository.com/artifact/org.apache.oozie/oozie-core/4.2.0" rel="nofollow"><code>oozie-core-4.2.0.jar</code></a> as a dependency to the <code>gobblin-scheduler</code> subproject. I would first open the file <code>build.gradle</code> and add the following entry to the <code>ext.externalDependency</code> array: <code>"oozieCore": "org.apache.oozie:oozie-core:4.2.0"</code>.</p>
 <p>Then in the <code>gobblin-scheduler/build.gradle</code> file I would add the following line to the dependency block: <code>compile externalDependency.oozieCore</code>.</p>
 <h4 id="how-do-i-add-a-new-maven-repository-to-pull-artifacts-from">How do I add a new Maven Repository to pull artifacts from?</h4>
-<p>Often times, one may have important artifacts stored in a local or private Maven repository. As of 01/21/2016 Gobblin only pulls artifacts from the following Maven Repositories: <a href="http://repo1.maven.org/maven/">Maven Central</a>, <a href="http://conjars.org/repo">Conjars</a>, and <a href="https://repository.cloudera.com/artifactory/cloudera-repos/">Cloudera</a>.</p>
+<p>Often times, one may have important artifacts stored in a local or private Maven repository. As of 01/21/2016 Gobblin only pulls artifacts from the following Maven Repositories: <a href="http://repo1.maven.org/maven/" rel="nofollow">Maven Central</a>, <a href="http://conjars.org/repo" rel="nofollow">Conjars</a>, and <a href="https://repository.cloudera.com/artifactory/cloudera-repos/" rel="nofollow">Cloudera</a>.</p>
 <p>In order to add another Maven Repository modify the <code>defaultEnvironment.gradle</code> file and the new repository using the same pattern as the existing ones.</p>
               
             </div>
@@ -626,7 +626,7 @@
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

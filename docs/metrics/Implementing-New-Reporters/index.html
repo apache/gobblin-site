@@ -512,7 +512,7 @@
     <li>Implementing New Reporters</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/metrics/Implementing-New-Reporters.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/metrics/Implementing-New-Reporters.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -531,7 +531,7 @@
 <li><a href="#other-reporters">Other Reporters</a></li>
 </ul>
 </div>
-<p>The two best entry points for implementing custom reporters are <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-metrics-libs/gobblin-metrics-base/src/main/java/org/apache/gobblin/metrics/reporter/RecursiveScheduledMetricReporter.java">RecursiveScheduledMetricReporter</a> and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-metrics-libs/gobblin-metrics-base/src/main/java/org/apache/gobblin/metrics/reporter/EventReporter.java">EventReporter</a>. Each of these classes automatically schedules reporting, extracts the correct metrics, and calls a single method that must be implemented by the developer. These methods also implement builder patterns that can be extended by the developer.</p>
+<p>The two best entry points for implementing custom reporters are <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-metrics-libs/gobblin-metrics-base/src/main/java/org/apache/gobblin/metrics/reporter/RecursiveScheduledMetricReporter.java" rel="nofollow">RecursiveScheduledMetricReporter</a> and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-metrics-libs/gobblin-metrics-base/src/main/java/org/apache/gobblin/metrics/reporter/EventReporter.java" rel="nofollow">EventReporter</a>. Each of these classes automatically schedules reporting, extracts the correct metrics, and calls a single method that must be implemented by the developer. These methods also implement builder patterns that can be extended by the developer.</p>
 <p>In the interest of giving more control to the users, metric and event reporters are kept separate, allowing users to more easily specify separate sinks for events and metrics. However, it is possible to implement a single report that handles both events and metrics.</p>
 <blockquote>
 <p>It is recommended that each reporter has a constructor with signature <code>&lt;init&gt;(Properties)</code>. In the near future we are planning to implement auto-starting, file-configurable reporting similar to Log4j architecture, and compliant reporters will be required to have such a constructor.</p>
@@ -638,7 +638,7 @@
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

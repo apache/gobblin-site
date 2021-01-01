@@ -608,7 +608,7 @@
     <li>Configuration Glossary</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Configuration-Properties-Glossary.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Configuration-Properties-Glossary.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -618,7 +618,7 @@
             <div class="section">
               
                 <p>Configuration properties are key/value pairs that are set in text files. They include system properties that control how Gobblin will pull data, and control what source Gobblin will pull the data from. Configuration files end in some user-specified suffix (by default text files ending in <code>.pull</code> or <code>.job</code> are recognized as configs files, although this is configurable). Each file represents some unit of work that needs to be done in Gobblin. For example, there will typically be a separate configuration file for each table that needs to be pulled from a database.  </p>
-<p>The first section of this document contains all the required properties needed to run a basic Gobblin job. The rest of the document is dedicated to other properties that can be used to configure Gobbin jobs. The description of each configuration parameter will often refer to core Gobblin concepts and terms. If any of these terms are confusing, check out the <a href="../Gobblin-Architecture">Gobblin Architecture</a> page for a more detailed explanation of how Gobblin works. The GitHub repo also contains sample config files for specific sources. For example, there are sample config files to connect to <a href="https://github.com/apache/incubator-gobblin/tree/master/gobblin-core/src/main/resources/mysql">MySQL databases</a> and <a href="https://github.com/apache/incubator-gobblin/tree/master/gobblin-core/src/main/resources/sftp">SFTP servers</a>.  </p>
+<p>The first section of this document contains all the required properties needed to run a basic Gobblin job. The rest of the document is dedicated to other properties that can be used to configure Gobbin jobs. The description of each configuration parameter will often refer to core Gobblin concepts and terms. If any of these terms are confusing, check out the <a href="../Gobblin-Architecture">Gobblin Architecture</a> page for a more detailed explanation of how Gobblin works. The GitHub repo also contains sample config files for specific sources. For example, there are sample config files to connect to <a href="https://github.com/apache/incubator-gobblin/tree/master/gobblin-core/src/main/resources/mysql" rel="nofollow">MySQL databases</a> and <a href="https://github.com/apache/incubator-gobblin/tree/master/gobblin-core/src/main/resources/sftp" rel="nofollow">SFTP servers</a>.  </p>
 <p>Gobblin also allows you to specify a global configuration file that contains common properties that are shared across all jobs. The <a href="#Job-Launcher-Properties">Job Launcher Properties</a> section has more information on how to specify a global properties file.  </p>
 <h1 id="table-of-contents">Table of Contents</h1>
 <ul>
@@ -709,10 +709,10 @@
 </ul>
 <p>For more information on each property, check out the comprehensive list below.  </p>
 <p>If only these properties are set, then by default, Gobblin will run in Local mode, as opposed to running on Hadoop M/R. This means Gobblin will write Avro data to the local filesystem. In order to write to HDFS, set the <code>writer.fs.uri</code> property to the URI of the HDFS NameNode that data should be written to. Since the default version of Gobblin writes data in Avro format, the writer expects Avro records to be passed to it. Thus, any data pulled from an external source must be converted to Avro before it can be written out to the filesystem.  </p>
-<p>The <code>source.class</code> property is one of the most important properties in Gobblin. It specifies what Source class to use. The Source class is responsible for determining what work needs to be done during each run of the job, and specifies what Extractor to use in order to read over each sub-unit of data. Examples of Source classes are <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/java/org/apache/gobblin/example/wikipedia/WikipediaSource.java">WikipediaSource</a> and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/java/org/apache/gobblin/example/simplejson/SimpleJsonSource.java">SimpleJsonSource</a>, which can be found in the GitHub repository. For more information on Sources and Extractors, check out the <a href="../Gobblin-Architecture">Architecture</a> page.  </p>
+<p>The <code>source.class</code> property is one of the most important properties in Gobblin. It specifies what Source class to use. The Source class is responsible for determining what work needs to be done during each run of the job, and specifies what Extractor to use in order to read over each sub-unit of data. Examples of Source classes are <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/java/org/apache/gobblin/example/wikipedia/WikipediaSource.java" rel="nofollow">WikipediaSource</a> and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/java/org/apache/gobblin/example/simplejson/SimpleJsonSource.java" rel="nofollow">SimpleJsonSource</a>, which can be found in the GitHub repository. For more information on Sources and Extractors, check out the <a href="../Gobblin-Architecture">Architecture</a> page.  </p>
 <p>Typically, Gobblin jobs will be launched using the launch scripts in the <code>bin</code> folder. These scripts allow jobs to be launched on the local machine (e.g. SchedulerDaemon) or on Hadoop (e.g. CliMRJobLauncher). Check out the Job Launcher section below, to see the configuration difference between each launch mode. The <a href="Gobblin-Deployment">Deployment</a> page also has more information on the different ways a job can be launched.  </p>
 <h1 id="job-launcher-properties">Job Launcher Properties <a name="Job-Launcher-Properties"></a></h1>
-<p>Gobblin jobs can be launched and scheduled in a variety of ways. They can be scheduled via a Quartz scheduler or through <a href="https://github.com/azkaban/azkaban">Azkaban</a>. Jobs can also be run without a scheduler via the Command Line. For more information on launching Gobblin jobs, check out the <a href="Gobblin-Deployment">Deployment</a> page.</p>
+<p>Gobblin jobs can be launched and scheduled in a variety of ways. They can be scheduled via a Quartz scheduler or through <a href="https://github.com/azkaban/azkaban" rel="nofollow">Azkaban</a>. Jobs can also be run without a scheduler via the Command Line. For more information on launching Gobblin jobs, check out the <a href="Gobblin-Deployment">Deployment</a> page.</p>
 <h2 id="common-job-launcher-properties">Common Job Launcher Properties <a name="Common-Launcher-Properties"></a></h2>
 <p>These properties are common to both the Job Launcher and the Command Line.</p>
 <table>
@@ -818,7 +818,7 @@ For more information on how to set the configuration parameters for jobs launche
 <h2 id="climrjoblauncher-properties">CliMRJobLauncher Properties <a name="CliMRJobLauncher-Properties"></a></h2>
 <p>There are no configuration parameters specific to CliMRJobLauncher. This class is used to launch Gobblin jobs on Hadoop from the command line, the jobs are not scheduled. Common properties are set using the <code>--sysconfig</code> option when launching jobs via the command line. For more information on how to set the configuration parameters for jobs launched through the command line, check out the <a href="Gobblin-Deployment">Deployment</a> page.</p>
 <h2 id="azkabanjoblauncher-properties">AzkabanJobLauncher Properties <a name="AzkabanJobLauncher-Properties"></a></h2>
-<p>There are no configuration parameters specific to AzkabanJobLauncher. This class is used to schedule Gobblin jobs on Azkaban. Common properties can be set through Azkaban by creating a <code>.properties</code> file, check out the <a href="http://azkaban.github.io/">Azkaban Documentation</a> for more information. For more information on how to set the configuration parameters for jobs scheduled through the Azkaban, check out the <a href="Gobblin-Deployment">Deployment</a> page.</p>
+<p>There are no configuration parameters specific to AzkabanJobLauncher. This class is used to schedule Gobblin jobs on Azkaban. Common properties can be set through Azkaban by creating a <code>.properties</code> file, check out the <a href="http://azkaban.github.io/" rel="nofollow">Azkaban Documentation</a> for more information. For more information on how to set the configuration parameters for jobs scheduled through the Azkaban, check out the <a href="Gobblin-Deployment">Deployment</a> page.</p>
 <h1 id="job-type-properties">Job Type Properties <a name="Job-Type-Properties"></a></h1>
 <h2 id="common-job-type-properties">Common Job Type Properties <a name="Common-Job-Type-Properties"></a></h2>
 <table>
@@ -2266,7 +2266,7 @@ Properties required by the MRJobLauncher class.</p>
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

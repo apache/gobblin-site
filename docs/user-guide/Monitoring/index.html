@@ -526,7 +526,7 @@
     <li>Monitoring</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Monitoring.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Monitoring.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -557,7 +557,7 @@
 <h2 id="metrics-reporting">Metrics Reporting</h2>
 <p>Out-of-the-box, Gobblin reports metrics though:</p>
 <ul>
-<li><em>JMX</em> : used in the standalone deployment. Metrics reported to JMX can be checked using using tools such as <a href="http://visualvm.java.net/">VisualVM</a> or JConsole. </li>
+<li><em>JMX</em> : used in the standalone deployment. Metrics reported to JMX can be checked using using tools such as <a href="http://visualvm.java.net/" rel="nofollow">VisualVM</a> or JConsole. </li>
 <li><em>Metric log files</em>: Files are stored in a root directory defined by the property <code>metrics.log.dir</code>. Each Gobblin job has its own subdirectory under the root directory and each run of the job has its own metric log file named after the job ID as <code>${job_id}.metrics.log</code>.</li>
 <li><em>Hadoop counters</em> : used for M/R deployments. Gobblin-specific metrics are reported in the "JOB" or "TASK" groups for job- and task- level metrics. By default, task-level metrics are not reported through Hadoop counters as doing so may cause the number of Hadoop counters to go beyond the system-wide limit. However, users can choose to turn on reporting task-level metrics as Hadoop counters by setting <code>mr.include.task.counters=true</code>. </li>
 </ul>
@@ -570,7 +570,7 @@
 <li><code>jvm.threads</code>: this covers metrics related to thread states, e.g., thread count and thread deadlocks.</li>
 <li><code>jvm.fileDescriptorRatio</code>: this measures the ratio of open file descriptors.</li>
 </ul>
-<p>All JVM metrics are reported via JMX and can be checked using tools such as <a href="http://visualvm.java.net/">VisualVM</a> or JConsole. </p>
+<p>All JVM metrics are reported via JMX and can be checked using tools such as <a href="http://visualvm.java.net/" rel="nofollow">VisualVM</a> or JConsole. </p>
 <h3 id="pre-defined-job-execution-metrics">Pre-defined Job Execution Metrics</h3>
 <p>Internally, Gobblin pre-defines a minimum set of metrics listed below in two metric groups: <code>JOB</code> and <code>TASK</code> for job-level metrics and task-level metrics, respectively. Those metrics are useful in keeping track of the progress and performance of job executions.</p>
 <ul>
@@ -581,7 +581,7 @@
 </ul>
 <p>Among the above metrics, <code>${metric_group}.${id}.records</code> and <code>${metric_group}.${id}.bytes</code> are reported as Hadoop MapReduce counters for Gobblin jobs running on Hadoop.</p>
 <h2 id="job-execution-history-store">Job Execution History Store</h2>
-<p>Gobblin also supports writing job execution information to a job execution history store backed by a database of choice. Gobblin uses MySQL by default and it ships with the SQL <a href="https://github.com/apache/incubator-gobblin/tree/master/gobblin-metastore/src/main/resources/db/migration">DDLs</a> of the relevant MySQL tables, although  it still allows users to choose which database to use as long as the schema of the tables is compatible. Users can use the properties <code>job.history.store.url</code> and <code>job.history.store.jdbc.driver</code> to specify the database URL and the JDBC driver to work with the database of choice. The user name and password used to access the database can be specified using the properties <code>job.history.store.user</code> and <code>job.history.store.password</code>. An example configuration is shown below:</p>
+<p>Gobblin also supports writing job execution information to a job execution history store backed by a database of choice. Gobblin uses MySQL by default and it ships with the SQL <a href="https://github.com/apache/incubator-gobblin/tree/master/gobblin-metastore/src/main/resources/db/migration" rel="nofollow">DDLs</a> of the relevant MySQL tables, although  it still allows users to choose which database to use as long as the schema of the tables is compatible. Users can use the properties <code>job.history.store.url</code> and <code>job.history.store.jdbc.driver</code> to specify the database URL and the JDBC driver to work with the database of choice. The user name and password used to access the database can be specified using the properties <code>job.history.store.user</code> and <code>job.history.store.password</code>. An example configuration is shown below:</p>
 <pre><code>job.history.store.url=jdbc:mysql://localhost/gobblin
 job.history.store.jdbc.driver=com.mysql.jdbc.Driver
 job.history.store.user=gobblin
@@ -635,7 +635,7 @@ job.history.store.password=gobblin
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

@@ -513,7 +513,7 @@
     <li>Query based</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sources/QueryBasedSource.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sources/QueryBasedSource.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -538,11 +538,11 @@
 </ul>
 </div>
 <h1 id="introduction">Introduction</h1>
-<p><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/extract/QueryBasedSource.java"><code>QueryBasedSource</code></a>
+<p><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/extract/QueryBasedSource.java" rel="nofollow"><code>QueryBasedSource</code></a>
 represents a category of sources whose data is pulled by sending queries. A dataset of a source is identified as a
-<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/extract/QueryBasedSource.java#L96"><code>SourceEntity</code></a>.
+<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/extract/QueryBasedSource.java#L96" rel="nofollow"><code>SourceEntity</code></a>.
 Query can be done by sending HTTP requests or SQL commands. A source often, but not always, has a corresponding
-<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/extract/QueryBasedExtractor.java"><code>QueryBasedExtractor</code></a>,
+<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/extract/QueryBasedExtractor.java" rel="nofollow"><code>QueryBasedExtractor</code></a>,
 which defines the way and implements common routines to extract data from the source.</p>
 <h1 id="constructs">Constructs</h1>
 <h2 id="querybasedsource"><code>QueryBasedSource</code></h2>
@@ -560,7 +560,7 @@ which defines the way and implements common routines to extract data from the so
 <li>pick up previously failed work units.</li>
 </ul>
 <p>At last, it will group several work units as
-<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-api/src/main/java/org/apache/gobblin/source/workunit/MultiWorkUnit.java"><code>MultiWorkUnit</code></a>
+<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-api/src/main/java/org/apache/gobblin/source/workunit/MultiWorkUnit.java" rel="nofollow"><code>MultiWorkUnit</code></a>
 according to the <code>mr.job.max.mappers</code> configuration (Note: other categories of source might have a different approach to group work units into <code>MultiWorkUnit</code>). </p>
 <h2 id="querybasedextractor"><code>QueryBasedExtractor</code></h2>
 <p><p align="center">
@@ -570,13 +570,13 @@ according to the <code>mr.job.max.mappers</code> configuration (Note: other cate
   </figure>
 </p></p>
 <p>Currently in Gobblin, depending on how an extractor communicates with a source
-(or <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/extract/ProtocolSpecificLayer.java">different communication protocols</a>),
+(or <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/extract/ProtocolSpecificLayer.java" rel="nofollow">different communication protocols</a>),
 a <code>QueryBasedExtractor</code> falls into 2 categories:
-<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/extract/restapi/RestApiExtractor.java"><code>RestApiExtractor</code></a>
+<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/extract/restapi/RestApiExtractor.java" rel="nofollow"><code>RestApiExtractor</code></a>
 and
-<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-sql/src/main/java/org/apache/gobblin/source/jdbc/JdbcExtractor.java"><code>JdbcExtractor</code></a>.
+<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-sql/src/main/java/org/apache/gobblin/source/jdbc/JdbcExtractor.java" rel="nofollow"><code>JdbcExtractor</code></a>.
 A specific extractor has to provide some
-<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/extract/SourceSpecificLayer.java">source specific logic</a>
+<a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/source/extractor/extract/SourceSpecificLayer.java" rel="nofollow">source specific logic</a>
 in order to successfully extract information from the source.</p>
 <h3 id="build"><code>build</code></h3>
 <p>Building a query based extractor may involve three queries:</p>
@@ -710,7 +710,7 @@ where (SystemModTime &gt;= '2014-01-01 00:00:00')
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

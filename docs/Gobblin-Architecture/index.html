@@ -532,7 +532,7 @@
     <li>Architecture</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/Gobblin-Architecture.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/Gobblin-Architecture.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -587,7 +587,7 @@
 
 <ol>
 <li>
-<p>A Gobblin job starts with an optional phase of acquiring a job lock. The purpose of doing this is to prevent the next scheduled run of the same job from starting until the current run finishes. This phase is optional because some job schedulers such as <a href="http://azkaban.github.io/">Azkaban</a> is already doing this. </p>
+<p>A Gobblin job starts with an optional phase of acquiring a job lock. The purpose of doing this is to prevent the next scheduled run of the same job from starting until the current run finishes. This phase is optional because some job schedulers such as <a href="http://azkaban.github.io/" rel="nofollow">Azkaban</a> is already doing this. </p>
 </li>
 <li>
 <p>The next thing the job does is to create an instance of the <code>Source</code> class specified in the job configuration. A <code>Source</code> is responsible for partitioning the data ingestion work into a set of <code>WorkUnit</code>s, each of which represents a logic unit of work for extracting a portion of the data from a data source. A <code>Source</code> is also responsible for creating a <code>Extractor</code> for each <code>WorkUnit</code>. A <code>Extractor</code>, as the name suggests, actually talks to the data source and extracts data from it. The reason for this design is that Gobblin's <code>Source</code> is modeled after Hadoop's <code>InputFormat</code>, which is responsible for partitioning the input into <code>Split</code>s as well as creating a <code>RecordReader</code> for each <code>Split</code>. </p>
@@ -669,7 +669,7 @@
 <h2 id="handling-of-failures">Handling of Failures</h2>
 <p>As a fault tolerance data ingestion framework, Gobblin employs multiple level of defenses against job and task failures. For job failures, Gobblin keeps track of the number of times a job fails consecutively and optionally sends out an alert email if the number exceeds a defined threshold so the owner of the job can jump in and investigate the failures. For task failures, Gobblin retries failed tasks in a job run up to a configurable maximum number of times. In addition to that, Gobblin also provides an option to enable retries of <code>WorkUnit</code>s corresponding to failed tasks across job runs. The idea is that if a task fails after all retries fail, the <code>WorkUnit</code> based on which the task gets created will be automatically included in the next run of the job if this type of retries is enabled. This type of retries is very useful in handling intermittent failures such as those due to temporary data source outrage.</p>
 <h2 id="job-scheduling">Job Scheduling</h2>
-<p>Like mentioned above, a Gobblin job typically runs periodically on some schedule. Gobblin can be integrated with job schedulers such as <a href="http://azkaban.github.io/">Azkaban</a>,<a href="http://oozie.apache.org/">Oozie</a>, or Crontab. Out-of-the-box, Gobblin also ships with a built-in job scheduler backed by a <a href="http://quartz-scheduler.org/">Quartz</a> scheduler, which is used as the default job scheduler in the standalone deployment and it supports cron-based triggers using the configuration property <code>job.schedule</code> for defining the cron schedule. An important feature of Gobblin is that it decouples the job scheduler and the jobs scheduled by the scheduler such that different jobs may run in different deployment settings. This is achieved using the  abstraction <code>JobLauncher</code> that has different implementations for different deployment settings. For example, a job scheduler may have 5 jobs scheduled: 2 of them run locally on the same host as the scheduler using the <code>LocalJobLauncher</code>, whereas the rest 3 run on a Hadoop cluster somewhere using the <code>MRJobLauncher</code>. Which <code>JobLauncher</code> to use can be simply configured using the property <code>launcher.type</code>. Please refer to this <a href="http://quartz-scheduler.org/documentation/quartz-2.2.x/tutorials/tutorial-lesson-06">tutorial</a> for more information on how to use and configure a cron-based trigger.</p>
+<p>Like mentioned above, a Gobblin job typically runs periodically on some schedule. Gobblin can be integrated with job schedulers such as <a href="http://azkaban.github.io/">Azkaban</a>,<a href="http://oozie.apache.org/">Oozie</a>, or Crontab. Out-of-the-box, Gobblin also ships with a built-in job scheduler backed by a <a href="http://quartz-scheduler.org/" rel="nofollow">Quartz</a> scheduler, which is used as the default job scheduler in the standalone deployment and it supports cron-based triggers using the configuration property <code>job.schedule</code> for defining the cron schedule. An important feature of Gobblin is that it decouples the job scheduler and the jobs scheduled by the scheduler such that different jobs may run in different deployment settings. This is achieved using the  abstraction <code>JobLauncher</code> that has different implementations for different deployment settings. For example, a job scheduler may have 5 jobs scheduled: 2 of them run locally on the same host as the scheduler using the <code>LocalJobLauncher</code>, whereas the rest 3 run on a Hadoop cluster somewhere using the <code>MRJobLauncher</code>. Which <code>JobLauncher</code> to use can be simply configured using the property <code>launcher.type</code>. Please refer to this <a href="http://quartz-scheduler.org/documentation/quartz-2.2.x/tutorials/tutorial-lesson-06" rel="nofollow">tutorial</a> for more information on how to use and configure a cron-based trigger.</p>
               
             </div>
           </div>
@@ -692,7 +692,7 @@
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

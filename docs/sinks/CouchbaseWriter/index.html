@@ -515,7 +515,7 @@
     <li>Couchbase</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/CouchbaseWriter.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/CouchbaseWriter.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -546,7 +546,7 @@
 </ul>
 </div>
 <h1 id="introduction">Introduction</h1>
-<p>The <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-couchbase/src/main/java/org/apache/gobblin/couchbase/writer/CouchbaseWriter.java">CouchbaseWriter</a> supports writing documents to a Couchbase bucket though the <a href="https://docs.couchbase.com/java-sdk/current/start-using-sdk.html">Couchbase Java SDK</a>. Note that CouchbaseWriter only supports writing to a single bucket as there should be only 1 CouchbaseEnvironment per JVM.</p>
+<p>The <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-couchbase/src/main/java/org/apache/gobblin/couchbase/writer/CouchbaseWriter.java" rel="nofollow">CouchbaseWriter</a> supports writing documents to a Couchbase bucket though the <a href="https://docs.couchbase.com/java-sdk/current/start-using-sdk.html" rel="nofollow">Couchbase Java SDK</a>. Note that CouchbaseWriter only supports writing to a single bucket as there should be only 1 CouchbaseEnvironment per JVM.</p>
 <h1 id="record-format">Record format</h1>
 <p>Couchbase writer currently support <code>AVRO</code> and <code>JSON</code> as data inputs. On both of them it requires the following structured schema:</p>
 <table>
@@ -559,7 +559,7 @@
 <tbody>
 <tr>
 <td><code>key</code></td>
-<td>Unique key used to store the document on the bucket. For more info view <a href="https://developer.couchbase.com/documentation/server/3.x/developer/dev-guide-3.0/keys-values.html">Couchbase docs</a></td>
+<td>Unique key used to store the document on the bucket. For more info view <a href="https://developer.couchbase.com/documentation/server/3.x/developer/dev-guide-3.0/keys-values.html" rel="nofollow">Couchbase docs</a></td>
 </tr>
 <tr>
 <td><code>data.data</code></td>
@@ -567,7 +567,7 @@
 </tr>
 <tr>
 <td><code>data.flags</code></td>
-<td><a href="https://docs.couchbase.com/server/4.1/developer-guide/transcoders.html">Couchbase flags</a> To store JSON on <code>data.data</code> use <code>0x02 &lt;&lt; 24</code> for UTF-8 <code>0x04 &lt;&lt; 24</code> .</td>
+<td><a href="https://docs.couchbase.com/server/4.1/developer-guide/transcoders.html" rel="nofollow">Couchbase flags</a> To store JSON on <code>data.data</code> use <code>0x02 &lt;&lt; 24</code> for UTF-8 <code>0x04 &lt;&lt; 24</code> .</td>
 </tr>
 </tbody>
 </table>
@@ -644,7 +644,7 @@
 <tr>
 <td><code>writer.couchbase.dnsSrvEnabled</code></td>
 <td><code>"false"</code></td>
-<td>Enable DNS SRV bootstrapping <a href="https://docs.couchbase.com/java-sdk/current/managing-connections.html">docs</a></td>
+<td>Enable DNS SRV bootstrapping <a href="https://docs.couchbase.com/java-sdk/current/managing-connections.html" rel="nofollow">docs</a></td>
 </tr>
 <tr>
 <td><code>writer.couchbase.bootstrapServers |</code>localhost<code>| URL to bootstrap servers. If using DNS SRV set</code>writer.couchbase.dnsSrvEnabled` to true</td>
@@ -694,7 +694,7 @@
 <tr>
 <td><code>writer.couchbase.documentTTLUnits</code></td>
 <td><code>SECONDS</code></td>
-<td>Unit for <code>writer.couchbase.documentTTL</code>. Must be one of <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html">java.util.concurrent.TimeUnit</a>. Case insensitive</td>
+<td>Unit for <code>writer.couchbase.documentTTL</code>. Must be one of <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html" rel="nofollow">java.util.concurrent.TimeUnit</a>. Case insensitive</td>
 </tr>
 <tr>
 <td><code>writer.couchbase.documentTTLOriginField</code></td>
@@ -704,7 +704,7 @@
 <tr>
 <td><code>writer.couchbase.documentTTLOriginUnits</code></td>
 <td><code>MILLISECONDS</code></td>
-<td>Unit for <code>writer.couchbase.documentTTL</code>. Must be one of <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html">java.util.concurrent.TimeUnit</a>. Case insensitive. As an example a <code>writer.couchbase.documentTTLOriginField</code> value of <code>1568240399000</code> and <code>writer.couchbase.documentTTLOriginUnits</code> value of <code>MILLISECONDS</code> timeunit would be <code>Wed Sep 11 15:19:59 PDT 2019</code></td>
+<td>Unit for <code>writer.couchbase.documentTTL</code>. Must be one of <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html" rel="nofollow">java.util.concurrent.TimeUnit</a>. Case insensitive. As an example a <code>writer.couchbase.documentTTLOriginField</code> value of <code>1568240399000</code> and <code>writer.couchbase.documentTTLOriginUnits</code> value of <code>MILLISECONDS</code> timeunit would be <code>Wed Sep 11 15:19:59 PDT 2019</code></td>
 </tr>
 <tr>
 <td><code>writer.couchbase.retriesEnabled</code></td>
@@ -738,7 +738,7 @@
 <h3 id="using-bucket-password">Using bucket password</h3>
 <p>Set <code>writer.couchbase.password</code></p>
 <h2 id="document-level-expiration">Document level expiration</h2>
-<p>Couchbase writer allows to set expiration at the document level using the <a href="https://docs.couchbase.com/java-sdk/current/document-operations.html">expiry</a> property of the couchbase document. PLease note that current couchbase implementation using timestamps limits it to January 19, 2038 03:14:07 GM given the type of expiry is set to int. CouchbaseWriter only works with global timestamps and does not use relative expiration in seconds (&lt;30 days) for simplicity.
+<p>Couchbase writer allows to set expiration at the document level using the <a href="https://docs.couchbase.com/java-sdk/current/document-operations.html" rel="nofollow">expiry</a> property of the couchbase document. PLease note that current couchbase implementation using timestamps limits it to January 19, 2038 03:14:07 GM given the type of expiry is set to int. CouchbaseWriter only works with global timestamps and does not use relative expiration in seconds (&lt;30 days) for simplicity.
 Currently three modes are supported:</p>
 <h3 id="1-expiration-from-write-time">1 - Expiration from write time</h3>
 <p>Define only <code>writer.couchbase.documentTTL</code> and <code>writer.couchbase.documentTTLUnits</code>. For example for a 2 days expiration configs would look like:</p>
@@ -827,7 +827,7 @@ Currently three modes are supported:</p>
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

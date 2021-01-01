@@ -511,7 +511,7 @@
     <li>Parquet HDFS</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/ParquetHdfsDataWriter.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/ParquetHdfsDataWriter.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -521,7 +521,7 @@
             <div class="section">
               
                 <h1 id="description">Description</h1>
-<p>An extension to <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/writer/FsDataWriter.java"><code>FsDataWriter</code></a> that writes in Parquet format in the form of either Avro, Protobuf or <a href="https://github.com/apache/parquet-mr/blob/master/parquet-column/src/main/java/org/apache/parquet/example/data/Group.java"><code>ParquetGroup</code></a>. This implementation allows users to specify the CodecFactory to use through the configuration property <a href="https://gobblin.readthedocs.io/en/latest/user-guide/Configuration-Properties-Glossary/#writercodectype"><code>writer.codec.type</code></a>. By default, the snappy codec is used. See <a href="#developer-notes">Developer Notes</a> to make sure you are using the right Gobblin jar.</p>
+<p>An extension to <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/writer/FsDataWriter.java" rel="nofollow"><code>FsDataWriter</code></a> that writes in Parquet format in the form of either Avro, Protobuf or <a href="https://github.com/apache/parquet-mr/blob/master/parquet-column/src/main/java/org/apache/parquet/example/data/Group.java" rel="nofollow"><code>ParquetGroup</code></a>. This implementation allows users to specify the CodecFactory to use through the configuration property <a href="https://gobblin.readthedocs.io/en/latest/user-guide/Configuration-Properties-Glossary/#writercodectype" rel="nofollow"><code>writer.codec.type</code></a>. By default, the snappy codec is used. See <a href="#developer-notes">Developer Notes</a> to make sure you are using the right Gobblin jar.</p>
 <h1 id="usage">Usage</h1>
 <pre><code>writer.builder.class=org.apache.gobblin.writer.ParquetDataWriterBuilder
 writer.destination.type=HDFS
@@ -530,7 +530,7 @@ writer.output.format=PARQUET
 
 <h1 id="example-pipeline-configuration">Example Pipeline Configuration</h1>
 <ul>
-<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/example-parquet.pull"><code>example-parquet.pull</code></a> contains an example of generating test data and writing to Parquet files.</li>
+<li><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-example/src/main/resources/example-parquet.pull" rel="nofollow"><code>example-parquet.pull</code></a> contains an example of generating test data and writing to Parquet files.</li>
 </ul>
 <h1 id="configuration">Configuration</h1>
 <table>
@@ -563,7 +563,7 @@ writer.output.format=PARQUET
 </tr>
 <tr>
 <td>writer.parquet.validate</td>
-<td>To turn on validation using the schema. This validation is done by <a href="https://github.com/apache/parquet-mr/blob/master/parquet-hadoop/src/main/java/org/apache/parquet/hadoop/ParquetWriter.java"><code>ParquetWriter</code></a> not by Gobblin.</td>
+<td>To turn on validation using the schema. This validation is done by <a href="https://github.com/apache/parquet-mr/blob/master/parquet-hadoop/src/main/java/org/apache/parquet/hadoop/ParquetWriter.java" rel="nofollow"><code>ParquetWriter</code></a> not by Gobblin.</td>
 <td>false</td>
 <td>No</td>
 </tr>
@@ -575,7 +575,7 @@ writer.output.format=PARQUET
 </tr>
 <tr>
 <td>writer.parquet.format</td>
-<td>In-memory format of the record being written to Parquet. <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-parquet-common/src/main/java/org/apache/gobblin/parquet/writer/ParquetRecordFormat.java"><code>Options</code></a> are AVRO, PROTOBUF and GROUP</td>
+<td>In-memory format of the record being written to Parquet. <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-parquet-common/src/main/java/org/apache/gobblin/parquet/writer/ParquetRecordFormat.java" rel="nofollow"><code>Options</code></a> are AVRO, PROTOBUF and GROUP</td>
 <td>GROUP</td>
 <td>No</td>
 </tr>
@@ -593,13 +593,13 @@ writer.output.format=PARQUET
 </thead>
 <tbody>
 <tr>
-<td><a href="https://mvnrepository.com/artifact/org.apache.gobblin/gobblin-parquet"><code>gobblin-parquet</code></a></td>
-<td><a href="https://mvnrepository.com/artifact/com.twitter/parquet-hadoop-bundle"><code>com.twitter:parquet-hadoop-bundle</code></a></td>
+<td><a href="https://mvnrepository.com/artifact/org.apache.gobblin/gobblin-parquet" rel="nofollow"><code>gobblin-parquet</code></a></td>
+<td><a href="https://mvnrepository.com/artifact/com.twitter/parquet-hadoop-bundle" rel="nofollow"><code>com.twitter:parquet-hadoop-bundle</code></a></td>
 <td>&gt;= 0.12.0</td>
 </tr>
 <tr>
-<td><a href="https://mvnrepository.com/artifact/org.apache.gobblin/gobblin-parquet-apache"><code>gobblin-parquet-apache</code></a></td>
-<td><a href="https://mvnrepository.com/artifact/org.apache.parquet/parquet-hadoop"><code>org.apache.parquet:parquet-hadoop</code></a></td>
+<td><a href="https://mvnrepository.com/artifact/org.apache.gobblin/gobblin-parquet-apache" rel="nofollow"><code>gobblin-parquet-apache</code></a></td>
+<td><a href="https://mvnrepository.com/artifact/org.apache.parquet/parquet-hadoop" rel="nofollow"><code>org.apache.parquet:parquet-hadoop</code></a></td>
 <td>&gt;= 0.15.0</td>
 </tr>
 </tbody>
@@ -615,19 +615,19 @@ writer.output.format=PARQUET
 <tbody>
 <tr>
 <td>gobblin-parquet</td>
-<td><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-parquet/src/main/java/org/apache/gobblin/writer/ParquetHdfsDataWriter.java"><code>ParquetHdfsDataWriter</code></a></td>
+<td><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-parquet/src/main/java/org/apache/gobblin/writer/ParquetHdfsDataWriter.java" rel="nofollow"><code>ParquetHdfsDataWriter</code></a></td>
 </tr>
 <tr>
 <td>gobblin-parquet</td>
-<td><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-parquet/src/main/java/org/apache/gobblin/writer/ParquetDataWriterBuilder.java"><code>ParquetDataWriterBuilder</code></a></td>
+<td><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-parquet/src/main/java/org/apache/gobblin/writer/ParquetDataWriterBuilder.java" rel="nofollow"><code>ParquetDataWriterBuilder</code></a></td>
 </tr>
 <tr>
 <td>gobblin-parquet-apache</td>
-<td><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-parquet-apache/src/main/java/org/apache/gobblin/writer/ParquetHdfsDataWriter.java"><code>ParquetHdfsDataWriter</code></a></td>
+<td><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-parquet-apache/src/main/java/org/apache/gobblin/writer/ParquetHdfsDataWriter.java" rel="nofollow"><code>ParquetHdfsDataWriter</code></a></td>
 </tr>
 <tr>
 <td>gobblin-parquet-apache</td>
-<td><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-parquet-apache/src/main/java/org/apache/gobblin/writer/ParquetDataWriterBuilder.java"><code>ParquetDataWriterBuilder</code></a></td>
+<td><a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-parquet-apache/src/main/java/org/apache/gobblin/writer/ParquetDataWriterBuilder.java" rel="nofollow"><code>ParquetDataWriterBuilder</code></a></td>
 </tr>
 </tbody>
 </table>
@@ -653,7 +653,7 @@ writer.output.format=PARQUET
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

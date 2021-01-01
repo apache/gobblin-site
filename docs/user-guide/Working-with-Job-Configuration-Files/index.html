@@ -521,7 +521,7 @@
     <li>Job Configuration Files</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Working-with-Job-Configuration-Files.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Working-with-Job-Configuration-Files.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -544,7 +544,7 @@
 </ul>
 </div>
 <h2 id="job-configuration-basics">Job Configuration Basics</h2>
-<p>A Job configuration file is a text file with extension <code>.pull</code> or <code>.job</code> that defines the job properties that can be loaded into a Java <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html">Properties</a> object. Gobblin uses <a href="http://commons.apache.org/proper/commons-configuration/">commons-configuration</a> to allow variable substitutions in job configuration files. You can find some example Gobblin job configuration files <a href="https://github.com/apache/incubator-gobblin/tree/master/gobblin-core/src/main/resources">here</a>. </p>
+<p>A Job configuration file is a text file with extension <code>.pull</code> or <code>.job</code> that defines the job properties that can be loaded into a Java <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Properties.html">Properties</a> object. Gobblin uses <a href="http://commons.apache.org/proper/commons-configuration/">commons-configuration</a> to allow variable substitutions in job configuration files. You can find some example Gobblin job configuration files <a href="https://github.com/apache/incubator-gobblin/tree/master/gobblin-core/src/main/resources" rel="nofollow">here</a>. </p>
 <p>A Job configuration file typically includes the following properties, in additional to any mandatory configuration properties required by the custom <a href="Gobblin-Architecture#gobblin-constructs">Gobblin Constructs</a> classes. For a complete reference of all configuration properties supported by Gobblin, please refer to <a href="Configuration-Properties-Glossary">Configuration Properties Glossary</a>.</p>
 <ul>
 <li><code>job.name</code>: job name.</li>
@@ -579,8 +579,8 @@
 <p>In this example, <code>common.properties</code> will be included when loading <code>foo1.job</code>, <code>foo2.job</code>, <code>bar1.job</code>, <code>bar2.job</code>, <code>baz1.pull</code>, and <code>baz2.pull</code>. <code>foo.properties</code> will be included when loading <code>foo1.job</code> and <code>foo2.job</code> and properties set here are considered more special and will overwrite the same properties defined in <code>common.properties</code>. Similarly, <code>bar.properties</code> will be included when loading <code>bar1.job</code> and <code>bar2.job</code>, as well as <code>baz1.pull</code> and <code>baz2.pull</code>. <code>baz.properties</code> will be included when loading <code>baz1.pull</code> and <code>baz2.pull</code> and will overwrite the same properties defined in <code>bar.properties</code> and <code>common.properties</code>.</p>
 <h2 id="password-encryption">Password Encryption</h2>
 <p>To avoid storing passwords in configuration files in plain text, Gobblin supports encryption of the password configuration properties. All such properties can be encrypted (and decrypted) using a master password. The master password is stored in a file available at runtime. The file can be on a local file system or HDFS and has restricted access.</p>
-<p>The URI of the master password file is controlled by the configuration option <code>encrypt.key.loc</code> . By default, Gobblin will use <a href="http://www.jasypt.org/api/jasypt/1.8/org/jasypt/util/password/BasicPasswordEncryptor.html">org.jasypt.util.password.BasicPasswordEncryptor</a>. If you have installed the <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html">JCE Unlimited Strength Policy</a>, you can set
-<code>encrypt.use.strong.encryptor=true</code> which will configure Gobblin to use <a href="http://www.jasypt.org/api/jasypt/1.8/org/jasypt/util/password/StrongPasswordEncryptor.html">org.jasypt.util.password.StrongPasswordEncryptor</a>.</p>
+<p>The URI of the master password file is controlled by the configuration option <code>encrypt.key.loc</code> . By default, Gobblin will use <a href="http://www.jasypt.org/api/jasypt/1.8/org/jasypt/util/password/BasicPasswordEncryptor.html" rel="nofollow">org.jasypt.util.password.BasicPasswordEncryptor</a>. If you have installed the <a href="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html" rel="nofollow">JCE Unlimited Strength Policy</a>, you can set
+<code>encrypt.use.strong.encryptor=true</code> which will configure Gobblin to use <a href="http://www.jasypt.org/api/jasypt/1.8/org/jasypt/util/password/StrongPasswordEncryptor.html" rel="nofollow">org.jasypt.util.password.StrongPasswordEncryptor</a>.</p>
 <p>Encrypted passwords can be generated using the <code>CLIPasswordEncryptor</code> tool.</p>
 <pre><code>$ gradle :gobblin-utility:assemble
 $ cd build/gobblin-utility/distributions/
@@ -607,7 +607,7 @@ ENC(AQWoQ2Ybe8KXDXwPOA1Ziw==)
 </ul>
 <p>Note that this job configuration file change monitoring mechanism uses the <code>FileAlterationMonitor</code> of Apache's <a href="http://commons.apache.org/proper/commons-io/">commons-io</a> with a custom <code>FileAlterationListener</code>. Regardless of how close two adjacent file system checks are, there are still chances that more than one files are changed between two file system checks. In case more than one file including at least one common properties file are changed between two adjacent checks, the reloading of affected job configuration files may be intermixed and applied in an order that is not desirable. This is because the order the listener is called on the changes is not controlled by Gobblin, but instead by the monitor itself. So the best practice to use this feature is to avoid making multiple changes together in a short period of time.   </p>
 <h2 id="scheduled-jobs">Scheduled Jobs</h2>
-<p>Gobblin ships with a job scheduler backed by a <a href="http://quartz-scheduler.org/">Quartz</a> scheduler and supports Quartz's <a href="http://quartz-scheduler.org/generated/2.2.1/html/qs-all/#page/Quartz_Scheduler_Documentation_Set%2Fco-trg_crontriggers.html%23">cron triggers</a>. A job that is to be scheduled should have a cron schedule defined using the property <code>job.schedule</code>. Here is an example cron schedule that triggers every two minutes:</p>
+<p>Gobblin ships with a job scheduler backed by a <a href="http://quartz-scheduler.org/" rel="nofollow">Quartz</a> scheduler and supports Quartz's <a href="http://quartz-scheduler.org/generated/2.2.1/html/qs-all/#page/Quartz_Scheduler_Documentation_Set%2Fco-trg_crontriggers.html%23" rel="nofollow">cron triggers</a>. A job that is to be scheduled should have a cron schedule defined using the property <code>job.schedule</code>. Here is an example cron schedule that triggers every two minutes:</p>
 <pre><code>job.schedule=0 0/2 * * * ?
 </code></pre>
 
@@ -637,7 +637,7 @@ ENC(AQWoQ2Ybe8KXDXwPOA1Ziw==)
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

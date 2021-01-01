@@ -523,7 +523,7 @@
     <li>Gobblin CLI</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Gobblin-CLI.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Gobblin-CLI.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -587,7 +587,7 @@ options:
 
 <p>Argument details:
 <em> <code>--conf-dir</code>: specifies the path to directory containing gobblin system configuration files, like <code>application.conf</code> or <code>reference.conf</code>, <code>log4j.properties</code> and <code>quartz.properties</code>.
-</em> <code>--log4j-conf</code>: specify the path of log4j config file to override the one in config directory (default is <code>&lt;conf&gt;/&lt;gobblin-mode&gt;/log4j.properties</code>. Gobblin uses <a href="http://www.slf4j.org/">SLF4J</a> and the <a href="http://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12">slf4j-log4j12</a> binding for logging.
+</em> <code>--log4j-conf</code>: specify the path of log4j config file to override the one in config directory (default is <code>&lt;conf&gt;/&lt;gobblin-mode&gt;/log4j.properties</code>. Gobblin uses <a href="http://www.slf4j.org/" rel="nofollow">SLF4J</a> and the <a href="http://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12" rel="nofollow">slf4j-log4j12</a> binding for logging.
 <em> <code>--jvmopts</code>: to specify any JVM parameters, default is <code>-Xmx1g -Xms512m</code>.
 </em> <code>--enable-gc-logs</code>: adds GC options to JVM parameters:  <code>-XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+UseCompressedOops -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintTenuringDistribution -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$GOBBLIN_LOGS/ -Xloggc:$GOBBLIN_LOGS/gobblin-$GOBBLIN_MODE-gc.log</code>
 <em> <code>--show-classpath</code>: It prints the full value of the classpath that gobblin uses.
@@ -661,7 +661,7 @@ usage: gobblin cli run distcp [OPTIONS] &lt;source&gt; &lt;target&gt;
 # e.g file:///gobblin-conf/my-job/wikipedia.pull or hdfs:///gobblin-conf/my-job/kafka-hdfs.pull
 </code></pre>
 
-<p>The <strong>oneShot</strong> app comes with certain hardcoded defaults (that it inherits from EmbeddedGobblin <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-runtime/src/main/resources/embedded/embedded.conf">here</a>), that you may not be expecting. Make sure you understand what they do and override them in your baseConf or appConf files if needed.</p>
+<p>The <strong>oneShot</strong> app comes with certain hardcoded defaults (that it inherits from EmbeddedGobblin <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-runtime/src/main/resources/embedded/embedded.conf" rel="nofollow">here</a>), that you may not be expecting. Make sure you understand what they do and override them in your baseConf or appConf files if needed.</p>
 <p>Notable differences at the time of this writing include:</p>
 <ul>
 <li>state.store.enabled = false (set this to true in your appConfig or baseConfig if you want state storage for repeated oneshot runs)</li>
@@ -774,7 +774,7 @@ if <code>HADOOP_HOME</code> is set in the environment, Gobblin will add result o
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

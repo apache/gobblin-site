@@ -528,7 +528,7 @@
     <li>Compaction</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Compaction.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/user-guide/Compaction.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -583,7 +583,7 @@
 <li>A non-deduping compaction runs daily, consumes data in <code>hourly</code> and publish data into <code>daily</code>, e.g., <code>/data/kafka_topics/PageViewEvent/daily/2015/10/29...</code></li>
 </ul>
 <h2 id="basic-usage">Basic Usage</h2>
-<p><code>MRCompactor.compact()</code> is the entry point for MapReduce-based compaction. The compaction unit is <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-compaction/src/main/java/org/apache/gobblin/compaction/dataset/Dataset.java"><code>Dataset</code></a>. <code>MRCompactor</code> uses a <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-compaction/src/main/java/org/apache/gobblin/compaction/dataset/DatasetsFinder.java"><code>DatasetsFinder</code></a> to find all datasets eligible for compaction. Implementations of <code>DatasetsFinder</code> include <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-compaction/src/main/java/org/apache/gobblin/compaction/dataset/SimpleDatasetsFinder.java"><code>SimpleDatasetsFinder</code></a> and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-compaction/src/main/java/org/apache/gobblin/compaction/dataset/TimeBasedSubDirDatasetsFinder.java"><code>TimeBasedSubDirDatasetsFinder</code></a>.</p>
+<p><code>MRCompactor.compact()</code> is the entry point for MapReduce-based compaction. The compaction unit is <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-compaction/src/main/java/org/apache/gobblin/compaction/dataset/Dataset.java" rel="nofollow"><code>Dataset</code></a>. <code>MRCompactor</code> uses a <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-compaction/src/main/java/org/apache/gobblin/compaction/dataset/DatasetsFinder.java" rel="nofollow"><code>DatasetsFinder</code></a> to find all datasets eligible for compaction. Implementations of <code>DatasetsFinder</code> include <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-compaction/src/main/java/org/apache/gobblin/compaction/dataset/SimpleDatasetsFinder.java" rel="nofollow"><code>SimpleDatasetsFinder</code></a> and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-compaction/src/main/java/org/apache/gobblin/compaction/dataset/TimeBasedSubDirDatasetsFinder.java" rel="nofollow"><code>TimeBasedSubDirDatasetsFinder</code></a>.</p>
 <p>In the above example use case, for hourly compaction, each dataset contains an hour's data in the <code>hourly_staging</code> folder, e.g., <code>/data/kafka_topics/PageViewEvent/hourly_staging/2015/10/29/08</code>; for daily compaction, each dataset contains 24 hourly folder of a day, e.g., <code>/data/kafka_topics/PageViewEvent/hourly/2015/10/29</code>. In hourly compaction, you may use the following config properties:</p>
 <pre><code>compaction.datasets.finder=org.apache.gobblin.compaction.dataset.TimeBasedSubDirDatasetsFinder
 compaction.input.dir=/data/kafka_topics
@@ -827,7 +827,7 @@ Please note that in case of a Hive-compaction for drop table queries (<code>DROP
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

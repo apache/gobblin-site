@@ -537,7 +537,7 @@
     <li>HTTP</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/Http.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/Http.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -576,8 +576,8 @@ is to build a writer that writes a http record, which contains those elements of
 builds a http or rest request from multiple http records, sends the request with a client that knows the server,
 and handles the response.</p>
 <h2 id="note">Note</h2>
-<p>The old http write framework under <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/writer/http/AbstractHttpWriter.java"><code>AbstractHttpWriter</code></a>
-and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/writer/http/AbstractHttpWriterBuilder.java"><code>AbstractHttpWriterBuilder</code></a>
+<p>The old http write framework under <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/writer/http/AbstractHttpWriter.java" rel="nofollow"><code>AbstractHttpWriter</code></a>
+and <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-core/src/main/java/org/apache/gobblin/writer/http/AbstractHttpWriterBuilder.java" rel="nofollow"><code>AbstractHttpWriterBuilder</code></a>
 is deprecated (Deprecation date: 05/15/2018)! Use <code>AsyncHttpWriter</code> and <code>AsyncHttpWriterBuilder</code> instead</p>
 <h1 id="constructs">Constructs</h1>
 <p><p align="center">
@@ -640,9 +640,9 @@ http writers. As long as your write requirement can be expressed as a <code>Http
 <p>An <code>AvroHttpWriterBuilder</code> builds an <code>AsyncHttpWriter</code> on top of the <a href="https://hc.apache.org/">apache httpcomponents framework</a>, sending vanilla http request.
 The 3 major components are:</p>
 <ul>
-<li><code>ApacheHttpClient</code>. It uses <a href="https://github.com/apache/httpcomponents-client/blob/master/httpclient5/src/main/java/org/apache/hc/client5/http/impl/classic/CloseableHttpClient.java"><code>CloseableHttpClient</code></a> to 
-  send <a href="https://github.com/apache/httpcomponents-client/blob/master/httpclient5/src/main/java/org/apache/hc/client5/http/classic/methods/HttpUriRequest.java"><code>HttpUriRequest</code></a>
-  and receive <a href="https://github.com/apache/httpcomponents-client/blob/master/httpclient5/src/main/java/org/apache/hc/client5/http/impl/classic/CloseableHttpResponse.java"><code>CloseableHttpResponse</code></a></li>
+<li><code>ApacheHttpClient</code>. It uses <a href="https://github.com/apache/httpcomponents-client/blob/master/httpclient5/src/main/java/org/apache/hc/client5/http/impl/classic/CloseableHttpClient.java" rel="nofollow"><code>CloseableHttpClient</code></a> to 
+  send <a href="https://github.com/apache/httpcomponents-client/blob/master/httpclient5/src/main/java/org/apache/hc/client5/http/classic/methods/HttpUriRequest.java" rel="nofollow"><code>HttpUriRequest</code></a>
+  and receive <a href="https://github.com/apache/httpcomponents-client/blob/master/httpclient5/src/main/java/org/apache/hc/client5/http/impl/classic/CloseableHttpResponse.java" rel="nofollow"><code>CloseableHttpResponse</code></a></li>
 <li><code>ApacheHttpRequestBuilder</code>. It builds a <code>ApacheHttpRequest</code>, which is an <code>AsyncRequest</code> that wraps the <code>HttpUriRequest</code>, from one <code>HttpOperation</code></li>
 <li><code>ApacheHttpResponseHandler</code>. It handles a <code>HttpResponse</code></li>
 </ul>
@@ -663,7 +663,7 @@ The 3 major components are:</p>
 </tr>
 <tr>
 <td><code>gobblin.writer.http.verb</code></td>
-<td>Required, <a href="http://www.restapitutorial.com/lessons/httpmethods.html">http verbs</a></td>
+<td>Required, <a href="http://www.restapitutorial.com/lessons/httpmethods.html" rel="nofollow">http verbs</a></td>
 <td>get, update, delete, etc</td>
 </tr>
 <tr>
@@ -684,16 +684,16 @@ The 3 major components are:</p>
 </tbody>
 </table>
 <h2 id="r2restwriterbuilder"><code>R2RestWriterBuilder</code></h2>
-<p>A <code>R2RestWriterBuilder</code> builds an <code>AsyncHttpWriter</code> on top of <a href="https://github.com/linkedin/rest.li/wiki/Request---Response-API-(R2)">restli r2 framework</a>, sending
+<p>A <code>R2RestWriterBuilder</code> builds an <code>AsyncHttpWriter</code> on top of <a href="https://github.com/linkedin/rest.li/wiki/Request---Response-API-(R2)" rel="nofollow">restli r2 framework</a>, sending
 rest request. The 3 major components are:</p>
 <ul>
-<li><code>R2Client</code>. It uses a R2 <a href="https://github.com/linkedin/rest.li/blob/master/r2-core/src/main/java/com/linkedin/r2/transport/common/Client.java"><code>Client</code></a> to
-  send <a href="https://github.com/linkedin/rest.li/blob/master/r2-core/src/main/java/com/linkedin/r2/message/rest/RestRequest.java"><code>RestRequest</code></a> and
-  receive <a href="https://github.com/linkedin/rest.li/blob/master/r2-core/src/main/java/com/linkedin/r2/message/rest/RestResponse.java"><code>RestResponse</code></a></li>
+<li><code>R2Client</code>. It uses a R2 <a href="https://github.com/linkedin/rest.li/blob/master/r2-core/src/main/java/com/linkedin/r2/transport/common/Client.java" rel="nofollow"><code>Client</code></a> to
+  send <a href="https://github.com/linkedin/rest.li/blob/master/r2-core/src/main/java/com/linkedin/r2/message/rest/RestRequest.java" rel="nofollow"><code>RestRequest</code></a> and
+  receive <a href="https://github.com/linkedin/rest.li/blob/master/r2-core/src/main/java/com/linkedin/r2/message/rest/RestResponse.java" rel="nofollow"><code>RestResponse</code></a></li>
 <li><code>R2RestRequestBuilder</code>. It builds a <code>R2Request</code>, which is an <code>AsyncRequest</code> that wraps the <code>RestRequest</code>, from one <code>HttpOperation</code></li>
 <li><code>R2RestResponseHandler</code>. It handles a <code>RestResponse</code></li>
 </ul>
-<p><code>R2RestWriterBuilder</code> has <a href="https://github.com/linkedin/rest.li/wiki/Dynamic-Discovery">d2</a> and ssl support. Configurations(<code>(d2.)</code> part should be added in d2 mode) for the builder are:</p>
+<p><code>R2RestWriterBuilder</code> has <a href="https://github.com/linkedin/rest.li/wiki/Dynamic-Discovery" rel="nofollow">d2</a> and ssl support. Configurations(<code>(d2.)</code> part should be added in d2 mode) for the builder are:</p>
 <table>
 <thead>
 <tr>
@@ -710,7 +710,7 @@ rest request. The 3 major components are:</p>
 </tr>
 <tr>
 <td><code>gobblin.writer.http.verb</code></td>
-<td>Required, <a href="https://github.com/linkedin/rest.li/wiki/Rest.li-User-Guide#resource-methods">rest(rest.li) verbs</a></td>
+<td>Required, <a href="https://github.com/linkedin/rest.li/wiki/Rest.li-User-Guide#resource-methods" rel="nofollow">rest(rest.li) verbs</a></td>
 <td>get, update, put, delete, etc</td>
 </tr>
 <tr>
@@ -791,7 +791,7 @@ is the size of outstanding writes. Set <code>gobblin.writer.http.maxOutstandingW
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

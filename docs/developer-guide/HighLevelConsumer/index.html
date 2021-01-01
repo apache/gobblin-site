@@ -503,7 +503,7 @@
     <li>High Level Consumer</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/developer-guide/HighLevelConsumer.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/developer-guide/HighLevelConsumer.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -513,12 +513,12 @@
             <div class="section">
               
                 <h1 id="problem-statement">Problem Statement</h1>
-<p>Current Gobblin Kafka <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-runtime/src/main/java/org/apache/gobblin/runtime/kafka/HighLevelConsumer.java"><code>High Level Consumer</code></a> uses Kafka Consumer (0.8) APIs and gobblin support for them will be deprecated. The Re-design's primary goal is to replace old kafka consumer APIs like <a href="https://archive.apache.org/dist/kafka/0.8.2.2/scaladoc/index.html#kafka.consumer.ConsumerConnector"><code>ConsumerConnector</code></a> and <a href="https://archive.apache.org/dist/kafka/0.8.2.2/scaladoc/index.html#kafka.message.MessageAndMetadata"><code>MessageAndMetadata</code></a> with a consumer abstraction <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-kafka-common/src/main/java/org/apache/gobblin/kafka/client/GobblinKafkaConsumerClient.java"><code>GobblinKafkaConsumerClient</code></a>. 
+<p>Current Gobblin Kafka <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-runtime/src/main/java/org/apache/gobblin/runtime/kafka/HighLevelConsumer.java"><code>High Level Consumer</code></a> uses Kafka Consumer (0.8) APIs and gobblin support for them will be deprecated. The Re-design's primary goal is to replace old kafka consumer APIs like <a href="https://archive.apache.org/dist/kafka/0.8.2.2/scaladoc/index.html#kafka.consumer.ConsumerConnector"><code>ConsumerConnector</code></a> and <a href="https://archive.apache.org/dist/kafka/0.8.2.2/scaladoc/index.html#kafka.message.MessageAndMetadata"><code>MessageAndMetadata</code></a> with a consumer abstraction <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-kafka-common/src/main/java/org/apache/gobblin/kafka/client/GobblinKafkaConsumerClient.java" rel="nofollow"><code>GobblinKafkaConsumerClient</code></a>. 
 Additionally, the old design uses kafka auto commit feature which can cause potential loss of messages when offsets are committed and the system fails before messages are processed.</p>
 <p>Detailed design and implementation details can be found <a href="https://cwiki.apache.org/confluence/display/GOBBLIN/GIP+5%3A+High+Level+Consumer+Re-design">here</a></p>
 <h1 id="new-design-details">New Design &amp; Details</h1>
 <p>GobblinKafkaConsumerClient</p>
-<p>The new design uses <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-kafka-common/src/main/java/org/apache/gobblin/kafka/client/GobblinKafkaConsumerClient.java"><code>GobblinKafkaConsumerClient</code></a> which is a simplified, generic wrapper client to communicate with Kafka. This class does not depend on classes defined in kafka-clients library. This allows the high level consumer to work with different versions of kafka. Concrete classes implementing this interface use a specific version of kafka-client library. See <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-kafka-09/src/main/java/org/apache/gobblin/kafka/client/Kafka09ConsumerClient.java"><code>Kafka09ConsumerClient</code></a></p>
+<p>The new design uses <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-kafka-common/src/main/java/org/apache/gobblin/kafka/client/GobblinKafkaConsumerClient.java" rel="nofollow"><code>GobblinKafkaConsumerClient</code></a> which is a simplified, generic wrapper client to communicate with Kafka. This class does not depend on classes defined in kafka-clients library. This allows the high level consumer to work with different versions of kafka. Concrete classes implementing this interface use a specific version of kafka-client library. See <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-kafka-09/src/main/java/org/apache/gobblin/kafka/client/Kafka09ConsumerClient.java" rel="nofollow"><code>Kafka09ConsumerClient</code></a></p>
 <p>Manual Offset Commit</p>
 <p><code>GobblinKafkaConsumerClient</code> API has been enhanced to allow manual committing of offsets.</p>
 <pre><code class="java">  /**
@@ -546,7 +546,7 @@ Additionally, the old design uses kafka auto commit feature which can cause pote
 </code></pre>
 
 <p>High level consumer records topic partitions and their offsets AFTER the messages are processed and commits them periodically to kafka. This ensures at-least once delivery in case of a failure.</p>
-<p>Additionally, APIs are provided to subscribe to a topic along with a <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-kafka-common/src/main/java/org/apache/gobblin/kafka/client/GobblinConsumerRebalanceListener.java"><code>GobblinKafkaRebalanceListener</code></a> that provides hooks to when a consumer joins/leaves a consumer group.
+<p>Additionally, APIs are provided to subscribe to a topic along with a <a href="https://github.com/apache/incubator-gobblin/blob/master/gobblin-modules/gobblin-kafka-common/src/main/java/org/apache/gobblin/kafka/client/GobblinConsumerRebalanceListener.java" rel="nofollow"><code>GobblinKafkaRebalanceListener</code></a> that provides hooks to when a consumer joins/leaves a consumer group.
 In this case, we commit remaining offsets and clear offset caches.</p>
 <pre><code class="java">  /**
    * Subscribe to a topic
@@ -586,7 +586,7 @@ In this case, we commit remaining offsets and clear offset caches.</p>
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>

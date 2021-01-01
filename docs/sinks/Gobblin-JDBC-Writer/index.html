@@ -521,7 +521,7 @@
     <li>JDBC</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/Gobblin-JDBC-Writer.md"> Edit on Gobblin</a>
+        <a href="https://github.com/apache/incubator-gobblin/edit/master/docs/sinks/Gobblin-JDBC-Writer.md" rel="nofollow"> Edit on Gobblin</a>
       
     </li>
   </ul>
@@ -714,7 +714,7 @@ Operation:<ul>
 <h3 id="concrete-implementations">Concrete implementations</h3>
 <p>To configure a concrete writer, please refer the <a href="Configuration-Properties-Glossary#JdbcWriter-Properties">JDBC Writer Properties</a> section in the <a href="Configuration-Properties-Glossary">Configuration Glossary</a>.</p>
 <h4 id="mysql-writer">MySQL Writer</h4>
-<p>The MySQL writer uses <a href="http://dev.mysql.com/doc/refman/5.0/en/insert-speed.html">buffered inserts</a> to increase performance.<br />
+<p>The MySQL writer uses <a href="http://dev.mysql.com/doc/refman/5.0/en/insert-speed.html" rel="nofollow">buffered inserts</a> to increase performance.<br />
 The sink configuration for MySQL in a Gobblin job is as follows:</p>
 <pre><code>writer.destination.type=MYSQL
 writer.builder.class=org.apache.gobblin.writer.JdbcWriterBuilder
@@ -732,7 +732,7 @@ converter.avro.jdbc.entry_fields_pairs={\&quot;src_fn\&quot;:\&quot;firstname\&q
 <p>Similarly to the MySQL Writer, this writer also inserts data in batches, configured by  <code>writer.jdbc.batch_size</code>.
 Ideally, for performance reasons the target table is advised to be set to type MULTISET, without a primary index.<br />
 Please note, that the Teradata JDBC drivers are <em>not</em> part of Gobblin, one needs to obtain them from 
-<a href="http://downloads.teradata.com/download/connectivity/jdbc-driver">Teradata</a> and pass them as job specific jars to the 
+<a href="http://downloads.teradata.com/download/connectivity/jdbc-driver" rel="nofollow">Teradata</a> and pass them as job specific jars to the 
 Gobblin submitter scripts. Teradata may use the FASTLOAD option during the insert if conditions are met.<br />
 The sink configuration for Teradata in a Gobblin job is as follows:</p>
 <pre><code>writer.destination.type=TERADATA
@@ -836,7 +836,7 @@ MySQL Writer performance test on 80k records. Each entry consists of 14 fields w
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org" rel="nofollow">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme" rel="nofollow">theme</a> provided by <a href="https://readthedocs.org" rel="nofollow">Read the Docs</a>.
 </footer>
       
         </div>
