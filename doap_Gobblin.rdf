@@ -40,6 +40,8 @@
         <created>2023-08-30</created>
         <revision>0.17.0</revision>
       </Version>
+    </release>
+    <release>
       <Version>
         <name>Apache Gobblin 0.16.0</name>
         <created>2022-02-03</created>
